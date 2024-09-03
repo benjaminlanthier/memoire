@@ -1,0 +1,269 @@
+\begin{comment}
+\end{comment}
+
+\part{Résultats}\label{part:results}
+
+%-----------------------------------------------------------------------------%
+\chapter{Complexité de l'algorithme}\label{ch:results}
+
+
+\section{Contraction numérique pour les instances aléatoires}\label{sec:results-random_instances}
+Les contractions numériques des réseaux de tenseurs ont été faites sur un processeur AMD EPYC 7F72 @ 3.2 GHz avec une mémoire vive allouée de 128 GB.
+Chacun des points sur les figures dans ce chapitre correspondent à la largeur de contraction moyenne des réseaux de tenseurs et au temps moyen qu'a prit leur \emph{contraction compressée} --- la contraction avec l'algorithme de balayage d'appliqué avant chaque étape de contraction --- sur $10^4$ instances pour un nombre donné de $n$ spins.
+% Lorsque le processus de balayage est appliqué avant chacune des étapes de contraction, on dit que cette contraction est compressée.
+% Chacun des points dans les figures de cette section correspondent, avec l'algorithme de balayage d'appliqué, soit à la largeur de contraction, soit à la durée d'exécution totale moyenne sur $10^4$ instances pour un nombre donné de $n$ spins.
+Une zone ombrée autour de ces points représente l'erreur type de la moyenne, bien qu'un ensemble de donné de taille suffisante garantisse que ces erreurs sont à peine visibles.
+La largeur de contraction détermine, à un facteur prêt, le temps d'exécution puisque la mémoire nécessaire pour qu'un algorithme fonctionne influence ce paramètre.
+Comme c'est courant dans les ensembles de graphiques aléatoires pour les modèles de verre de spin ou les modèles graphiques à variables booléennes, les ensembles contiennent des instances qui sont beaucoup plus difficiles à résoudre que l'instance typique.
+Pour une taille de système $n$ donnée, dans le cas où au moins une de ces instances ne peut pas être résolue avec les ressources computationnelles disponibles, le point qui lui est associé dans le graphique est laissé de côté.
+
+À la figure~\ref{fig:alpha066_both_memory_curves}, on voit la largeur de contraction moyenne avec \emph{et} sans le processus de balayage d'appliqué durant la contraction de réseaux de tenseurs.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/both_alpha_2_3_memory.pdf}
+    \caption{Largeur de contraction moyenne pour $\alpha = 2/3$ sans (pâle) et avec (sombre) le processus de balayage d'appliqué durant la contraction des réseaux de tenseurs.}
+    \label{fig:alpha066_both_memory_curves}
+\end{figure}
+% L'application de cette méthode avant chacune des contractions fait en sorte que la contraction exacte du réseau en entier est une \emph{contraction compressée}.
+On voit clairement que les deux courbes n'ont pas la même allure et n'augmentent pas au même rythme en fonction du nombre de spins $n$.
+En fait, sans le processus de balayage, cette valeur augmente linéairement avec le nombre de spins, signifiant que la taille des tenseurs augmente exponentiellement durant la contraction.
+Ce comportement est celui qui est attendu d'une contraction exacte et est celui qui est attendu de l'équation~\ref{eq:contraction-width} qui se base sur la largeur de contraction.
+Ensuite, la contraction compressée des mêmes réseaux de tenseurs fait en sorte que cette évolution passe de linéaire à logarithmique, ce qui veut dire que la taille des tenseurs, et le temps d'exécution, augmentent de manière polynomiale.
+
+L'étude sur des densités de clauses $\alpha$ plus élevées a été effectué et à la figure~\ref{fig:all-results-quimb}, on voit comment la largeur de contraction moyenne et le temps d'exécution moyen évoluent avec ce paramètre.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/all_results_quimb-0.pdf}
+        \caption{La largeur de contraction compressée moyenne.}
+        \label{subfig:all-results-quimb-a}
+    \end{subfigure}
+    \hfill
+    % \hspace{0.005\textwidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/all_results_quimb-1.pdf}
+        \caption{Les mêmes données qu'en (a), mais représentées sur un axe horizontal logarithmique.}
+        \label{subfig:all-results-quimb-b}
+    \end{subfigure}
+
+    \medskip
+
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/all_results_quimb-2.pdf}
+        \caption{Le temps d'exécution moyen de la contraction compressée.}
+        \label{subfig:all-results-quimb-c}
+    \end{subfigure}
+    \hfill
+    % \hspace{0.005\textwidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/all_results_quimb-3.pdf}
+        \caption{Les mêmes données qu'en (c), mais représentées sur un axe horizontal logarithmique.}
+        \label{subfig:all-results-quimb-d}
+    \end{subfigure}
+    \caption{L'évolution des complexités de mémoire et temporelle de la contraction compressée pour le modèle $3$-spin.  Les axes horizontales et verticales qui sont logarithmiques permettent d'accentuer les courbes qui suivent respectivement une évolution polynomiale et une évolution exponentielle (les droites).}
+    \label{fig:all-results-quimb}
+\end{figure}
+Les résultats dans la figure~\ref{subfig:all-results-quimb-a} mettent de l'avant l'évolution linéaire des courbes pour $\alpha = 5/6$ et $\alpha = 8/9$ alors que les résultats dans la figure~\ref{subfig:all-results-quimb-b} montrent clairement la nature logarithmique des courbes pour $\alpha = 2/3$ et $\alpha = 3/4$.
+Quant à elle, la courbe pour $\alpha = 4/5$ commence à se détacher de l'évolution logarithmique, montrant une transition entre ces deux évolutions.
+
+Cette tendance logarithmique suivie par les courbes de largeur de contraction pour $\alpha = 2/3$ et $\alpha = 3/4$ vient principalement du fait que l'algorithme de balayage implémente automatiquement l'algorithme d'élimination de feuilles, puisque $\alpha < \alpha_d$.
+En effet, ces valeurs du paramètre $\alpha$ sous la transition de phase dynamique font en sorte que la probabilité que les liens soient tous éliminés par les étapes de balayage avant la première contraction est très forte.
+Cela laisse donc seulement des scalaires à être multipliés ensemble, ce qui est numériquement très facile.
+Pour $\alpha = 5/6$ et $\alpha = 8/9$, des valeurs supérieures à $\alpha_d$, l'algorithme de balayage est moins efficace parce qu'un noyau reste après le processus de balayage avant la première contraction.
+Ces noyaux mènent à des contractions entre tenseurs à la place des scalaires, ce qui fait que les instances à ces valeurs de densité de clauses sont plus difficiles à résoudre.
+Cette difficulté est montrée par la tendance linéaire des courbes rouge et bleue de la figure~\ref{subfig:all-results-quimb-a}.
+Puisque $\alpha = 4/5$ est proche de la transition dynamique, il y a une certaine chance qu'un noyau reste après les premières étapes de balayage pour les instances de taille finie utilisées ici, alors l'algorithme commence à être moins efficace.
+La contraction compressée élimine tous les liens dans la plupart des cas, mais dans moins de cas qu'à $\alpha = 3/4$, d'où ce détachement qui commence à $\alpha = 4/5$.
+
+Dans la figure~\ref{subfig:all-results-quimb-c}, on voit l'évolution du temps d'exécution de la contraction compressée des réseaux de tenseurs (en seconde) avec un axe vertical logarithmique et cette même évolution est montrée dans la figure~\ref{subfig:all-results-quimb-d} avec un axe horizontal qui est aussi logarithmique.
+Conformément à l'évolution de la largeur de contraction, on obtient des courbes polynomiales pour $\alpha = 2/3$ ($\propto n^{1.201}$) and $\alpha=3/4$ ($\propto n^{1.351}$).
+Pour des systèmes avec un petit nombre de spins, toutes les courbes semblent suivre une évolution polynomiale en $n$, mais c'est uniquement dû à l'effet de taille finie des systèmes étudiés.
+En effet, les tendances changent pour des $n$ plus élevés, donc pour des plus gros réseaux de tenseurs, comme on le voit très bien avec la courbe pour $\alpha = 8/9$.
+Le phénomène de détachement est donc aussi observé dans ces graphiques, mais plus tard avec les courbes pour $\alpha \in \left\{4/5, 5/6, 8/9 \right\}$, devenant présent plus rapidement plus ce paramètre est élevé.
+Cela signifie que les évolutions pour le temps d'exécution passent de polynomial à super-polynomial selon la densité de clauses, comme ce qui a été conclu avec l'utilisation de la mémoire dans la figure~\ref{subfig:all-results-quimb-b}.
+
+% La courbe orange dans la figure~\ref{subfig:all-results-quimb-c} (pour $\alpha = 3/4$) possède des petites bosses a $n = 180$ et a $n = 216$ à cause de la présence d'instances qui sont des exceptions.
+% Pour celles-ci, il reste un noyau après les étapes de balayage avant la première contraction.
+% En faire la contraction compressée est donc beaucoup plus ardue que pour les instances typiques dans cet ensemble.
+% Ces instances ne se retrouvent pas en grand nombre, mais elles ont un impact suffisant pour impacter les résultats moyens montrés dans ce graphique.
+% Il est possible de voir que ce sont de rares instances qui causent ces anomalies à cause de la présence de barres d'erreur visible à l'oeil autour de ces points, mais aussi lorsqu'on regarde les histogrames des largeurs de contraction pour ces deux valeurs du paramètre de densité de clause à la figure~\ref{fig:width-histogram}.
+% \begin{figure}[h]
+%     \centering
+%     \begin{subfigure}{.49\textwidth}
+%         \centering
+%         % \includegraphics[width=\linewidth]{Figures/}
+%         \caption{}
+%         \label{subfig:width-histogram-n=180}
+%     \end{subfigure}
+%     \hfill
+%     % \hspace{0.005\textwidth}
+%     \begin{subfigure}{.49\textwidth}
+%         \centering
+%         % \includegraphics[width=\linewidth]{Figures/}
+%         \caption{}
+%         \label{subfig:width-histogram-n=216}
+%     \end{subfigure}
+%     \caption{Histograme des largeurs de contraction sur $10^4$ instances à $\alpha = 3/4$ pour \textbf{(a)} $n = 180$ et pour \textbf{(b)} $n = 216$.}
+%     \label{fig:width-histogram}
+% \end{figure}
+
+La signification des évolutions logarithmique et linéaire pour la largeur de contraction est directement reliée à la taille maximale atteinte par les réseaux de tenseurs --- la somme des tailles de tous les tenseurs --- au cours de leurs contractions.
+En effet, une évolution logarithmique de la largeur de contraction indique une croissance polynomial de la taille de ceux-ci dans la majorité des cas, tandis qu'une évolution linéaire en indique une croissance exponentielle.
+Cela est montré dans les deux graphiques de la figure~\ref{fig:tn-sizes} où les ajustements linéaires sont donnés pour les courbes des paramètres $\alpha = 2/3$ et $3/4$.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/tn-sizes-0.pdf}
+        \caption{}
+        \label{subfig:tn-sizes-0}
+    \end{subfigure}
+    \hfill
+    % \hspace{0.005\textwidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/tn-sizes-1.pdf}
+        \caption{}
+        \label{subfig:tn-sizes-1}
+    \end{subfigure}
+    \caption{L'évolution de la complexité de mémoire de la contraction compressée pour le modèle $3$-spin pour l'ensemble des instances aléatoires avec les ajustements linéaires pour $\alpha = 2/3$ et $3/4$.}
+    \label{fig:tn-sizes}
+\end{figure}
+Dû à la nature exponentielle des tailles des tenseurs, les courbes représentées ici sont obtenues avec la \emph{moyenne géométrique}, car une seule instance d'exception peut modifier complètement ces courbes, faussant ainsi l'évolution typique de la mémoire.
+une statistique qui suit très bien l'évolution des tailles typiques de ces réseaux de tenseurs
+
+% À $\alpha = 2/3$ et $3/4$, la contraction des réseaux de tenseurs avec l'algorithme de balayage offre une performance entre celles des méthodes de l'élimination gaussienne ``standard'' et ``intelligente''.
+% La comparaison est faite dans le tableau~\ref{tab:scaling_comparisons}, où la mémoire correspond à la taille maximale atteinte par les réseaux de tenseurs au cours de leurs contractions, montrée à la figure~\ref{fig:tn-sizes}, et le temps correspond au temps d'exécution.
+% Les autres valeurs de densité de clauses ne sont pas dans ce tableau puisque leur évolution au niveau de la largeur de contraction en fonction de $n$ n'est pas logarithmique.
+À $\alpha = 2/3$ et $3/4$, la contraction compressée des réseaux de tenseurs offre une performance entre celles des méthodes de l'élimination gaussienne ``standard'' et ``intelligente''.
+La comparaison est faite dans le tableau~\ref{tab:scaling_comparisons}, où la mémoire correspond à la taille maximale atteinte par les réseaux de tenseurs --- la somme des tailles de tous les tenseurs --- au cours de leurs contractions et le temps correspond au temps d'exécution.
+Les autres valeurs de densité de clauses ne sont pas dans ce tableau puisque leur évolution au niveau de la largeur de contraction en fonction de $n$ n'est pas logarithmique.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \text{Méthodes} & $\alpha$ & \text{Mémoire} & \text{Temps}\\
+        \hline\hline
+        \text{ÉG ``standard''} & $\leq 2/3$ & $\propto n$ & $\propto n$\\
+        \hline
+        \text{ÉG ``standard''} & $> 2/3$ & $\propto n^2$ & $\propto n^3$\\
+        \hline
+        \text{ÉG ``intelligente''} & $ < \alpha_\mathrm{d}$ & $\propto n$ & $\propto n$\\
+        \hline
+        \text{Contraction compressée} & $2/3$ & $\propto n^{1.029}$ & $\propto n^{1.201}$\\
+        \hline
+        \text{Contraction compressée} & $3/4$ & $\propto n^{1.087}$ & $\propto n^{1.351}$\\
+        \hline
+    \end{tabular}
+    \caption{Comparaison des performances entre la contraction compressée de réseaux de tenseurs qui résolvent des problèmes \#$p$-XORSAT aléatoires et l'élimination gaussienne (ÉG) pour ces mêmes problèmes~\cite{mezard_alternative_2002}.}
+    \label{tab:scaling_comparisons}
+\end{table}
+
+\section{Contraction graphique pour les instances noyaux}\label{sec:results-only_cores}
+Pour l'ensemble des instances noyaux, les instances dans lesquelles toutes les variables sont présentes au moins deux fois, chacun de points dans les figures correspondent à une moyenne de la largeur de contraction sur 200 instances.
+Avec la méthode graphique développée, la largeur de contraction est extraite à partir des arêtes connectées aux groupes dans les graphes durant leurs ``contractions'', comme expliqué au chapitre~\ref{ch:graphical-method}.
+Toutes les largeurs de contraction obtenues à l'aide de cette méthode sont montrées dans la figure~\ref{subfig:all-results-graphical-a}.
+
+Ayant désormais la possibilité d'étudier des TN plus grands sans être limité par la mémoire, on peut comparer la largeur de contraction de l'algorithme avec différents ordres de contraction.
+Dans la Fig.~\ref{subfig:all-results-graphical-a}, deux sont comparées: \verb|EBC| et \verb|Aléatoire|.
+La méthode \verb|Aléatoire| choisit simplement les prochains tenseurs à contracter de manière complètement aléatoire, donc n'est pas utile numériquement, mais elle permet une étude d'efficacité de la méthode de balayage en fonction de la qualité de l'ordre de contraction.
+Elle ne peut donc être étudiée utilement qu'avec cette méthode graphique car elle fait que la largeur de contraction augmente rapidement à des valeurs astronomiques, comme le montre la Fig.~\ref{subfig:all-results-graphical-a}.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/all_results_graphical-0.pdf}
+        \caption{La largeur de contraction moyenne pour pour l'ordre de contraction \texttt{EBC} lorsque les simplifications ne sont pas appliquées ainsi que celle lorsqu'elles le sont pour les ordres de contraction \texttt{EBC} et \texttt{Aléatoire}.}
+        \label{subfig:all-results-graphical-a}
+    \end{subfigure}
+    \hfill
+    % \hspace{0.005\textwidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/all_results_graphical-1.pdf}
+        \caption{Comparaison entre l'évolution de la largeur de contraction lorsque les simplifications sont appliquées pour la méthode graphique et lorsque le processus de balayage est appliqué avec la méthode numérique.}
+        \label{subfig:all-results-graphical-b}
+    \end{subfigure}
+    \caption{L'évolution de la complexité de mémoire de la contraction compressée pour le modèle $3$-spin pour l'ensemble des instances noyaux, déterminé avec la méthode graphique.}
+    \label{fig:all-results-graphical}
+\end{figure}
+
+À partir de la figure~\ref{subfig:all-results-graphical-a}, on remarque que l'ordre de contraction  est un facteur important pour l'efficacité de la contraction compressée des réseaux de tenseurs qui modélisent un problème $p$-XORSAT.
+En effet, la tendance suivie par la courbe jaune représente la largeur de contraction des réseaux de tenseurs obtenue en suivant l'ordre de contraction \verb|Aléatoire| tout en appliquant les simplifications trouvées, mais sa tendance se rapproche beaucoup plus d'exponentielle qu'autre chose.
+On peut maintenant comparer l'efficacité de cette méthode en fonction de différents ordres de contractions connus; \verb|Greedy| et \verb|KaHyPar| (expliquées à la section~\ref{sec:contraction-order-methods}) afin de voir s'ils ont un impact sur l'efficacité de l'algorithme de balayage.
+Cette comparaison est faite à la figure~\ref{fig:graphical-ebc-greedy-kahypar}.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/graphical-ebc-vs-kahypar-vs-greedy-0.pdf}
+        \caption{}
+        \label{subfig:graphical-ebc-greedy-kahypar-a}
+    \end{subfigure}
+    \hfill
+    % \hspace{0.005\textwidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/graphical-ebc-vs-kahypar-vs-greedy-1.pdf}
+        \caption{}
+        \label{subfig:graphical-ebc-greedy-kahypar-b}
+    \end{subfigure}
+    \caption{Comparaison des largeurs de contraction moyennes pour \texttt{EBC}, \texttt{Greedy} et \texttt{KaHyPar} \textbf{(a)} sans et \textbf{(b)} avec l'application des simplifications.}
+    \label{fig:graphical-ebc-greedy-kahypar}
+\end{figure}
+% From Fig.~\ref{fig:results_CEB_graphical}(a), we see that a good contraction ordering is an important factor for the success of the sweeping method during the contraction of a given TN that models a $p$-XORSAT problem. Two known methods for random tensor networks have also been used in order to compare the results obtained from the \texttt{EBC} method, as shown in Fig.~\ref{fig:kahypar-vs-greedy-vs-ebc}.
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{Figures/graphical_ebc_vs_kahypar_vs_greedy.pdf}
+%     \caption{All the results were obtained using graphical contractions. \textbf{(a)} Scaling of the average contraction width for instances in the biregular $(2, 3)$ bipartite graph ensemble ($\alpha = 2/3$ leaf-free instances) using the \texttt{EBC}, \texttt{KaHyPar} and \texttt{greedy} contraction orderings without sweeping. \textbf{(b)} Comparison of the average contraction width for the same ensemble using the same three contraction orderings, but with sweeps applied.}
+%     \label{fig:kahypar-vs-greedy-vs-ebc}
+% \end{figure}
+
+Ces résultats montrent que l'application des simplifications possibles durant la ``contraction'' des graphes permet d'en trouver assez pour que la tendance suivie par la largeur de contraction en fonction de la taille du système passe de linéaire à sous-linéaire pour les ordres de contraction \verb|EBC|, \verb|Greedy| et \verb|KaHyPar|.
+En comparant ces trois méthodes, on remarque que \verb|EBC| est plus efficace que \verb|KaHyPar| pour trouver ces simplifications après $n \approx 150$ alors que \verb|Greedy| l'est toujours moins.
+La forme fonctionnelle précise de ces courbes n'est pas triviale, alors leurs tendances n'ont pas été précisément déterminée.
+Cela signifie que l'algorithme de balayage va au-delà de l'efficacité de l'algorithme d'élimination de feuilles dans la représentation en réseaux de tenseurs du modèle $3$-spin.
+
+Afin de vérifier que les résultats obtenus avec la méthode de contraction graphique du chapitre~\ref{ch:graphical-method} sont les mêmes que ceux qui sont obtenus avec la méthode numérique de contraction compressée, une comparaison des tailles de tenseurs \emph{à chaque étape de contraction} a été effectué pour $100$ instances noyaux aléatoires de $n = 81$ spins.
+De plus, toutes les largeurs de contraction pour les $200$ instances utilisées pour obtenir les résultats de la Fig.~\ref{subfig:all-results-graphical-b} avec des tailles allant jusqu'à $n = 240$ sont identiques à celles obtenues avec la contraction numérique.
+On peut donc en conclure que ces deux méthodes fournissent les mêmes valeurs quant à la largeur de contraction lorsque la redondance est éliminée des systèmes.
+
+
+\chapter{Possibles avenues d'amélioration}\label{ch:possible-ameliorations}
+
+
+Compte tenu de la généralité de la méthode de balayage développée dans ce mémoire, il serait possible de la modifier afin qu'elle soit plus orientée vers la résolution du problème étudié, \#$p$-XORSAT.
+En effet, deux paramètres qui n'ont pas été étudiés ici sont: l'ordre dans laquelle la compression de liens est effectuée et les moments au cours desquels la méthode de balayage est appliquée.
+
+Pour l'ordre de la compression des liens dans les réseaux de tenseurs, celle-ci pourrait avoir un impact sur le nombre de fois qu'une étape de balayage s'effectue sur le réseau, en particulier avant la première contraction.
+L'implémentation de l'algorithme d'élimination de feuilles se fait à cette étape, mais celle-ci pourrait possiblement être accélérée.
+L'intuition derrière cette idée vient de l'optimisation qui est apportée à l'élimination gaussienne par la version <<intelligente>> comparativement à la méthode <<standard>> dans le cas du problème $p$-XORSAT.
+En suivant la logique de cette version de l'élimination gaussienne, on pourrait, par exemple, évaluer un ordre de compression initial qui chercherait les tenseurs XOR qui sont connectés à des tenseurs COPY qui sont de rang-$1$ et ensuite itérativement compresser les liens de ces tenseurs en commençant par ceux de degré-$1$.
+Cela permettrait de potentiellement optimiser l'implémentation de l'algorithme d'élimination de feuilles.
+Selon cet ordre de compression, tous les liens du réseau de tenseurs dans la figure~\ref{subfig:compression-step-0} seraient éliminés en deux étape de balayage, au lieu de les éliminer en trois étapes.
+En effet, la première étape de balayage éliminerait les trois liens du tenseur XOR qui modélise la clause $c_1$ à cause de la variable $x_4$, puis il éliminerait les trois du tenseur XOR qui modélise la clause $c_2$ à cause de la variable $x_1$.
+Cela laisserait donc le réseau de tenseur dans le même état qu'il est dans la figure~\ref{subfig:compression-step-2}, mais avec une étape de balayage de moins.
+Cette modification pourrait avoir un impact sur le temps d'exécution de la contraction compressée des réseaux de tenseurs qui résolvent les problèmes \#$p$-XORSAT.
+
+Quant aux moments auxquels la méthode de balayage s'applique, elle se fait ici avant chacune des contraction des réseaux de tenseurs.
+Cependant, il serait pertinent de voir s'il est possible de diminuer le nombre de fois qu'elle est appliquée tout en gardant les mêmes largeurs de contraction optimisées.
+Évidemment, afin de garder l'implémentation automatique de l'élimination de feuilles, des étapes de balayages doivent s'appliquer avant la première contraction afin de limiter le plus possible les dimensions des tenseurs qui risqueraient d'augmenter rapidement.
+Avec l'ordre de contraction \verb|EBC|, il serait pertinent d'étudier plus en profondeur l'impact qu'aurait l'application de la méthode de balayage après la contraction de tous les différents niveaux des communautés de tenseurs, comme montré à la figure~\ref{fig:less-sweeping-steps-ceb}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/community-levels-ceb-20.pdf}
+    \caption{Représentation du même arbre de contraction qu'à la figure~\ref{fig:ebc-with-dendrogram}, mais avec une représentation des niveaux de communautés avec la hauteur des rectangles.}
+    \label{fig:less-sweeping-steps-ceb}
+\end{figure}
+Dans celle-ci, les lignes horizontales colorées représentent les moments où les étapes de balayage sont appliquées.
+La première fois qu'elles ont lieu est représentée par la ligne mauve, elles s'appliquent donc avant toute contraction, laissant la chance à l'algorithme d'élimination de feuilles de s'exécuter dès le début.
+La seconde fois, la ligne bleue, se produit ensuite lorsque les tenseurs dans les communautés de niveau $1$ sont contractés.
+Cette logique s'applique jusqu'à la contraction des deux dernières communautés, comme indiqué par la ligne rouge.
+Évidemment, l'efficacité de cette méthode dépend de la méthode utilisée pour trouver l'ordre de contraction du réseau, mais ça reste tout de même une piste qui pourrait être intéressante à explorer.
+
+Au niveau de la mémoire, ces modifications ne peuvent pas pousser plus loin que la méthode de balayage ne le fait déjà puisqu'elle est appliquée avant chacune des contractions.
+Ces deux propositions permettraient en fait de potentiellement améliorer le temps d'exécution de la méthode, spécifiquement pour les réseaux de tenseurs qui modélisent des problèmes de la forme $p$-XORSAT, en diminuant le nombre d'étapes de balayage durant la contraction.

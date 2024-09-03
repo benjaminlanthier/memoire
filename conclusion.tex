@@ -1,0 +1,23 @@
+\begin{comment}
+\end{comment}
+
+\Conclusion % Chapitre qui ne sera pas numéroté si IntroConcluSansNombre est Vrai
+
+%-----------------------------------------------------------------------------%
+Dans ce mémoire, nous avons appliqué la contraction compressée de réseaux de tenseurs qui évaluent la fonction de partition à température nulle des systèmes physiques du modèle $p$-spin.
+En se concentrant sur $p = 3$, on a montré que la méthode de balayage, une méthode qui compresse tous les liens avec comme objectif d'éliminer seulement l'information redondante, implémente automatiquement l'algorithme d'élimination de feuilles.
+Cela signifie que cette méthode est efficace avant la transition dynamique $\alpha_d \approx 0.818$ du problème $p$-XORSAT qui modélise ces problèmes.
+Au-dessus de cette valeur, l'apparition des instances où certaines variables ne se retrouvent qu'une seule fois se fait plus rare, ou celles-ci ne sont pas assez nombreuses, ce qui laisse un noyau après les étapes de balayage avant la première contraction.
+Ces noyaux possèdent des clauses dans lesquelles toutes les variables restantes sont présentes au moins deux fois, faisant en sorte que le temps de contraction compressée de ces instances reste \emph{exponentiel}.
+Cependant, en étudiant l'ensemble des instances où chacun des spins participe dans exactement deux interactions, on trouve que la contraction compressée peut se faire en un temps \emph{sous-exponentiel}.
+De plus, l'amélioration de la demande en mémoire par rapport à l'évolution exponentielle attendue dépend fortement de l'ordre de contraction choisie.
+À vrai dire, si celle-ci est aléatoire, les simplifications trouvées ne sont pas suffisantes pour changer la forme de l'évolution des demandes en ressource de la contraction compressée des réseaux de tenseurs.
+Un ordre de contraction déterminé à partir d'un algorithme connu qui est efficace sur des réseaux de tenseurs aléatoires, comme \verb|EBC| et \verb|KaHyPar|, augmente les capacités de simplifications de la méthode de balayage.
+
+Il est a noter qu'ici, comparativement à d'autres méthodes utilisant les réseaux de tenseurs pour analyser des verres de spins~\cite{zhu2019tensor}, cette méthode est \emph{exacte} et il est possible de la modifier un peu pour qu'elle ne subisse aucune perte de précision dans le cas des contraintes XOR.
+En effet, on observe que les valeurs singulières locales durant toutes les étapes de contraction d'un réseau de tenseurs modélisant un problème $p$-XORSAT peuvent être soient des puissances de $2$ positive ou fractionnaire si elles sont distribuées adéquatement après l'application de la SVD.
+Cela signifie que seulement ces valeurs ainsi que des $0$ ou des zéros numériques se retrouvent dans les valeurs singulières.
+Une observation similaire a été faite pour les circuits quantiques Clifford, qui sont essentiellement des circuits de parités non loin de celui étudié dans ce mémoire, où des états stabilisateurs possèdent un spectre d'intrication <<plat>>~\cite{fattal2004entanglement, Hamma2005entropy, zhou2020Clifford}.
+D'après les recherches faites au cours de ce projet, il s'agit de la première méthode numérique générale pour les calculs de fonction de partition de modèle de spin et de comptage de modèles qui atteint cette performance pour les modèles $p$-spin sans invoquer l'élimination gaussienne comme sous-routine.
+De plus, on pense qu'il s'agit du premier cas non trivial d'un modèle de spin défini sur des graphes creux aléatoires (qui possèdent des cycles) où la contraction compressée des réseaux de tenseurs résout le modèle exactement, tout en conduisant à une accélération exponentielle à sous-exponentielle comparativement à la simple contraction de ces réseaux.
+

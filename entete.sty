@@ -1,0 +1,154 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{entete}[2015/09/15]
+
+% Paquets utilisés
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[greek, english, frenchb]{babel}
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{graphicx,listings,color,comment}
+\usepackage{microtype}
+\usepackage{geometry}  % Loadé dans switchboard, selon la version que l'on fait.
+\usepackage[usenames,dvipsnames,svgnames,x11names,table]{xcolor}
+\usepackage{mathtools,amsmath,amssymb,bm,upgreek}%,esint}
+\usepackage{multirow,multicol,comment,array,listings,url}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{dcolumn}
+\usepackage{setspace}           % Gère l'interligne
+\usepackage{float, placeins}
+\usepackage[bottom]{footmisc}   % Flush les footnote au tout bas de la page
+%\usepackage[version=3]{mhchem} % La commande \ce{} permet d'écrire des formules chimiques
+\usepackage{etoolbox}           % Permet les toggles
+%\usepackage{pdfpages}          % Insère des pdf directement dans le document
+%\usepackage{minted}
+\usepackage{kantlipsum}         % Pour générer le texte bidon du gabarit
+%\usepackage[square, numbers]{natbib} % sort&compress -> bug backrefs.
+\usepackage{cite}               % Fourni \citen entre autres
+\usepackage{xspace}
+\usepackage{pdflscape}
+\usepackage{xstring}
+\usepackage{pgf}
+\usepackage{lettrine}
+\usepackage{Rothdn}
+
+
+%=============================================================================%
+
+% Columns centered on a decimal position
+\newcolumntype{.}{D{.}{.}{-1}}
+%Ajoute un style de colonne centrées verticalement
+%\newcolumntype{V}{>{\centering\arraybackslash} m{.15\linewidth} }
+%\newcolumntype{v}{>{\centering\arraybackslash} m{.08\linewidth} }
+
+%=============================================================================%
+
+% Mise en page française
+\addto\captionsfrench{\def\figurename{{\sc Figure}}}
+\addto\captionsfrench{\def\tablename{{\sc Tableau}}}
+\addto\captionsfrench{\def\listfigurename{Liste des figures}}
+
+%=============================================================================%
+
+% Formatage du document.
+
+% Indentation et espacement
+\setlength{\parindent}{4ex}
+\setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
+
+% Header/Footer plus propres
+\usepackage[plainheadsepline,nouppercase]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+%\renewcommand{\chaptermark}[1]{\markboth{{\thechapter. #1}}{}}
+%\renewcommand{\sectionmark}[1]{}}
+
+% Apparence des chapitres/(sous(-sous)-)sections.
+\newcommand\chapterstring{Chapitre}
+\usepackage{titlesec}
+% Fix for titlesec 2.10.1, doesn't change anything for 2.10.2+ (a priori)
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+% chapitres
+\titleformat{\chapter}[display] {\bfseries\color{black}} {\filright
+\enspace \Large \chapterstring~\thechapter} {14pt} {\Huge\filcenter}
+% sections
+\titleformat{\section}{\vspace{0mm plus 2cm}\addpenalty{-1000}\Large\bfseries}{\thesection}{1em}{}
+% sous-sections
+\titleformat{\subsection}{\addpenalty{-500}\large\bfseries}{\thesubsection}{1em}{} 
+% sous-sous-sections
+\titleformat{\subsubsection}{\penalty-500\vspace{0pt plus 2pt}{}\bfseries}{\thesubsubsection}{}{}[\vspace{-14pt}]
+
+
+% Séquestres les Floats à la section courante.
+% Évite d'avoir une image dans la section après celle définie.
+\let\oldsection\section
+\renewcommand{\section}[1]{\FloatBarrier\oldsection{#1}\FloatBarrier}
+
+%% Idem pour les sous-section, mais pas tjrs jolie pour petite sous-section.
+%\let\oldsubsection\subsection
+%\renewcommand{\subsection}[1]{\FloatBarrier\oldsubsection{#1}\FloatBarrier}
+
+%=============================================================================%
+
+
+%% Minted listings style
+% Jolie listing de code, e.g. \inputminted{pyhton}{test.py}
+% \renewcommand{\theFancyVerbLine}{
+%  \ttfamily\textcolor[rgb]{0.5,0.5,0.5}{\tiny\arabic{FancyVerbLine}}}
+% \usemintedstyle{default}
+
+
+%=============================================================================%
+% On ré-implémente les commandes utilisées pour générer les tables/listes et la 
+% bibliographie dans le but d'avoir les bons numéros de pages dans les 
+% bookmarks pdf et la table des matière.
+
+% Redefining the way TOC/LOF/LOT/BIB are built to have right pdfbookmark page.
+\renewcommand{\tableofcontents}
+             {
+                \clearpage
+                \chapter*{\pdfbookmark[chapter]{\contentsname}{toc}
+                          \contentsname}
+                \csname @starttoc\endcsname{toc}
+             }
+
+\renewcommand{\listoffigures}
+             {
+                \clearpage
+                \chapter*{\pdfbookmark[chapter]{\listfigurename}{lof}
+                          \listfigurename}
+                \csname @starttoc\endcsname{lof}
+             }
+
+\renewcommand{\listoftables}
+             {
+                \clearpage
+                \chapter*{\pdfbookmark[chapter]{\listtablename}{lot}
+                          \listtablename}
+                \csname @starttoc\endcsname{lot}
+             }
+
+\let\oldbibliography\bibliography
+\renewcommand{\bibliography}[1]
+             { 
+                \clearpage
+                \chapter*{\bibname}
+                \bibpagestyle   % Gère les entêtes de la bibliographie
+                \addcontentsline{toc}{chapter}{\bibname}
+                \begingroup
+                    \renewcommand{\chapter}[2]{}
+                    \oldbibliography{#1}
+                \endgroup
+             }
+
+%=============================================================================%
+
+% Pour définir certaines métadonnées
+\newcommand{\Organisation}[1]{\renewcommand{\Organisation}{#1}}
+\newcommand{\Location}[1]{\renewcommand{\Location}{#1}}
+\newcommand{\ResumeCourt}[1]{\renewcommand{\ResumeCourt}{#1}}
+\newcommand{\MotsClefs}[1]{\renewcommand{\MotsClefs}{#1}}
+
+%=============================================================================%

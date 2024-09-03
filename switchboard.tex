@@ -1,0 +1,202 @@
+\begin{comment}
+\end{comment}
+
+%=============================================================================%
+
+\makeatletter   % Permet d'accèder aux variables @
+
+%=============================================================================%
+
+    % PDFA-1b/Hyperref
+    \iftoggle{generatePDFa}
+    {
+        % PDF/A stuff (experimental)
+        \usepackage[a-1b]{pdfx}
+    }
+    {
+        \newcommand{\sep}{, }
+    }
+        \usepackage{filecontents}
+        \begin{filecontents*}{\jobname.xmpdata}
+                \Title          {\@title}
+                \Author         {\@author}
+                \Subject        {\ResumeCourt}
+                \Org            {\Organisation}
+                \Keywords       {\MotsClefs}
+                \PublicationType{book}
+        \end{filecontents*}
+        % Couleurs moins intenses, https://ethanschoonover.com/solarized/
+        \definecolor{solblue}{HTML}{268bd2}
+        \definecolor{solred}{HTML}{dc322f}
+        \definecolor{solviolet}{HTML}{6c71c4}
+        \definecolor{solmagenta}{HTML}{d33682}
+        \definecolor{solcyan}{HTML}{2aa198}
+        \definecolor{solorange}{HTML}{cb4b16}
+        \definecolor{solyellow}{HTML}{b58900}
+        \definecolor{solgreen}{HTML}{859900}
+        % Hyperrefs
+        \usepackage{hyperref}
+        \hypersetup{
+            pdfauthor={\@author},
+            pdftitle={\@title},
+            pdfsubject={\ResumeCourt},
+            pdfkeywords={\MotsClefs},
+            hyperindex=true,
+            bookmarks=true,
+            pdfa,
+            %pdftex,
+            colorlinks=true,
+            breaklinks=true,
+            urlcolor=solmagenta,
+            %linkcolor=solblue!85!black, % A little darker
+            linkcolor=solblue,
+            citecolor=solcyan,
+            bookmarksopen=true,
+            unicode=true
+        }
+        \usepackage[hyperpageref]{backref}      % Backrefs!
+        \renewcommand{\backref}[1]{[cf.~p.~#1]} % Volé cette ligne à Samuel Boutin
+        \usepackage{bookmark}
+        \usepackage{cmap} % Doit être après hyperref pour être compatible avec pdf-a
+
+%=============================================================================%
+
+    \iftoggle{useCustomFonts}
+    {   
+        % Deux prochaines lignes -> Pagella et Mathpazo
+        %\usepackage{mathpazo} % utilise Palatino pour les mathématiques (mettre en premier)
+        %\usepackage{tgpagella} % utilise la police TeX Gyre Pagella
+
+        % Deux prochaines lignes -> New Century et Fourier
+        %\usepackage{newcent}
+        %\usepackage{fouriernc}
+        
+        \usepackage{newcent}
+        \usepackage{fouriernc}
+        \renewcommand{\dagger}{\text{\textdagger}} % Millennial missing dagger fix
+        \renewcommand{\iint}{\int\!\!\int}  % Better spacing
+        \renewcommand{\iiint}{\int\!\!\int\!\!\int}
+        \renewcommand{\iiiint}{\int\!\!\int\!\!\int\!\!\int}
+    }
+    {}
+
+%=============================================================================%
+    
+    \iftoggle{AuteureFemme}
+    { \newcommand{\monsieurMadame}{Mme.} }    
+    { \newcommand{\monsieurMadame}{M.} }
+
+%=============================================================================%
+
+    \iftoggle{MemoirePasThese}
+    {   % Si c'est un mémoire
+        \newcommand{\documentPresente}{Mémoire présenté}
+        \newcommand{\leDocument}{le mémoire}
+        \newcommand{\leGrade}{maître ès science (M.Sc.)}
+    }
+    {   % Si c'est une thèse
+        \newcommand{\documentPresente}{Thèse présentée}
+        \newcommand{\leDocument}{la thèse}
+        \newcommand{\leGrade}{docteur ès science (Ph.D.)}
+    }
+
+%=============================================================================%
+    
+    % Gestion de la version électronmique vs celle imprimée.
+    \iftoggle{VersionLivre}
+    {   % On fait la version imprimée!
+
+        % On utilise un fontsize plus petit(10pt vs 12pt).
+        \let\small\relax
+        \let\footnotesize\relax
+        \let\scriptsize\relax
+        \let\tiny\relax
+        \let\large\relax
+        \let\Large\relax
+        \let\LARGE\relax
+        \let\huge\relax
+        \let\Huge\relax
+        \input{size10.clo}  % Ajuste le fontsize ET les marges
+        \geometry{twoside=true, bottom=2.54cm} % L'ordre est important, pour les marges/fontsize.
+        %\widowpenalty5000  % Décommenter s'il y a trop de ligne veuves/orphelines.
+        %\clubpenalty5000   
+
+
+        % On enlève la numérotation des pages vides
+        \let\origdoublepage\cleardoublepage
+        \newcommand{\clearemptydoublepage}{%
+            \clearpage%
+            {\pagestyle{empty}\origdoublepage}%
+            }
+        \let\cleardoublepage\clearemptydoublepage
+        
+        % Permet de mettre un page blanche seulement dans la version imprimée
+        \newcommand{\autoPageBlancheLivre}{\clearpage\null\thispagestyle{empty}}
+
+        \iftoggle{LivrePGChVide}
+        {
+            \let\stdchapter\chapter
+            \renewcommand\chapter{\clearpage\null\thispagestyle{empty}\stdchapter}
+            \renewcommand{\autoPageBlancheLivre}{}
+
+            \let\stdpart\part
+            \renewcommand\part{\clearpage\null\thispagestyle{empty}\stdpart}
+
+            \renewcommand\@endpart{\vfil
+                          \if@twoside
+                            \null
+                            \thispagestyle{empty}%
+                            \newpage
+                          \fi
+                          \if@tempswa
+                            \twocolumn
+                          \fi}
+        }{}
+
+        % Les hyperliens n'ont pas desoins d'être colorés
+        \hypersetup{hidelinks}
+        % On affiche les DOI dans la biblio -> Pratique en version imprimée
+        \bibliographystyle{nature-fr-showdoi}
+        % On garde les entêtes dans la bibliographie
+        \newcommand{\bibpagestyle}{}
+    }
+    {   % S'il y a un côté, on fait la version électronique.
+        \geometry{letterpaper, lmargin=1.25in, rmargin=1.25in,
+                  tmargin=1.5in, bmargin=1.0in, twoside=false}
+        \iftoggle{ForceEntete}
+        {
+            % On garde les entêtes dans la bibliographie
+            \newcommand{\bibpagestyle}{}
+        }
+        {
+        % Prochaines lignes enlèvent l'entête
+            \renewcommand{\chaptermark}[1]
+                {\markboth{{\thechapter. #1}}{}}
+            \renewcommand{\sectionmark}[1]{}
+            % On enlève les entêtes dans la bibliographie
+            \newcommand{\bibpagestyle}{\pagestyle{plain}}
+        }
+
+        % On n'affiche pas les DOI dans la biblio -> Plus propre
+        \bibliographystyle{nature-fr}
+        %\bibliographystyle{unsrt-fr} % unsrt partiellement traduit. Préférer nature.
+        
+        % Permet de mettre un page blanche seulement dans la version imprimée
+        \newcommand{\autoPageBlancheLivre}{}
+    }
+    \iftoggle{IntroConcluSansNombre}
+    {
+        \newcommand{\Introduction}{\chapter*{Introduction}
+            \addcontentsline{toc}{chapter}{Introduction}}
+        \newcommand{\Conclusion}{\chapter*{Conclusion}
+            \addcontentsline{toc}{chapter}{Conclusion}}
+    }
+    {
+        \newcommand{\Introduction}{\chapter{Introduction}}
+        \newcommand{\Conclusion}{\chapter{Conclusion}}
+    }
+
+
+%=============================================================================%
+
+\makeatother    % Plus d'accès aux variables @

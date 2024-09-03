@@ -1,0 +1,120 @@
+\documentclass[titlepage, openright, letterpaper, 12pt]{book}
+\usepackage{entete,commandes} % Load les packages et définit des commandes.
+
+%=============================================================================%
+
+% \makeatletter
+%     \newcommand{\showfont}{
+%         \begin{itemize}
+%             \item encoding: \f@encoding{}
+%             \item family: \f@family{}
+%             \item series: \f@series{}
+%             \item shape: \f@shape{}
+%             \item size: \f@size{}
+%         \end{itemize}
+%     }
+% \makeatother
+% \showfont
+
+% On crée des bools qui sont False par défaut.
+\newtoggle{VersionLivre}
+\newtoggle{LivrePGChVide}
+\newtoggle{ForceEntete}
+\newtoggle{AuteureFemme}
+\newtoggle{MemoirePasThese}
+\newtoggle{useCustomFonts}
+\newtoggle{generatePDFa}
+\newtoggle{IntroConcluSansNombre}
+
+% Switchboard, l'endroit ou on ajuste les toggles.
+% Décommenté -> True; commenté -> False
+
+%\toggletrue{VersionLivre}          % Décommenter pour faire la version livre
+%\toggletrue{LivrePGChVide}         % Page gauche de chapiter vide en mode livre.
+%\toggletrue{ForceEntete}            % Entête même pour version électronique.
+%\toggletrue{AuteureFemme}          % Décommenter si l'auteur est une femme.
+\toggletrue{MemoirePasThese}       % Décommenter dans le cas d'un mémoire.
+\toggletrue{IntroConcluSansNombre}  % Intro et conclusion non numérotées
+\toggletrue{useCustomFonts}         % Fonts différents, voir switchboard.tex.
+%\toggletrue{generatePDFa}           % Génère un PDFa plutôt qu'un PDF standard.
+
+%=============================================================================%
+
+\title          {TenSAT: Optimisation de la résolution des modèles $p$-spin avec les réseaux de tenseurs} % Les réseaux de tenseurs pour les modèles $p$-spin% Pour la page de titre/jury.
+\author         {Benjamin Lanthier}  % Idem
+\Organisation   {UNIVERSITÉ de SHERBROOKE}
+\Location       {Sherbrooke, Québec, Canada}
+\ResumeCourt    {On présente des résultats nouveaux dans un domaine en pleine effervescence.}
+\date           {\today}       % Idem
+\MotsClefs      {Mots-Clefs \sep Pertinents \sep avec séparateurs}
+
+% On cache le code exécuté dans ce fichier parce qu'il est laid et impertinent.
+\input{switchboard.tex}
+
+%=============================================================================%
+
+\begin{document}
+
+%=============================================================================%
+% Titre
+\input{titlepage.tex}
+
+\frontmatter % Pagination de préambule
+
+% Jury
+\input{jury.tex}
+
+% Dédicace
+\input{dedicace.tex}
+\thispagestyle{empty}
+
+% Sommaire
+\clearpage  % Mets le sommaire à la bonne page dans la TOC
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+\input{sommaire.tex}
+
+% Remerciements
+\chapter*{Remerciements}
+\input{remerciements.tex}
+
+% Tables des matières/Figures
+{
+    \setlength{\parskip}{0ex}
+    \tableofcontents
+    \listoffigures
+    %\listoftables
+}
+
+%=============================================================================%
+
+\mainmatter % Pagination standard
+\onehalfspacing
+
+%-----------------------------------------------------------------------------%
+
+% \include serait préférable à \input à partir d'ici, mais MiKTeX sur Windows
+% n'aime pas les \cite dans un \include. Fonctionne parfaitement sur TeXLive.
+
+\input{introduction}
+
+\input{theorie}
+
+\input{methodologie}
+
+\input{resultats}
+
+\input{conclusion}
+
+%-----------------------------------------------------------------------------%
+
+\singlespacing
+
+% \input{annexe}
+
+%=============================================================================%
+
+% Voir switchboard.tex pour le bibliographystyle selon le type de document.
+\bibliography{memoire}        % Le fichier de bibliographie est memoire.bib.
+
+\end{document}

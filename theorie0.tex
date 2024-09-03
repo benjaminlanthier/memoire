@@ -1,0 +1,445 @@
+\begin{comment}
+\end{comment}
+
+\part{Théorie}
+
+\chapter{Définitions}
+
+%-----------------------------------------------------------------------------%
+
+% Ce qui suit n'est que du remplissage avec un petit exemple de ref/eqref
+% \section{Definitions}
+% \section{Le verre de spin}
+% Le verre de spin est un modèle physique étudié en matière condensée qui se définit généralement par l'Hamiltonien suivant:
+% \begin{equation}\label{eq:ham_spin-glass}
+%     H = -\frac{1}{2}\sum_{i \neq j}^{n} J_{ij}\sigma_i\sigma_j.
+% \end{equation}
+% Cet Hamiltonian modélise un système à $n$ spins d'Ising $\sigma_i \in \{-1,+1\}$, o\`{u} l'indice $i$ varie entre $1$ et $n$, interagissant tous les uns avec les autres en suivant $J_{ij}$, la force de l'interaction spin-spin.
+% Le problème définit par cet Hamiltonien change en fonction de la fonction de distribution de $J_{ij}$, car on peut la définir comme étant gaussienne ou poissonienne par example.
+% L'étude de ce système 
+
+\section{The \texorpdfstring{$p$}{p}-spin model} \label{sec:p-spin}
+We can write the $p$-spin model by specifying a bipartite graph $G = (U,V,E)$, where $U$ is the set of nodes representing the $n = |U|$ spins, $V$ is the set of nodes representing the $m = |V|$ interaction terms, and $E$ is the set of edges connecting spin nodes to interaction nodes.
+We can then write the Hamiltonian of the $p$-spin model as:
+\begin{equation} \label{eq:ham_p-spin}
+    H = \frac{1}{2} \left[m -\sum_{v \in V} J_{v}\prod_{u \in N(v)} \sigma_{u} \right],
+\end{equation}
+where $J_v \in \left\{-1, 1\right\}$ are the couplings for the interaction at node $v$, $\sigma_u \in \left\{-1,1\right\}$ is the value of the spin at node $u$, and $N(v)$ is the set of $p$ neighbours for the interaction described by node $v$.
+The minimum energy is zero, and it occurs when every interaction satisfies $J_{v} = \prod_{u \in N(v)} \sigma_{u}$.
+In this paper, we are interested in counting the number of zero-energy configurations for a given ensemble of bipartite graphs, that is, evaluating the zero-temperature partition function of the model.
+
+By letting $\sigma_u = (-1)^{x_u}$ and $J_v = (-1)^{b_v}$, we can rewrite the search for zero-energy configurations from Eq.~\ref{eq:ham_p-spin} as
+\begin{equation} \label{eq:Ax=b}
+    A\vec{x} = \vec{b} \mod 2,
+\end{equation}
+where $A \in \{0, 1\}^{m \times n}$ is the biadjacency matrix of the graph $G$, with $A_{vu} = 1$ indicating $u \in N(v)$ and zero otherwise, $\vec{x} \in \left\{ 0,1 \right\}^n$ encodes the spin configuration, and $\vec{b} \in \left\{ 0,1 \right\}^m$ encodes the couplings.
+Finding the zero-energy configurations for Eq.~\ref{eq:ham_p-spin} is equivalent to solving the matrix equation~\ref{eq:Ax=b}.
+Counting the number of configurations also involves manipulating Eq.~\ref{eq:Ax=b}.
+With this form, we can then cast the problem into the the language of Boolean satisfiability (SAT), which we detail below.
+
+\section{The \#\texorpdfstring{$p$}{p}-XORSAT problem}\label{pxorsat_problem}
+
+\subsection{Definition}\label{xorsat_formal_definition}
+
+In its most general form, a SAT problem is the problem of deciding whether a logic formula built from a set of boolean variables $\{x\} = \{x_1, x_2, ..., x_n\}$ and the operators $\wedge$ (conjunction), $\vee$ (disjunction), and $\neg$ (negation) evaluates to true, i.e., is \textit{satisfiable}~\cite{garey1979computers}.
+The SAT problem is characterized by the conjunction of clauses, each comprising disjunctions of variables where the negation operator may be applied.
+The SAT problem is NP-complete, and the same is true for many of its variants.
+
+The constraint stipulating that every clause must consist of exactly $p$ variables defines the $p$-SAT problem, which is also NP-complete.
+Counting the number of solutions that satisfy a given SAT problem, if any exist, defines the \#SAT problem, which is even more challenging, falling under the \#P-complete class.
+This property extends to \#$p$-SAT problems for $p \geq 2$.
+
+The variant of the \#$p$-SAT problem that lets us count the number of zero-energy configurations of a given $p$-spin model is the \#$p$-XORSAT problem, defined below.
+
+The \#$p$-XORSAT problem requires only a modification of the operators within the clauses from the standard $p$-SAT formulation.
+The disjunction is replaced by the \textit{exclusive-or} (XOR) operator, which is mathematically represented by the summation modulo $2$ operator ($\oplus$).
+Given $A$ and $\vec{b}$ as in Eq.~\ref{eq:Ax=b}, we can define an instance $\phi$ of the $p$-XORSAT problem as:
+\begin{equation}\label{eq:xorsat_def}
+    \begin{split}
+        \phi(\{x\}) &= \bigwedge_{i = 1}^m c_i,\\
+        c_i &= 1 \oplus b_i \oplus A_i \cdot \vec{x},\\
+        \vec{x} &= \left(x_1, x_2, \ldots, x_n \right) \in \{0,1\}^n,
+    \end{split}
+\end{equation}
+where $A_i \in \left\{ 0,1 \right\}^n$ is the $i$-th row of $A$ and $b_i$ is the $i$-th component of $\vec{b}$, $A_i \cdot \vec{x}$ indicates the dot product between $A_i$ and $\vec{x}$ (modulo $2$), and $c_i = 1$ implies the clause is satisfied ($b_i \oplus A_i \cdot \vec{x} = 0$).
+
+When one generates $A$ by placing $p$ ones in each row uniformly at random with no repeated rows and uniformly chooses $\vec{b} \in \left\{0,1 \right\}^m$, the clause density $\alpha \equiv m / n$ characterizes much of the problem.
+In particular, $p$-XORSAT has two phase transitions~\cite{mezard_alternative_2002}.
+The first occurs at $\alpha_d$, which indicates a dynamical transition in the structure of the solution space by dividing solutions into well-separated (in Hamming distance) clusters.
+The second occurs at the critical transition $\alpha_c$, where, with high probability, any instance becomes unsatisfiable (no solutions).
+This point signifies a similar phase transition even when $\vec{b} = 0$, meaning the configuration $\vec{x} = 0$ is always a solution~\cite{ricci2001simplest}.
+For $p = 3$, the constants are $\alpha_d \approx 0.818$ and $\alpha_c \approx 0.918$~\cite{mezard_alternative_2002}.
+
+\subsection{Gaussian elimination}
+Given a $p$-XORSAT instance $\phi \left( \left\{x\right\} \right)$, we first translate it into the form of Eq.~\ref{eq:Ax=b}.
+Then, we apply GE on the augmented matrix $[A|\vec{b}]$.
+If the system is inconsistent, there are no solutions.
+Otherwise, the solution count is:
+\begin{equation}\label{eq:ge}
+    \text{\#Solutions} = 2^{n - \mathrm{rank}(A)},
+\end{equation}
+where all operations are modulo $2$, as in applying GE.
+\#$p$-XORSAT is thus in P since it can be solved in at most $\mathcal{O}(n^3)$ time and $\mathcal{O}(n^2)$ memory.
+
+In Ref.~\cite{braunstein_complexity_2002}, the authors studied the time and memory requirements for solving Eq.~\ref{eq:Ax=b} for $p = 3$ using a ``simple'' version of GE.
+This version solves the linear equations in the order they appear in Eq.~\ref{eq:Ax=b} and with respect to a random variable.
+The authors showed that this simple algorithm will solve the problem in $\propto n$ time and memory when $\alpha \leq 2/3$, and in $\propto n^3$ time and $\propto n^2$ memory when $\alpha > 2/3$.
+
+The authors also presented a ``smart'' version of GE, where one first looks for the variable appearing in the least number of equations left to be solved (ties broken arbitrarily), then solves for that variable and substitutes it into the remaining equations.
+They argued that this smarter version of GE will solve the problem in $\propto n$ time and memory when $\alpha < \alpha_d$, and in $\propto n^3$ time and $\propto n^2$ memory when $\alpha > \alpha_d$.
+
+When one solves an equation that contains a variable which only appears in that equation, one can interpret the process graphically as a ``leaf removal'' algorithm~\cite{mezard_alternative_2002}.
+We describe it below because it provides intuition as to why the ``smart'' version of GE is more efficient and will help explain the behaviour of our TN algorithm.
+
+\subsection{Leaf removal}\label{sec:leaf-removal-algorithm}
+
+Suppose we have an instance for $p=3$ and the variable $x$ only appears in the linear equation $x \oplus y \oplus z = b$.
+No matter what values $y$ and $z$ take, it is always possible to choose $x$ to make the equation true.
+We can therefore solve this equation for $x$, and only fix it once we have solved the rest of the (fewer) linear equations.
+But removing this equation may now cause $y$ or $z$ to only appear in a single other equation, so we solve those equations for $y$ and $z$, and then what remains is an even smaller linear system.
+The process will continue until the remaining variables participate in at least two equations.
+In terms of the matrix $A$ in Eq.~\ref{eq:Ax=b}, each column will have at least two 1s.
+Note that if a variable appears in no equations it is, in essence, not part of the problem and so we can ignore it and simply multiply the count by 2.
+
+This algorithm is called leaf removal~\cite{mezard_alternative_2002}, and it allows us to simplify the $p$-XORSAT problem.
+Graphically, the algorithm begins with the bipartite graph $G$ representing the problem, then iteratively finds variable nodes $u \in U$ such that $\mathrm{deg}(u) = 1$, and deletes the clause node $v \in N(u)$ and $v$'s associated edges.
+The algorithm continues until either no clause nodes remain (and therefore, no edges) or a ``core'' remains, a subgraph of $G$ where each variable node has degree at least two.
+One can then construct a solution to the original formula by working backwards from a solution to the formula corresponding to the core graph.
+
+In Ref.~\cite{mezard_alternative_2002}, the authors showed that, for the ensemble where $p = 3$ and one picks each clause uniformly at random from the $\binom{n}{3}$ distinct tuples of variables, the leaf algorithm will succeed in reducing the corresponding graph to the empty graph when $\alpha < \alpha_d \approx 0.818$.
+Because at each step of the algorithm one can fix a variable node of degree $1$ in order to remove a clause node, when no core remains the count will be $2^{n-m}$, where $m$ is the number of clauses (or variables we have fixed).
+When $\alpha > \alpha_d$, a core will remain, which means leaf removal is not enough to solve the entire problem.
+The value $\alpha_d$ indicates a dynamical transition in the problem, and it corresponds to a change in the structure of the set of solutions.
+The ``smart'' GE uses this principle to achieve a speedup over the standard version.
+
+\subsection{Graphical simplifications} \label{sec:XORSAT-simplifications}
+There exist graphical rules, such as the leaf removal explained in Sec.~\ref{sec:leaf-removal-algorithm}, that let us simplify a $p$-XORSAT problem.
+These will be used in Sec.~\ref{sec:graphical-method}, where we develop a complementary graphical method for TN contraction.
+Note that we will study the case where $\vec{b} = 0$ for simplicity.
+Then, we have the following examples of simplifications.
+
+The first example is the Hopf law~\cite{denny_algebraically_2012}, where a clause involves the same variable multiple times.
+In this case, since $i \oplus i = 0$ for boolean indices, when there are $t$ occurrences of a variable in a clause, only $t \mod{2}$ of them are necessary and the rest are redundant.
+In Fig.~\ref{fig:hopf_law}, we show an example for $t = 2$.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/hopf_law.pdf}
+    \caption{\label{fig:hopf_law}Graphical representation of the Hopf law.
+    Clause nodes are blue squares, and variable nodes are green circles.}
+\end{figure}
+
+The second example is the bialgebra law~\cite{denny_algebraically_2012}, where a set of clause nodes are all connected to a set of variable nodes.
+An example for two clauses and two variables is shown in Fig.~\ref{fig:bialgebra_law}.
+These structures simplify to a single clause and single variable, as shown in Fig.~\ref{fig:bialgebra_law}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/bialgebra_law.pdf}
+    \caption{\label{fig:bialgebra_law}Graphical representation of the bialgebra law.
+    Clause nodes are blue squares, and variable nodes are green circles.}
+\end{figure}
+
+These simplifications correspond to eliminating redundancies in the problem.
+Resolving these redundancies can be exploited to solve the problem faster.
+
+\section{Tensor networks}
+
+TNs are a data structure that encodes a list of tensor multiplications.
+Intuitively, one can imagine a TN as a graph where each node represents a tensor, and edges represent the common axes along which one multiplies two tensors~\footnote{Though this does not factor into our work, it is also possible to have ``free'' edges with only one end connected to a node, indicating an axis in which no tensor multiplication occurs.}.
+By contracting together neighboring nodes---multiplying the corresponding tensors together---one can sometimes efficiently compute a variety of quantities, making it a useful numerical method.
+Originally developed to efficiently evaluate quantum expectation values and partition functions of many-body systems, this tool now has applicability in many domains, including quantum circuit simulation~\cite{seitz_simulating_2023} and machine learning~\cite{wang_tensor_2023}.
+As shown in~\cite{garcia-saez_exact_2011}, this tool can also be used for $p$-SAT problems.
+
+For our work, contracting all of the tensors in the network together will yield the number of solutions to Equation~\ref{eq:Ax=b}.
+Below, we review the main ideas for TN methods that are relevant for us and determine the performance of our algorithm.
+These elements are: how to perform contractions, the importance of contraction ordering, and how to locally optimize the sizes of the tensors (which affect the memory requirements).
+We then describe our TN algorithm for the \#$p$-XORSAT problem in Sec.~\ref{sec:tn-for-XORSAT}.
+
+
+\subsection{Contraction} \label{sec:contraction}
+
+A single tensor is a multidimensional array of values.
+Graphically, the number of axes (or rank) of the tensor is the degree of the corresponding node, and the size of the tensor is the number of elements (the product of the dimensions of the axes).
+The size of the TN is then the sum of all the tensor sizes.
+For any TN algorithm, one must keep track of the size of the TN to ensure the memory requirements do not exceed one's computational limits.
+In particular, one must consider how contracting tensors together changes the TN's size.
+
+A simple example of contraction is the matrix-vector multiplication, which is represented graphically in Fig.~\ref{fig:tn_mat-vec_multiplication}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/tn_matrix_vector_multiplication.pdf}
+    \caption{\label{fig:tn_mat-vec_multiplication}Matrix-vector multiplication in TN format.}
+\end{figure}
+Here, the vector $\vec{u}$ (a rank-1 tensor) is represented by a node with a single edge connected to it and the matrix $M$ (a rank-2 tensor) is also a node, but with two edges.
+The matrix-vector multiplication shown in Fig.~\ref{fig:tn_mat-vec_multiplication} can also be written in the Einstein summation convention:
+\begin{equation}\label{eq:einsum}
+    \sum_j M_{ij}u_j = v_i.
+\end{equation}
+In general, one can write the contraction of a TN by an Einstein summation over all the common (shared) axes.
+We will sometimes call tensors with common axes \emph{adjacent}, in reference to a TN's graphical depiction.
+
+When contracting tensors where each axis has the same dimension, we can graphically determine the resulting size by looking at the degree of the new node.
+In Fig.\ref{fig:tn_mat-vec_multiplication}, the resulting tensor has rank 1, which is the same as $\vec{u}$'s rank.
+However, the resulting tensor size can be much larger than the original tensors.
+Suppose we contract tensors of rank $d_1$ and $d_2$ which share a single common axis and each axis has dimension $2$, then the size of the resulting tensor will be $2^{d_1 + d_2 - 2}$ and thus scales exponentially in tensor ranks.
+
+\subsection{Contraction order}\label{sec:contraction-ordering}
+Though we can carry out the contraction of a TN in any order, the size of the TN in intermediate steps of the contraction can vary widely.
+Ideally, a contraction will choose an order that limits the memory required to store the TN during all steps of the contraction, making it feasible.
+Given a contraction order, we can define the \emph{contraction width} $W$ of the TN~\cite{gray_hyper-optimized_2021} in two equivalent ways:
+\begin{equation} \label{eq:contraction-width}
+    W =
+    \begin{cases}
+        \max_{v \in P} \mathrm{deg}(v) & \text{(graphical)},\\
+        \max_{T \in \mathcal{T}} \log_2{s(T)} & \text{(tensors)}.\\
+    \end{cases}
+\end{equation}
+For the graphical representation, $P$ is the set of nodes representing the tensors present at any stage of the contraction.
+In the tensor representation, $\mathcal{T}$ is the set of all tensors that are present at any stage of the contraction, and $s(T)$ is the size (number of elements) of the tensor $T$.
+Note that $W$ depends on the TN and the contraction order.
+Then, up to a prefactor~\cite{gray_hyper-optimized_2021}, $2^W$ captures the memory requirements for the entire contraction.
+We use the contraction width as a proxy to runtime because it defines the largest tensor that one must manipulate during the contraction using multilinear operations, which take polynomial time in the size of that tensor~\cite{gray_hyper-optimized_2021}.
+Finding such orderings is an optimization problem and algorithms exist to find optimized contraction ordering according to the TN structure.
+While finding the optimal contraction order is easy in some cases, for example, a square lattice, it is much more complex in others, such as random networks~\cite{gray_hyper-optimized_2022}.
+In general, the computational demands of a TN contraction grow exponentially with the number of tensors in both time and memory.
+Even so, a method called bond compression allows us to further optimize the contraction by accepting a little error.
+We review this method below, and we explain in Sec.~\ref{sec:XORSAT-simplifications} how we use bond compression in a novel way.
+
+\subsection{Bond compression}\label{Compression}
+Bond compression involves, in its simplest form, performing a contraction-decomposition operation on adjacent tensors within the TN.
+The term ``bond'' refers to the common index between tensors.
+The decomposition step primarily uses rank-revealing methods such as QR or \textit{singular value decomposition} (SVD).
+Of these, the SVD plays a central role in TN algorithms.
+By setting a threshold value for singular values, either absolute or relative, we retain only the singular values above the threshold and corresponding singular vectors, thereby approximating subsequent contractions.
+This approach facilitates the contraction of larger TNs by reducing the contraction width during the process.
+However, in general, this comes at the expense of approximating the final result.
+
+We implement bond compression as follows.
+Given two adjacent tensors $T_A$ and $T_B$ in the network, we transform them into the approximate tensors $\tilde{T}_A$ and $\tilde{T}_B$ as
+\begin{equation}\label{eq:compression_schedule}
+    \begin{split}
+        T_AT_B &= Q_AR_AR_BQ_B\\
+        &= Q_AR_{AB}Q_B\\
+        &= Q_A(U\Sigma V^\dagger)Q_B\\
+        &\approx Q_A(\tilde{U}\tilde{\Sigma} \tilde{V}^\dagger)Q_B\\
+        &= (Q_A\tilde{U}\tilde{\Sigma}^\frac{1}{2})(\tilde{\Sigma}^\frac{1}{2}\tilde{V}^\dagger Q_B)\\
+        &= \tilde{T}_A\tilde{T}_B.
+    \end{split}
+\end{equation}
+The first equality comes after applying a QR decomposition to the tensors.
+Since the QR decomposition operates solely on matrices, we first need to reshape those tensors into matrices before decomposing them.
+Concretely, if we have a tensor $T$ that has indices $(i_1, i_2, ..., i_k)$ and we want to apply the QR on the index $i_3$, then the reshaping would give a matrix with indices $(\prod_{j \neq 3}i_j, i_3)$ (where the product signifies grouping the indices into a composite index).
+This matrix allows for the direct application of the QR decomposition on the desired dimension.
+The second equality comes from multiplying the matrices $R_A$ and $R_B$ to get the matrix $R_{AB}$.
+The third equality comes after performing the SVD on $R_{AB}$.
+Then, the threshold is applied, reducing the sizes of the singular values matrix, of $U$ and of $V$ and possibly approximating the result.
+The following equality comes from splitting this diagonal singular values matrix into two equal ones.
+The final equality comes from multiplying the matrices together in each parenthesis to get two new tensors with a ``compressed'' bond between them.
+This schedule optimizes the bond compression since the contraction between two tensors of possibly high dimensions is avoided.
+
+\chapter{Methodology}
+
+\section{Tensor networks for \texorpdfstring{$p$}{p}-XORSAT}
+\label{sec:tn-for-XORSAT}
+As shown in Ref.~\cite{garcia-saez_exact_2011}, we can map any $p$-XORSAT instance as a TN.
+Contracting it will yield the number of solutions to the problem.
+As with the $p$-spin model in Sec.~\ref{sec:p-spin}, we can define a $p$-XORSAT instance by a bipartite graph $G = (U,V,E)$ and a vector $\vec{b}$ of parities.
+Then, to each node $u \in U$ we will assign a ``variable'' (or COPY) tensor, which has the form:
+\begin{equation}\label{eq:COPY}
+    T^{\text{COPY}\{u\}}_{i_1i_2...i_d} = \begin{cases}
+        1, & \text{ if } i_1 = i_2 = ... = i_d,\\
+        0, & \text{ else,}\\
+    \end{cases}
+\end{equation}
+where the indices $i_1i_2...i_d$ are boolean and $d = \mathrm{deg}(u)$.
+For each node $v \in V$, we will assign a ``clause'' (or XOR) tensor of the form:
+\begin{equation} \label{eq:XOR-tensor}
+    T^{\text{XOR}\{v\}}_{i_1i_2...i_p} = \begin{cases}
+        1, & \text{ if } i_1 \oplus i_2 \oplus ... \oplus i_p = b_v\\
+        0, & \text{ else }\\
+    \end{cases},
+\end{equation}
+where the indices are also boolean, $p = \mathrm{deg}(v)$ and $b_v$ is the parity associated to clause $v$.
+Finally, the edges $E$ indicate which indices are common between different tensors in the TN and need to be summed over.
+Obtaining the solution count for the problem involves writing a summation over all of the common indices, yielding an expression similar (but much more involved for larger TNs) to Eq.~\ref{eq:einsum}.
+In Fig.~\ref{fig:tn-example}, we give an example of a $3$-XORSAT instance with $n = |U| = 5$ and $m = |V| = 3$.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/tn_example.pdf}
+    \caption{\label{fig:tn-example}An example of a TN representing a $3$-XORSAT instance with $n = 5$ (green circles), $m = 3$ (blue squares).}
+\end{figure}
+
+As explained in Sec.~\ref{sec:contraction-ordering}, we can evaluate the contraction width $W$ of those TNs by extracting the highest tensor rank reached during its contraction.
+The contraction width will be the figure of merit for the performance of our algorithm (defined in Sec.~\ref{sec:sweeping-method}) because of its relation with the maximum intermediate tensor size (see Eq.~\ref{eq:contraction-width}).
+
+\section{Eliminating redundancies through bond compression}
+There are several possible simplifications for a $p$-XORSAT problem that occur during the intermediate steps of the TN contraction.
+By recognizing these simplifications, we can reduce the size of the TN and therefore the time and memory requirements for its contraction.
+We will focus on the case where $\vec{b} = \vec{0}$, so all parities are even.
+
+We will use bond compression to contract and decompose all adjacent tensors in the TN, a process commonly called a \emph{sweep}, which is standard practice in TN methods.
+However, we will \emph{not} remove any nonzero singular values in the decomposition.
+If the tensors are full-rank, this is useless; the tensors remain unchanged after performing bond compression.
+On the other hand, TNs representing $p$-XORSAT problems often contain redundancy (see Sec.~\ref{sec:XORSAT-simplifications}), which results in singular values that are zero to numerical accuracy.
+Therefore, performing bond compression and removing null singular values allows us to reduce the tensor sizes while keeping the resulting contraction exact.
+
+Moreover, bond compression sweeps automatically implement the leaf removal algorithm.
+In terms of our TN, a rank-$1$ variable tensor connected to a rank-$d$ clause tensor will become a scalar (rank-$0$ tensor) and a rank-$(d-1)$ tensor, respectively.
+Furthermore, since leaf removal ensures the clause is satisfied, the resulting rank-$(d-1)$ tensor will actually be a tensor product of rank-$1$ variable tensors.
+We illustrate an example in Fig.~\ref{fig:degree1_sweep}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figures/leaf_algorithm.pdf}
+    \caption{\label{fig:degree1_sweep}Applying bond compression on a rank-$1$ variable tensor connected to a rank-$4$ clause tensor.
+    The result is a scalar and a rank-$3$ tensor that is equivalent to the tensor product of three rank-$1$ variable tensors.}
+\end{figure}
+The following sweep step will then remove those $d-1$ bonds (because they connect to a rank-$1$ variable, or COPY, tensor).
+This means the algorithm effectively removes the clause tensor and all edges connected to it, which is equivalent to one step in the leaf removal algorithm.
+This process could cascade through the entire TN, potentially eliminating all its edges or resulting in a leafless core, giving the same outcome as the leaf removal algorithm.
+
+\section{Graphical contraction} \label{sec:graphical-method}
+When $\alpha < \alpha_d$, leaf removal is likely to completely simplify the graph encoding the problem (Sec.~\ref{sec:leaf-removal-algorithm}).
+Translated to TN contraction, the bond compression shown in Fig.~\ref{fig:degree1_sweep} would be enough to dramatically simplify the TN contraction.
+This allows us to scale our simulations to large system sizes.
+However, when $\alpha > \alpha_d$, a core will likely remain.
+In this case, the remaining TN to contract comprises a core, and this will change the scaling of resources.
+In particular, the presence of a core will increase the contraction width (and therefore the memory requirements) much more quickly than when $\alpha < \alpha_d$.
+This limits our ability to test the performance of our algorithm on large instances in this regime.
+
+To bypass this bottleneck and provide further scaling evidence, we develop a graphical algorithm that allows us to study the contraction width throughout a contraction by only studying the connectivity of the instance's graph.
+As discussed in Sec.~\ref{sec:contraction}, this is always possible for any exact contraction of a TN, since one simply needs to keep track of the tensor ranks at each step of the contraction (regardless of the tensors' contents).
+However, because we seek to study the performance of our TN algorithm that detects simplifications through bond compression, we must also encode the graphical patterns that will lead to simplifications.
+We will make use of the graphical simplifications discussed in Sec.~\ref{sec:XORSAT-simplifications}, as well as more discussed in Sec.~3 of Ref.~\cite{denny_algebraically_2012}.
+
+The graphical algorithm works as follows.
+Starting from a graph $G$ encoding the instance, each node will always represent either a variable or a clause, and by default we will assign each node to a distinct ``cluster''.
+The algorithm ``contracts'' two nodes by assigning them to the same cluster.
+One can think of the cluster as a contracted tensor.
+Then, whenever the algorithm performs a ``sweep'', it will search for any possible simplifications \emph{between} clusters involving variable and clause nodes.
+If the algorithm finds any, it will perform the simplifications by removing edges in the problem~\footnote{The algorithm can also remove edges within a cluster, if it is part of the simplification (see Fig.~\ref{fig:triangle_rule}).}.
+The algorithm alternates between sweeping and contracting until every node in the graph belongs to the same cluster, in which case it terminates.
+It uses the same contraction ordering as in our TN algorithm.
+In graphical contraction, the goal is to obtain the sizes of intermediate tensors encountered in the contraction, not the values of the tensors themselves.
+Therefore, the graphical algorithm will not produce a solution count, just a contraction width.
+We also note that a degree-2 variable tensor is, in its tensor representation, equal to a $2 \times 2$ identity matrix (see Eq.~\ref{eq:COPY}).
+Knowing that, we can replace any degree-$2$ variable nodes in a cluster by edges.
+
+The rank of an intermediate tensor is the number of outgoing edges from a cluster, and its size is:
+\begin{equation} \label{eq:size-cluster}
+    \text{size}_{\text{cluster}} = 2^{\text{\#outgoing edges}}.
+\end{equation}
+Taking the maximum number of outgoing edges over all contraction steps and clusters directly yields the contraction width.
+
+The algorithm must detect and simplify any tensors that our TN algorithm would simplify.
+For the $\alpha = 2/3$ ensemble we consider, only a subset of the possible $p$-XORSAT simplifications are present.
+Following the examples in Ref.~\cite{denny_algebraically_2012}, our graphical algorithm detects the following possible simplifications (we assume $\vec{b} = \vec{0}$ for simplicity):
+\begin{itemize}
+    \item Fusion rule,
+    \item Generalized Hopf law,
+    \item Triangle simplification,
+    \item Multiple edges between nodes of the same type,
+    \item Scalar decomposition.
+\end{itemize}
+
+The \emph{fusion rule} says that neighboring clause nodes in the same cluster can be contracted together to form a bigger clause node, and the same is true for variable nodes.
+In this case, we actually replace the two nodes with a single node representing them.
+Their corresponding tensor representations would then be exactly those of a clause or variable tensor of larger rank.
+This rule is schematically shown in Fig.~\ref{fig:fusion_rule}.
+One can also apply the same rule for nodes of the same type which share multiple edges.
+However, for clause nodes, there will be an overall numerical factor of $2^{\#\text{shared edges} - 1}$ in the entries of the tensor, corresponding to the summation over shared indices.
+Since we are only concerned with the size of the tensors, this coefficient is not relevant.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figures/fusion_rule.pdf}
+    \caption{\label{fig:fusion_rule}The fusion rule on two nodes that are in the same cluster, identified as red here.
+    Nodes of diamond shape represent nodes that could be either of type clause or of type variable.}
+\end{figure}
+
+The \emph{generalized Hopf law} ensures that if a clause node and a variable node share $t$ edges and the degree of each is greater than $t$, a sweep will leave $t\mod{2}$ edges between them (as discussed in Sec.~\ref{sec:XORSAT-simplifications}).
+
+The \emph{triangle simplification} is an implementation of the Hopf law between two clusters that, between them, contain a ``triangle'' of nodes.
+Those triangles contain two nodes of one type (clause or variable) and one of the other.
+Because we always contract nodes of the same type within a cluster using the fusion rule, a triangle simplification can only occur when the nodes of the same type are in different clusters.
+When we sweep between these clusters, applying the fusion rule and then a basic Hopf law will remove edges, as shown in Fig.~\ref{fig:triangle_rule}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/triangle_simplification.pdf}
+    \caption{\label{fig:triangle_rule}One of the two possible cases of the triangle simplification.
+    Node $c_1$ is in one cluster (yellow), and nodes $(c_2, x_1)$ are in the other (red).
+    There are initially two shared edges between the clusters.
+    After the sweep, edges $c_1x_1$ and $c_2x_1$ disappear, resulting in only one shared edge remaining between the two clusters.}
+\end{figure}
+
+The simplification of \emph{multiple edges between nodes of the same type} is a variant of the fusion rule.
+Consider the example in Fig.~\ref{fig:same_type_simplification}.
+If the nodes are in different clusters, sweeping would not contract the nodes, but would simplify all the edges except one in the same way as a the fusion rule (ignoring once again an overall factor).
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{Figures/same_type_simplification.pdf}
+    \caption{\label{fig:same_type_simplification}The multiple edges between nodes of the same type simplification.
+    The nodes are in different clusters (yellow and red), and initially share multiple edges.
+    After a sweep, only one edge is needed to represent the same tensor structure.}
+\end{figure}
+
+Finally, the \emph{scalar decomposition} occurs when there are two nodes of the same type and at least one shares all its edges with the other.
+A sweep will merge the two nodes, and then only factor out a scalar (degree-$0$ node) in the decomposition to return to two tensors.
+However, the sweep will remove all edges between the tensors.
+
+We now argue that these simplifications are sufficient to characterize any possible simplification present in the $\alpha = 2/3$ core ensemble of Sec.~\ref{Core}.
+Each variable node has degree $2$, so the bialgebra law and any higher-order generalizations cannot occur because they require variable nodes of degree at least $3$.
+Because we replace any degree-$2$ variable node in a cluster by an edge and the fusion rule combines clause nodes within a cluster, most clusters will be a single clause node of some degree.
+Our rules above capture simplifications between such clusters.
+The one exception is that variable nodes are their own clusters at the start of the algorithm before being contracted with other nodes.
+In this case, the simplifications given by Fig.~\ref{fig:triangle_rule} may apply.
+Therefore, our set of graphical rules should be sufficient to capture all possible simplifications in this ensemble.
+We also provide evidence of this claim in Sec.~\ref{only_cores}.
+
+
+\section{Numerical experiments and tools}
+\subsection{Generation of random instances}
+To generate our instances at a given $\alpha$ and $n$, we choose $m = \alpha n$ tuples~\footnote{Note that we choose $m,n,$ and $\alpha$ such that $m$ and $n$ are integers.} of $p$ variables uniformly at random without replacement from $\{x\}$, the set of variables defined in Sec.~\ref{pxorsat_problem}.
+This means that each variable tensor's rank $d$ conforms to the following Poisson distribution:
+\begin{equation}\label{eq:poisson}
+    \mathcal{P}(\text{rank}(x_i) = d) = \frac{(p\alpha)^d}{d!} e^{-p\alpha}.
+\end{equation}
+This rank is defined as the number of times that a variable is present in the problem.
+In the language of Eq.~\ref{eq:Ax=b}, we randomly place $p$ ones in each row of $A$ and the rank of the variable $x_i$ corresponds to the number of ones in column $i$.
+For our numerical experiments, we set $p=3$.
+We also exclusively focus on the case $\vec{b} = \vec{0}$ (the unfrustrated version of the $p$-spin model).
+We do so because in the regime $\alpha < \alpha_c$ that we study, the problem will contain at least one solution for any given $\vec{b}$ (with high probability in the limit of large problem size), which allows us to redefine the problem such that $\vec{b} = \vec{0}$~\cite{mezard_alternative_2002, braunstein_complexity_2002} and the solution count remains the same.
+
+\subsection{Generation of core instances}\label{Core}
+Since we are mainly concerned with the scaling of resources for instances which contain a core, we choose a minimal ensemble with this property.
+We will study the ensemble of $3$-regular graphs on $m$ clause nodes generated uniformly at random using the \verb|Degree_Sequence| funtion in \verb|igraph| with the Viger-Latapy method~\cite{viger_efficient_2016}.
+To create a $3$-XORSAT instance, we place a variable node along each edge of the regular graph.
+This ensures the variable nodes all have degree two, and the clause nodes have degree three.
+Therefore, the ensemble of instances if for $\alpha = 2/3$.
+Note that this is below $\alpha_d$, but the method of construction explicitly ensures a core.
+
+\subsection{Implementation of contraction methods}
+For TN contractions, we use \verb|quimb|, a Python package for manipulating TNs~\cite{gray2018quimb}.
+For the graphical method, we use \verb|igraph|, an efficient network analysis library~\cite{csardi_igraph_nodate}, in order to work with node attributes on the graph directly.
+Those attributes let us define the node types (clause and variable) and the nodes' clusters.
+
+The TN contraction order, as discussed in Sec.~\ref{sec:contraction-ordering}, determines the contraction width.
+Without applying our sweeping method, one can track this quantity without actually performing the tensor contraction.
+One must simply keep track of the ranks of the tensors at any point in the contraction, noting as in Sec.~\ref{sec:contraction} that combining two tensors yields a new tensor of known rank.
+We use \verb|cotengra|, a Python package for TN contractions, to track this quantity~\cite{gray_hyper-optimized_2021}.
+In order to track this quantity when sweeps are applied, we use \verb|quimb| in order to read the tensors' sizes during the contraction and calculate the contraction width using Eq.~\ref{eq:contraction-width}.
+
+For random TNs such as ours, there exist multiple heuristic algorithms for finding contraction orderings~\cite{gray_hyper-optimized_2021, gray_hyper-optimized_2022} which lower the contraction width and are practically useful for carrying out computations.
+For the results in Sec.~\ref{Results}, we determine the ordering using a community detection algorithm based on the edge betweenness centrality~\cite{girvan_community_2002} (\verb|EBC|) of the network.
+This algorithm is implemented as \verb|community_edge_betweenness| in the Python package \verb|igraph|~\cite{csardi_igraph_nodate}.
+We use the \verb|EBC| algorithm because it looks for communities in the graph, thus contracting dense sections first.
+This is useful in random TNs because it minimizes the chances of having to work with huge tensors quickly, which could result in a tensor of large rank (and therefore, large contraction width).
+This algorithm is also deterministic, ensuring reproducibility of the contraction orderings.
+
+Even with these better contraction orderings, exactly contracting these random TNs without bond compression will generally result in an exponential growth in $n$ of time and memory (see Sec.~\ref{Results}).
+However, we will show that by manipulating the TN after each contraction using the algorithm defined in Sec.~\ref{sec:sweeping-method}, we can alter the scaling of resources for a range of parameter values in the problem.
+
+
+\subsection{Sweeping method} \label{sec:sweeping-method}
+To ensure lossless compression in bond sweeping, we set the relative threshold for zero singular values to be $10^{-12}$.
+We sweep the TN in arbitrary order until the tensor sizes converge.
+During a sweep, we compress all the bonds using the \verb|compress_all| method implemented in \verb|quimb|, which uses the compression schedule described in Eq.~\ref{eq:compression_schedule}.
+We perform sweeps before each contraction, potentially finding simplifications (see Sec.~\ref{sec:XORSAT-simplifications}) in the structure of the TN during each step of the full contraction.
