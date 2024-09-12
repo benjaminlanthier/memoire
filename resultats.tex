@@ -21,7 +21,7 @@ Pour une taille de système $n$ donnée, dans le cas où au moins une de ces ins
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/both_alpha_2_3_memory.pdf}
-    \caption{Largeur de contraction moyenne pour $\alpha = 2/3$ sans (pâle) et avec (sombre) le processus de balayage d'appliqué durant la contraction des réseaux de tenseurs.}
+    \caption[Largeur de contraction moyenne pour $\alpha = 2/3$ sans et avec le processus de balayage d'appliqué durant la contraction des réseaux de tenseurs.]{Largeur de contraction moyenne pour $\alpha = 2/3$ sans (pâle) et avec (sombre) le processus de balayage d'appliqué durant la contraction des réseaux de tenseurs.}
     \label{fig:alpha066_both_memory_curves}
 \end{figure}
 % L'application de cette méthode avant chacune des contractions fait en sorte que la contraction exacte du réseau en entier est une \emph{contraction compressée}.
@@ -44,7 +44,7 @@ L'étude sur des densités de clauses $\alpha$ plus élevées a été effectué 
     \begin{subfigure}{.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Figures/all_results_quimb-1.pdf}
-        \caption{Les mêmes données qu'en (a), mais représentées sur un axe horizontal logarithmique.}
+        \caption{Mêmes données qu'en (a), mais représentées sur un axe horizontal logarithmique.}
         \label{subfig:all-results-quimb-b}
     \end{subfigure}
 
@@ -53,7 +53,7 @@ L'étude sur des densités de clauses $\alpha$ plus élevées a été effectué 
     \begin{subfigure}{.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Figures/all_results_quimb-2.pdf}
-        \caption{Le temps d'exécution moyen de la contraction compressée.}
+        \caption{Le temps d'exécution moyen de la contraction compressée avec les ajustements polynomiaux pour $\alpha = 2/3$ et $3/4$..}
         \label{subfig:all-results-quimb-c}
     \end{subfigure}
     \hfill
@@ -61,10 +61,10 @@ L'étude sur des densités de clauses $\alpha$ plus élevées a été effectué 
     \begin{subfigure}{.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Figures/all_results_quimb-3.pdf}
-        \caption{Les mêmes données qu'en (c), mais représentées sur un axe horizontal logarithmique.}
+        \caption{Mêmes données qu'en (c), mais représentées sur un axe horizontal logarithmique.}
         \label{subfig:all-results-quimb-d}
     \end{subfigure}
-    \caption{L'évolution des complexités de mémoire et temporelle de la contraction compressée pour le modèle $3$-spin.  Les axes horizontales et verticales qui sont logarithmiques permettent d'accentuer les courbes qui suivent respectivement une évolution polynomiale et une évolution exponentielle (les droites).}
+    \caption[L'évolution des complexités de mémoire et temporelle de la contraction compressée pour le modèle $3$-spin.]{L'évolution des complexités de mémoire et temporelle de la contraction compressée pour le modèle $3$-spin.  Les axes horizontales et verticales qui sont logarithmiques permettent d'accentuer les courbes qui suivent respectivement une évolution polynomiale et une évolution exponentielle (les droites).}
     \label{fig:all-results-quimb}
 \end{figure}
 Les résultats dans la figure~\ref{subfig:all-results-quimb-a} mettent de l'avant l'évolution linéaire des courbes pour $\alpha = 5/6$ et $\alpha = 8/9$ alors que les résultats dans la figure~\ref{subfig:all-results-quimb-b} montrent clairement la nature logarithmique des courbes pour $\alpha = 2/3$ et $\alpha = 3/4$.
@@ -130,11 +130,12 @@ Cela est montré dans les deux graphiques de la figure~\ref{fig:tn-sizes} où le
         \caption{}
         \label{subfig:tn-sizes-1}
     \end{subfigure}
-    \caption{L'évolution de la complexité de mémoire de la contraction compressée pour le modèle $3$-spin pour l'ensemble des instances aléatoires avec les ajustements linéaires pour $\alpha = 2/3$ et $3/4$.}
+    \caption[L'évolution de la taille des réseaux de tenseurs lors de la contraction compressée pour le modèle $3$-spin.]{L'évolution de la taille des réseaux de tenseurs lors de la contraction compressée pour le modèle $3$-spin pour l'ensemble des instances aléatoires avec les ajustements polynomiaux pour $\alpha = 2/3$ et $3/4$.}
     \label{fig:tn-sizes}
 \end{figure}
 Dû à la nature exponentielle des tailles des tenseurs, les courbes représentées ici sont obtenues avec la \emph{moyenne géométrique}, car une seule instance d'exception peut modifier complètement ces courbes, faussant ainsi l'évolution typique de la mémoire.
-une statistique qui suit très bien l'évolution des tailles typiques de ces réseaux de tenseurs
+La définition de cette statistique ainsi que l'explication de son utilisation sont détaillées dans l'annexe~\ref{annexe:geo-mean}.
+% une statistique qui suit très bien l'évolution des tailles typiques de ces réseaux de tenseurs
 
 % À $\alpha = 2/3$ et $3/4$, la contraction des réseaux de tenseurs avec l'algorithme de balayage offre une performance entre celles des méthodes de l'élimination gaussienne ``standard'' et ``intelligente''.
 % La comparaison est faite dans le tableau~\ref{tab:scaling_comparisons}, où la mémoire correspond à la taille maximale atteinte par les réseaux de tenseurs au cours de leurs contractions, montrée à la figure~\ref{fig:tn-sizes}, et le temps correspond au temps d'exécution.
@@ -159,7 +160,7 @@ Les autres valeurs de densité de clauses ne sont pas dans ce tableau puisque le
         \text{Contraction compressée} & $3/4$ & $\propto n^{1.087}$ & $\propto n^{1.351}$\\
         \hline
     \end{tabular}
-    \caption{Comparaison des performances entre la contraction compressée de réseaux de tenseurs qui résolvent des problèmes \#$p$-XORSAT aléatoires et l'élimination gaussienne (ÉG) pour ces mêmes problèmes~\cite{mezard_alternative_2002}.}
+    \caption{Comparaison des performances entre la contraction compressée de réseaux de tenseurs qui résolvent des problèmes \#$p$-XORSAT aléatoires et l'élimination gaussienne (ÉG) pour ces mêmes problèmes~\cite{braunstein_complexity_2002}.}
     \label{tab:scaling_comparisons}
 \end{table}
 
@@ -256,7 +257,7 @@ Avec l'ordre de contraction \verb|EBC|, il serait pertinent d'étudier plus en p
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/community-levels-ceb-20.pdf}
-    \caption{Représentation du même arbre de contraction qu'à la figure~\ref{fig:ebc-with-dendrogram}, mais avec une représentation des niveaux de communautés avec la hauteur des rectangles.}
+    \caption[Représentation du même arbre de contraction qu'à la figure~\ref{fig:ebc-with-dendrogram}, mais avec une représentation des niveaux de communautés.]{Représentation du même arbre de contraction qu'à la figure~\ref{fig:ebc-with-dendrogram}, mais avec une représentation des niveaux de communautés avec la hauteur des rectangles.}
     \label{fig:less-sweeping-steps-ceb}
 \end{figure}
 Dans celle-ci, les lignes horizontales colorées représentent les moments où les étapes de balayage sont appliquées.

@@ -18,7 +18,7 @@ La métastabilité vient du fait que ces systèmes physiques peuvent rester << c
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.35\textwidth]{Figures/plaquette.pdf}
-    \caption[Un système à quatre spins d'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas. Cela fait en sorte que le spin en-bas à gauche est couplé ferromagnétiquement et antiferromagnétiquement avec les spins au-dessus de lui et à sa droite. Il ne << sait >> donc pas comment il devrait se positionner afin de satisfaire ces deux couplages, donc de minimiser l'énergie.]{Un système à quatre spins de'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas. Cela fait en sorte que le spin en bas à gauche est couplé ferromagnétiquement et antiferromagnétiquement avec les spins au-dessus de lui et à sa droite. Il ne << sait >> donc pas comment il devrait se positionner afin de satisfaire ces deux couplages, donc de minimiser l'énergie. Image tirée de~\protect\cite{altieri2023introduction}.}
+    \caption[Un système à quatre spins d'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas.]{Un système à quatre spins de'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas. Cela fait en sorte que le spin en bas à gauche est couplé ferromagnétiquement et antiferromagnétiquement avec les spins au-dessus de lui et à sa droite. Il ne << sait >> donc pas comment il devrait se positionner afin de satisfaire ces deux couplages, donc de minimiser l'énergie. Image tirée de~\protect\cite{altieri2023introduction}.}
     \label{fig:spin-glass-frustration}
 \end{figure}
 Plusieurs modèles ont été développé afin d'étudier différentes variantes de ce type de système physique, comme le modèle de Sherrington-Kirkpatrick (SK)~\cite{SKspinglass}, le modèle de Edwards-Anderson (EA)~\cite{EAspinglass} et le modèle de la grille de Bethe~\cite{Bethespinglass} pour en nommer quelques-uns. %~\cite{zamponi2010mean}
@@ -42,7 +42,7 @@ Un exemple de grille dans ce modèle est une grille de Bethe, montrée à la fig
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{Figures/Reseau_de_Bethe.pdf}
-    \caption[Représentation d'un réseau de Bethe, une grille qui a la forme d'un arbre où chacun des sommets possède exactement $z = 3$ voisins.]{Représentation d'un réseau de Bethe, une grille qui a la forme d'un arbre où chacun des sommets possède exactement $z = 3$ voisins. Image libre de droits, tirée de~\protect\cite{wiki:Bethe-lattice}.}
+    \caption[Représentation d'un réseau de Bethe avec $z = 3$ voisins.]{Représentation d'un réseau de Bethe, une grille qui a la forme d'un arbre où chacun des sommets possède exactement $z = 3$ voisins. Image libre de droits, tirée de~\protect\cite{wiki:Bethe-lattice}.}
     \label{fig:bethe-lattice}
 \end{figure}
 
@@ -66,7 +66,7 @@ Tous les modèles de verres de spin, y compris les trois présentés ci-haut, pa
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/spin-glass-rugged-energy-landscape.png}
-    \caption[Un exemple de paysage énergétique d'un système de verre de spin. Les multiples minimums locaux font en sorte que les algorithmes prennent du temps à résoudre le problème.]{Un exemple de paysage énergétique d'un système de verre de spin en fonction des différentes configurations de spins possibles. Image tirée de~\protect\cite{stein2013spin}.}
+    \caption[Un exemple de paysage énergétique d'un système de verre de spin.]{Un exemple de paysage énergétique d'un système de verre de spin en fonction des différentes configurations de spins possibles. Image tirée de~\protect\cite{stein2013spin}.}
     % Les multiples minimums locaux font en sorte que les algorithmes prennent du temps à résoudre le problème.
     \label{fig:spin-glass-rugged-energy-landscape}
 \end{figure}
@@ -97,7 +97,7 @@ De par sa simplicité et sa structure, un système $p$-spin se représente aisé
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/graph_example.pdf}
-    \caption{Graphe contenant six sommets $V = \{v_1, v_2, v_3, v_4, v_5, v_6\}$ et sept arêtes $E = \{v_1v_6, v_2v_3, v_2v_6, v_3v_4, v_3v_5, v_4v_5, v_5v_6\}$.}
+    \caption[Graphe contenant six sommets et sept arêtes.]{Graphe contenant six sommets $V = \{v_1, v_2, v_3, v_4, v_5, v_6\}$ et sept arêtes $E = \{v_1v_6, v_2v_3, v_2v_6, v_3v_4, v_3v_5, v_4v_5, v_5v_6\}$.}
     \label{fig:random-graph}
 \end{figure}
 En effet, ce modèle peut se modéliser par un graphe $G = (U, V, E)$ où $U$ correspond à l'ensemble de sommets qui représentent les $|U| = n$ spins, $V$ correspond à l'ensemble de sommets qui représentent les $|V| = m$ termes d'interaction et $E$ correspond à l'ensemble d'arêtes qui connectent les sommets de $U$ avec $V$.
@@ -313,7 +313,7 @@ Celle-ci englobe tous les problèmes qui sont au moins aussi difficiles que ceux
     \centering
     % ajouter figure de la hiérarchie des classes de complexités de P à NP-difficile
     \includegraphics[width=0.6\textwidth]{Figures/complexity_classes_hierarchy.pdf}
-    \caption{Schéma de la hiérarchie des classes de complexité (en supposant que P~$\ne$~NP).}
+    \caption[Schéma de la hiérarchie des classes de complexité.]{Schéma de la hiérarchie des classes de complexité (en supposant que P~$\ne$~NP).}
     \label{fig:complexites}
 \end{figure}
 
@@ -348,7 +348,7 @@ Dans le cas du problème $k$-SAT avec $k = 3$, la transition est montrée dans l
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/SAT_phase-transition.png}
-    \caption[La probabilité de satisfaction d'un problème $3$-SAT en fonction de la densité de clauses $\alpha$. On voit que plus le nombre de variables $n$ augmente, plus la chute devient abrupte. En fait, si on traçait la courbe dans la limite thermodynamique ($n \rightarrow \infty$), il y aurait un passage instantané de 1 vers 0 à $\alpha = \alpha_c$.]{La probabilité de satisfaction d'un problème $3$-SAT en fonction de la densité de clauses $\alpha$. On voit que plus le nombre de variables $n$ augmente, plus la chute devient abrupte. En fait, si on traçait la courbe dans la limite thermodynamique ($n \rightarrow \infty$), il y aurait un passage instantané de 1 vers 0 à $\alpha = \alpha_c$. Image tirée de \emph{The Nature of Computation}~\protect\cite{moore_nature_2011}.}
+    \caption[La probabilité de satisfaction d'un problème $3$-SAT en fonction de la densité de clauses $\alpha$.]{La probabilité de satisfaction d'un problème $3$-SAT en fonction de la densité de clauses $\alpha$. On voit que plus le nombre de variables $n$ augmente, plus la chute devient abrupte. En fait, si on traçait la courbe dans la limite thermodynamique ($n \rightarrow \infty$), il y aurait un passage instantané de 1 vers 0 à $\alpha = \alpha_c$. Image tirée de \emph{The Nature of Computation}~\protect\cite{moore_nature_2011}.}
     \label{fig:SAT_phase-transition}
 \end{figure}
 Comme on peut le voir dans cette figure, le problème $3$-SAT passe de \textit{satisfiable} à \textit{non-satisfiable} à $\alpha \approx 4.267$~\cite{moore_nature_2011}.
@@ -387,11 +387,11 @@ Afin de mieux comprendre les effets qu'a ce paramètre sur l'espace des solution
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.77\textwidth]{Figures/solution_space_evolution.jpeg}
-    \caption[Schéma de l'évolution de l'espace des solutions pour le problème \mbox{$k$-XORSAT}.]{Schéma de l'évolution de l'espace des solutions pour le problème \mbox{$k$-XORSAT}. Image tirée de~\protect\cite{moore_nature_2011}.}
+    \caption[L'évolution de l'espace des solutions pour le problème \mbox{$k$-XORSAT}.]{Schéma de l'évolution de l'espace des solutions pour le problème \mbox{$k$-XORSAT}. Image tirée de~\protect\cite{moore_nature_2011}.}
     \label{fig:solution-space}
 \end{figure}
 Dans le cas de $3$-XORSAT, ces deux paramètres sont $\alpha_d \approx 0.818$ et $\alpha_c \approx 0.918$~\cite{mezard_alternative_2002}.
-De plus, comparativement aux autres variantes du problème \#$k$-SAT, le problème \#$k$-XORSAT ne se retrouve pas dans la classe de complexité \#P-complet, mais bien dans P, donc on sait qu'il est facile de le résoudre.
+De plus, comparativement aux autres variantes du problème \#$k$-SAT, le problème \#$k$-XORSAT ne se retrouve pas dans la classe de complexité \textbf{\#P-complet}, mais bien dans \textbf{P}, donc on sait qu'il est facile de le résoudre.
 Ce point sera plus développé dans la section~\ref{subsec:GE}.
 
 De nombreux algorithmes ont été adaptés afin d'être applicables sur le problème $k$-XORSAT, tels que le recuit quantique adiabatique~\cite{patil_obstacles_2019}, l'élimination gaussienne~\cite{braunstein_complexity_2002} et l'algorithme d'élimination de feuilles~\cite{mezard_alternative_2002} pour en nommer quelques-uns.
@@ -427,37 +427,46 @@ Cette augmentation est suffisante pour modifier ces complexités, car la matrice
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/matrice.pdf}
-    \caption[Évolution de la densité de 1s lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$). Les points noir et blanc correspondent respectivement aux 0s et aux 1s dans la matrice et $t$ représente le taux de complétion de l'algorithme.]{Évolution de la densité de 1s lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$). Les points noir et blanc correspondent respectivement aux 0s et aux 1s dans la matrice et $t$ représente le pourcentage de complétion de l'algorithme. Image tirée de~\protect\cite{braunstein_complexity_2002}.}
+    \caption[Évolution de la densité de 1s lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$).]{Évolution de la densité de 1s lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$). Les points noir et blanc correspondent respectivement aux 0s et aux 1s dans la matrice et $t$ représente le pourcentage de complétion de l'algorithme. Image tirée de~\protect\cite{braunstein_complexity_2002}.}
     \label{fig:GE-ones-density}
 \end{figure}
 
 
-Lorsqu'on résout une équation qui contient une variable qui n'apparaît que dans celle-ci, on peut interpréter graphiquement le processus comme un algorithme d'\emph{élimination des feuilles}~\cite{mezard_alternative_2002}, décrit dans la section~\ref{subsec:leaf-removal-algorithm} suivante.
+Lorsqu'on résout une équation qui contient une variable qui n'apparaît que dans celle-ci, on peut interpréter graphiquement le processus comme un algorithme d'\emph{élimination des feuilles}, décrit dans la section~\ref{subsec:leaf-removal-algorithm} suivante.
 Cet algorithme donne une intuition quant à la raison pour laquelle la version << intelligente >> de l'élimination gaussienne est plus efficace et aidera à expliquer le comportement de l'algorithme développé dans le cadre de ce projet qui utilise les réseaux de tenseurs.
 Cet algorithme est expliqué plus tard dans les sections~\ref{sec:eliminate-redundancy-with-bond-compression} et~\ref{sec:sweeping-method}.
 
 \subsection{Algorithme d'élimination des feuilles}\label{subsec:leaf-removal-algorithm}
-Supposons qu'on a une instance $k$-XORSAT à $k = 3$ et une variable, que l'on définit comme étant $x_0$, n'apparaît que dans l'équation linéaire $x_0 \oplus x_1 \oplus x_2 = b_0$, qui correspond à la clause $c_0 = (x_0 \oplus x_1 \oplus x_2)$ dans le problème.
-Peu importe les valeurs que les variables $x_1$ et $x_2$ prennent, il est toujours possible de choisir $x_0$ de manière à satisfaire la clause en la fixant à $x_0 = x_1 \oplus x_2 \oplus b_0$.
-En sachant cela, on peut enlever cette clause du problème initial, le résoudre, et définir la valeur de $x_0$ en fonction des deux autres variables à la fin. % du problème simplifié
-Cependant, une fois que cette clause est retirée du problème, il se peut que $x_1$ ou $x_2$ ne se retrouvent que dans une seule équation/une seule clause.
+Supposons qu'on a une instance $k$-XORSAT avec $k = 3$ et une variable, que l'on définit comme étant $x_0$, n'apparaît que dans l'équation linéaire:
+\begin{equation}\label{eq:c0-example}
+    x_0 \oplus x_1 \oplus x_2 = b_0,
+\end{equation}
+qui correspond à la clause $c_0$ dans le problème.
+Peu importe les valeurs que les variables $x_1$ et $x_2$ prennent, il est toujours possible de choisir $x_0$ de manière à satisfaire cette clause en la fixant à:
+\begin{equation}\label{eq:x0-value}
+    x_0 = x_1 \oplus x_2 \oplus b_0.
+\end{equation}
+En sachant cela, on peut enlever cette clause du problème initial, le résoudre, et définir la valeur de $x_0$ en fonction des deux autres variables à la fin.
+% On a donc que satisfaire l'équation~\ref{eq:x0-value} permet de donner une configuration de variables qui satisfait le problème donné si et seulement si le problème simpifié est satisfiable. % du problème simplifié
+Cependant, une fois que cette clause est retirée du problème, il se peut que $x_1$ et/ou $x_2$ ne se retrouvent que dans une seule équation/une seule clause.
 On peut donc retirer cette seconde clause contenant la variable n'apparaissant qu'une seule fois dans le problème modifié.
-Ce processus se répète jusqu'à ce que toutes les variables qui restent soient présentes au moins deux fois dans le problème modifié.
-En termes de la matrice de biadjacence dans l'équation~\ref{eq:Bx=b}, chaque colonne va contenir au moins deux 1s.
+Ce processus se répète jusqu'à ce que toutes les variables qui restent soient présentes au moins deux fois dans le problème simplifié.
+En termes de la matrice de biadjacence dans l'équation~\ref{eq:Bx=b}, chaque colonne va contenir au moins deux $1$s.
 Il est à noter que si une instance dépend de $n$ variables et que seulement $n - q$ de ces variables se retrouvent dans le problème, alors on peut simplement ignorer ces $q$ variables manquantes et multiplier le nombre de solutions satisfaisant le problème par $2^q$.
-Cet algorithme se nomme élimination des feuilles~\cite{mezard_alternative_2002} et il permet le simplifier grandement le problème $k$-XORSAT.
+% sait qu'elles peuvent prendre n'importe quelle valeur et satisfaire le problème.
+Cet algorithme se nomme élimination des feuilles~\cite{mezard_alternative_2002, cocco_rigorous_2003} et il permet le simplifier grandement un problème $k$-XORSAT.
 
 Les étapes décrites ici se visualisent bien sur un graphe qui modélise le problème.
-Pour un problème de type $k$-XORSAT, un graphe qui modélise le problème est un graphe biparti où on retrouve deux types de sommets; les sommets << clause >> et les sommets << variable >>.
+Pour un problème de type $k$-XORSAT, c'est un graphe biparti où on retrouve deux types de sommets; les sommets << clause >> et les sommets << variable >>.
 Ce graphe est entièrement décrit par la matrice de biadjacence $B$ de l'équation~\ref{eq:Bx=b}.
-Comme $B \in \mathbb{R}^{m \times n}$, ce graphe contiendra exactement $n$ sommets << variable >> et $m$ sommets << clause >>.
+Comme $B \in \mathbb{R}^{m \times n}$, ce graphe contiendra exactement $m$ sommets << clause >> et $n$ sommets << variable >>.
 De plus, si $B_{vu} = 1$, on retrouve une arête entre le sommet << clause >> $c_v$ et le sommet << variable >> $x_u$.
-On se retrouve donc avec des sommets dont les \emph{degrés} respectent l'équation~\ref{eq:vs_degrees}.
+On se retrouve donc avec des sommets dont les \emph{degrés} --- le nombre d'arêtes qui lui sont connectées dans le graphe --- respectent l'équation~\ref{eq:vs_degrees}.
 % (terme défini à la définition~\ref{def:degree})
 % \begin{definition}\label{def:degree}
 %     Le \textbf{degré} d'un sommet $v$ est le nombre d'arêtes qui lui sont connectées dans le graphe. Ainsi, si ce sommet est connecté à $q$ arêtes, on écrit $\mathrm{deg}(v) = q$.
 % \end{definition}
-Dans la théorie des graphes, le degré d'un sommet $v$ est le nombre d'arêtes qui lui sont connectées dans le graphe.
+% Dans la théorie des graphes, le degré d'un sommet $v$ est le nombre d'arêtes qui lui sont connectées dans le graphe.
 Ainsi, si ce sommet est connecté à $q$ arêtes, on écrit $\mathrm{deg}(v) = q$.
 \begin{equation}\label{eq:vs_degrees}
     \mathrm{deg}(s) = \begin{cases}
@@ -466,7 +475,7 @@ Ainsi, si ce sommet est connecté à $q$ arêtes, on écrit $\mathrm{deg}(v) = q
     \end{cases}
 \end{equation}
 
-Graphiquement, l'algorithme débute avec un graphe biparti $G$ qui représente le problème, puis il trouve, de manière itérative, des sommets variables $u \in U$ qui respectent $\mathrm{deg}(u) = 1$.
+Graphiquement, l'algorithme débute avec un graphe biparti $G$ qui représente le problème, puis il trouve, de manière itérative, des sommets variables $u \in U$ pour lesquels $\mathrm{deg}(u) = 1$.
 Une fois qu'un sommet qui respecte ce degré est trouvé, l'algorithme élimine le sommet clause $v$ qui lui est connecté ainsi que toutes les arêtes qui lui sont associées.
 En appliquant ces étapes jusqu'à ce qu'il soit impossible de les appliquer, on se retrouve avec deux conclusions possibles:
 \begin{enumerate}
@@ -477,7 +486,7 @@ Dans le premier cas, on dit que l'algorithme d'élimination de feuilles a simpli
 Dans le second, le noyau restant est encore un problème de type $k$-XORSAT, mais simplifié dans lequel toutes les variables restantes sont présentes au moins deux fois dans les clauses restantes.
 Une fois que ce noyau est résolu, on peut déterminer une solution du problème initial en évaluant les valeurs des variables qui ont été simplifiées par l'algorithme puisqu'elles dépendent de celles qui sont dans le noyau. 
 
-Dans~\cite{mezard_alternative_2002}, les auteurs montrent que, pour l'ensemble dans lequel $p = 3$ et où toutes les clauses sont choisies uniformément au hasard, l'algorithme d'élimination des feuilles réussi à réduire le graphe correspondant au graphe complètement simplifié lorsque $ \alpha < \alpha_d$.
+Dans~\cite{mezard_alternative_2002}, les auteurs montrent que, dans la limite thermodynamique ($n \rightarrow \infty$), l'algorithme d'élimination des feuilles réussi à réduire le graphe correspondant au graphe complètement simplifié lorsque $ \alpha < \alpha_d$ pour l'ensemble dans lequel $p = 3$ et où toutes les clauses sont choisies uniformément au hasard.
 Comme on peut fixer un sommet variable de degré $1$ à une valeur à chaque étape de cet algorithme afin d'éliminer un sommet clause et ses arêtes, le nombre de solutions satisfaisant un problème $k$-XORSAT donné pour lequel il ne reste pas de noyau est de $2^{n-m}$, où $m$ est le nombre de clauses du problème et $n$ est le nombre de variables.
 Lorsque $\alpha > \alpha_d$, un noyau du graphe va rester après l'application de l'algorithme d'élimination des feuilles.
 Cela signifie que cet algorithme à lui seul ne peut pas résoudre ce problème en entier.
@@ -501,7 +510,7 @@ Cette loi est représentée dans la figure~\ref{fig:hopf-law} ci-dessous.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/hopf_law.pdf}
-    \caption{Représentation graphique de la loi de Hopf. Les sommets de type << clause >> sont représentés par des carrés bleus et les sommets de type << variable >> sont représentés par des cercles verts.}
+    \caption[Représentation graphique de la loi de Hopf.]{Représentation graphique de la loi de Hopf. Les sommets de type << clause >> sont représentés par des carrés bleus et les sommets de type << variable >> sont représentés par des cercles verts.}
     \label{fig:hopf-law}
 \end{figure}
 Il est facile de voir que cette règle est vraie dans le cas des problèmes XORSAT puisque les variables et les sommations sont booléennes dans les clauses.
@@ -512,7 +521,7 @@ La simplification est moins directe que celle de la loi d'Hopf, mais commençons
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/bialgebra_law.pdf}
-    \caption{Représentation graphique de la loi de bialgèbre. Les sommets de types << clause >> sont représentés par des carrés bleus et les sommets de type << variable >> sont représentés par des cercles verts.}
+    \caption[Représentation graphique de la loi de bialgèbre.]{Représentation graphique de la loi de bialgèbre. Les sommets de types << clause >> sont représentés par des carrés bleus et les sommets de type << variable >> sont représentés par des cercles verts.}
     \label{fig:bialgebra-law}
 \end{figure}
 Cette structure permet de simplifier cet ensemble en seulement une variable et une clause.
@@ -544,31 +553,32 @@ Dans ce mémoire, on utilise les réseaux de tenseurs, définis au chapitre~\ref
 
 \section{Définition}\label{sec:tn-definition}
 D'un point de vue strictement d'algèbre linéaire, les réseaux de tenseurs correspondent à une structure qui encode une liste de multiplications de \emph{tenseurs}.
+%, défini à la définition~\ref{def:tensor}.
 \begin{definition}\label{def:tensor}
     Un \textbf{tenseur} est un objet algébrique permettant de généraliser les concepts de scalaires (tenseurs de rang-$0$), de vecteurs (tenseurs de rang-$1$) et de matrices (tenseurs de rang-$2$) à des dimensions plus élevées.
     Ces trois premiers cas et leur généralisation sont montrés dans la figure~\ref{fig:tensor-schematic-def} dans le formalisme des réseaux de tenseurs.
     Finalement, un tenseur de rang-$d$ se note:~$T_{i_0 i_1 \cdots i_{d-1}}$, où les $i$ sont les indices de chacune des dimensions de $T$.
     \begin{figure}[h]
         \centering
-        \begin{subfigure}{.24\textwidth}
+        \begin{subfigure}{.245\textwidth}
             \centering
             \includegraphics[width=.95\linewidth]{Figures/degree0-tensor.pdf}
             \caption{}
             \label{fig:tensor-scalar}
         \end{subfigure}
-        \begin{subfigure}{.24\textwidth}%[width=0.24\textwidth]{}
+        \begin{subfigure}{.245\textwidth}%[width=0.24\textwidth]{}
             \centering
             \includegraphics[width=.95\linewidth]{Figures/degree1-tensor.pdf}
             \caption{}
             \label{fig:tensor-vector}
         \end{subfigure}
-        \begin{subfigure}{.24\textwidth}%[width=0.24\textwidth]{}
+        \begin{subfigure}{.245\textwidth}%[width=0.24\textwidth]{}
             \centering
             \includegraphics[width=.95\linewidth]{Figures/degree2-tensor.pdf}
             \caption{}
             \label{fig:tensor-matrix}
         \end{subfigure}
-        \begin{subfigure}{.24\textwidth}%[width=0.24\textwidth]{}
+        \begin{subfigure}{.245\textwidth}%[width=0.24\textwidth]{}
             \centering
             \includegraphics[width=.95\linewidth]{Figures/degreed-tensor.pdf}
             \caption{}
@@ -681,7 +691,7 @@ De manière générale, les ressources nécessaires (en temps et en mémoire) po
 Malgré cela, une méthode appelée la \emph{compression de lien}, méthode expliquée dans la section suivante, permet de pousser ces limites en acceptant le fait que le résultat final soit approximé.
 
 
-\section{Compression de lien}\label{sec:compression}
+\section{La compression de lien}\label{sec:compression}
 Dans sa forme la plus simple, la compression de lien consiste à effectuer une opération de \emph{contraction-décomposition} sur des tenseurs voisins au sein d'un réseau de tenseurs.
 Le terme << lien >> réfère à un indice commun entre deux tenseurs.
 L'étape de décomposition utilise principalement des méthodes de révélation de rang telles que QR et la décomposition en valeurs singulières (ou \textit{SVD} venant de l'anglais \textit{Singular Value Decomposition}).
@@ -715,7 +725,7 @@ Un exemple de ce processus est montré à la figure~\ref{fig:svd-on-figure}.
     \includegraphics[width=\textwidth]{Figures/quicophy_compressed.pdf}
     % \input{Figures/quicophy_compressed.pgf}
     % \caption{Le processus d'application de la SVD sur l'image de gauche. Chacun des canaux de couleurs de cette figure est représentée par une matrice de rang $280$ (elles possèdent $280$ valeurs singulières). Ces valeurs (normalisées par la plus élevée) sont toutes montrées dans le graphique au milieu pour ces trois canaux. La valeur seuil fait en sorte que seulement les $50$ premières valeurs singulières sont conservées après l'application de la SVD. La reconstruction de l'image compressée est donnée par la figure de droite.}
-    \caption{Le processus de SVD appliqué à l'image de gauche décompose chaque canal de couleur en une matrice de rang $280$ (correspondant à $280$ valeurs singulières). Les valeurs singulières, normalisées par rapport à la plus élevée, sont illustrées dans le graphique central pour les trois canaux. Un seuil est ensuite appliqué pour ne conserver que les $50$ premières valeurs singulières. L'image compressée résultante est présentée dans la figure de droite.}
+    \caption[Le processus de SVD appliqué sur une image.]{Le processus de SVD appliqué à l'image de gauche décompose chaque canal de couleur en une matrice de rang $280$ (correspondant à $280$ valeurs singulières). Les valeurs singulières, normalisées par rapport à la plus élevée, sont illustrées dans le graphique central pour les trois canaux. Un seuil est ensuite appliqué pour ne conserver que les $50$ premières valeurs singulières. L'image compressée résultante est présentée dans la figure de droite.}
     \label{fig:svd-on-figure}
 \end{figure}
 Le graphique se trouvant entre les deux figures du logo du groupe de recherche QuICoPhy montre toutes les valeurs singulières de ce logo, normalisées par la plus élevée.
@@ -752,7 +762,7 @@ Afin de faire cela, il faut utiliser le principe de \emph{remodelage} de tenseur
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.75\textwidth]{Figures/tensor-matricization.pdf}
-    \caption{Le remodelage d'un tenseur de rang-$5$ $T_{i_0i_1i_2i_3i_4}$ de dimensions $(2, 2, 2, 2, 2)$ en matrice $T_{ij}$ de dimensions $(8, 4)$ où les indices $i_0$, $i_1$ et $i_2$ deviennent l'indice $i$ et les $2$ autres deviennent l'indice $j$.}
+    \caption[Le remodelage d'un tenseur de rang-$5$ à un tenseur de rang-$2$.]{Le remodelage d'un tenseur de rang-$5$ $T_{i_0i_1i_2i_3i_4}$ de dimensions $(2, 2, 2, 2, 2)$ en matrice $T_{ij}$ de dimensions $(8, 4)$ où les indices $i_0$, $i_1$ et $i_2$ deviennent l'indice $i$ et les deux autres deviennent l'indice $j$.}
     \label{fig:tensor-reshape}
 \end{figure}
 Remodeler un tenseur revient à changer le format d'un tenseur en fusionnant ou en divisant ses axes sans perdre l'information qu'il représente.

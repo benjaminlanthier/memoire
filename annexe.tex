@@ -3,8 +3,86 @@
 
 \appendix
 \renewcommand\chapterstring{Annexe}
-\chapter{Matériel Supplémentaire}
+\chapter{Moyenne géométrique}\label{annexe:geo-mean}
 
 %-----------------------------------------------------------------------------%
+À la figure~\ref{fig:tn-sizes}, la moyenne géométrique est utilisée afin de montrer le comportement typique de la taille maximale atteinte par les réseaux de tenseurs durant leur contraction compressée.
+% Ce choix est fait à cause de la nature exponentielle de la taille des tenseurs.
+Elle est directement reliée à la taille maximale $s \in S$ atteinte par un tenseur lors de la contraction compressée, alors cette valeur expliquera ce choix de statistique.
+Celle-ci est elle-même directement reliée à la valeur de largeur de contraction $\omega \in W$.
 
-\kant[18-20]
+L'expression de la moyenne géométrique sur l'ensemble $S$ est la suivante:
+\begin{equation}\label{eq:geo_mean}
+    \mathrm{GM}(S) = \sqrt[|S|]{\prod_{s \in S} s},
+\end{equation}
+où $\mathrm{GM}(S)$ correspond à l'évaluation de la moyenne géométrique sur $S$ --- l'ensemble des tailles maximales de tenseurs --- et $|S|$ correspond à la cardinalité de $S$.
+Dans le cadre de ce mémoire, $|S| = 10^4$.
+En utilisant le concept de largeur de contraction, qui est reliée à $S$ avec l'expression $S = 2^W$, on a que:
+\begin{equation}\label{eq:GM}
+    \begin{split}
+        \mathrm{GM}(S) &= \sqrt[|S|]{\prod_{\omega \in W} 2^{\omega}},\\
+        &= \sqrt[|S|]{2^{\sum_{\omega \in W} \omega}},\\
+        &= 2^\frac{\sum_{\omega \in W} \omega}{|S|},\\
+        &= 2^{\mathrm{AM}(W)},
+    \end{split}
+\end{equation}
+où $\mathrm{AM}(W)$ correspond à l'évaluation de la moyenne arithmétique sur $W$.
+Au niveau de l'erreur standard de la moyenne géométrique, elle est définie ici comme:
+\begin{equation}\label{eq:standard_error_geo_mean}
+    \mathrm{SE}_\mathrm{GM}(S) = 2^{\mathrm{SE}_\mathrm{AM}(W)}.
+\end{equation}
+où $\mathrm{SE}_\mathrm{GM}(S)$ correspond à l'évaluation de l'erreur standard sur la moyenne géométrique de $S$ et $\mathrm{SE}_\mathrm{AM}(W)$ correspond à celle sur la moyenne arithmétique de $W$.
+
+Puisque les valeurs dans $S$ sont des puissances de $2$ ici, les valeurs qui sont reliées à des grandes largeurs de contraction ont un poids énormément plus élevé dans la moyenne arithmétique.
+Ceci a le potentiel de ne pas montrer l'évolution typique de la taille maximale des tenseurs atteinte durant la contraction compressée du réseau associé.
+Ce phénomène est clairement observable pour les instances avec $\alpha = 3/4$.
+Comme $3/4 < \alpha_d$, on obtient avec une forte probabilité que l'algorithme d'élimination de feuilles simplifie le problème en entier, mais la génération aléatoire d'instances à $p$ spins mène à de rares instances qui sont exponentiellement difficiles.
+Cette affirmation est supportée par la figure~\ref{fig:sizes-distribution}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/sizes-distribution-alpha0.75.pdf}
+    \caption{Histogramme du nombre de fois que des tailles maximales de tenseurs ont été atteinte durant la contraction compressée pour les instances à $\alpha = 3/4$ et $n = 300$.}
+    \label{fig:sizes-distribution}
+\end{figure}
+Dans l'histogramme qui y est montré, les lignes verticales sont: la moyenne arithmétique, la médiane ainsi que la moyenne géométrique de l'ensemble $S$ pour les instances à $\alpha = 3/4$ et $n = 300$.
+On voit directement que selon le nombre d'instances analysées, la moyenne arithmétique ne représente pas du tout le comportement typique de l'ensemble de données.
+Les quelques instances qui mènent à de grandes tailles ont beaucoup trop d'importance dans cette statistique.
+Ce comportement pour la moyenne arithmétique peut se voir dans toutes les distributions de cette taille, comme on le voit dans les histogrammes de la figure~\ref{fig:sizes-distributions}.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/sizes-distribution-alpha0.8.pdf}
+        \caption{Distribution pour $\alpha = 4/5$ avec $n = 125$.}
+        \label{subfig:sizes-distribution-alpha4_5}
+    \end{subfigure}
+    \hfill
+    % \hspace{0.04\textwidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/sizes-distribution-alpha0.8333333333333334.pdf}
+        \caption{Distribution pour $\alpha = 5/6$ avec $n = 108$.}
+        \label{subfig:sizes-distribution-alpha5_6}
+    \end{subfigure}
+    \medskip
+    \vspace{0.1cm}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/sizes-distribution-alpha0.8888888888888888.pdf}
+        \caption{Distribution pour $\alpha = 8/9$ avec $n = 99$.}
+        \label{subfig:sizes-distribution-alpha8_9}
+    \end{subfigure}
+    \caption[]{Distributions des tailles intermédiaires maximalles des tenseurs pour différentes valeurs de $\alpha$ et les valeurs maximales de $n$ atteintes dans la figure~\ref{fig:all-results-quimb} ainsi que la représentation de leurs statistiques (AM, GM et médiane).}
+    \label{fig:sizes-distributions}
+\end{figure}
+Dans ceux-ci, on remarque que la moyenne arithmétique de cette mesure se trouve toujours à droite, alors elle n'est pas une statistique adéquate pour représenter l'évolution typique de la mémoire pour l'algorithme de balayage.
+
+Quant à elle, la médiane pourrait omettre de montrer une augmentation de la demande en mémoire au fil du temps, comme un passage de tendance polynomialle à exponentielle.
+Un bon exemple de ce type de courbe est celle pour $\alpha = 4/5$ dans la figure~\ref{subfig:all-results-quimb-a}.
+Comme il est primordial de pouvoir détecter ces tendances afin de pouvoir bien caractériser l'efficacité de l'algorithme de balayage, la médiane n'est pas utilisée.
+
+Finalement, la moyenne géométrique se situe dans l'ensemble de valeurs typiques de $S$, comme on le voit avec la ligne verte dans les quatre histogrammes.
+Elle évolue aussi en fonction de la distribution des tailles de tenseurs.
+Elle permet donc de prendre en compte les valeurs plus élevées tout en ne négligeant pas celles qui sont plus petites, contrairement à la moyenne arthmétique.
+C'est donc pour ces raisons que cette statisique est utilisée pour l'analyse de l'évolution typique de la taille maximale des réseaux de tenseurs lors de leur contraction compressée dans la figure~\ref{fig:tn-sizes}.
+% Finalement, la médiane n'est pas utilisée pour caractériser la demande en ressource de cet algorithme puisque l'objectif est de le comparer avec l'élimination gaussienne, un algorithme pour lequel la demande en ressources a été faite en moyenne~\cite{braunstein_complexity_2002}.

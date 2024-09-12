@@ -23,22 +23,22 @@ Comme on peut le voir, ce problème contient $n = 5$ variables et $m = 3$ clause
 On aura donc $|U| = n = 5$ et $|V| = m = 3$ dans $G$ et ces deux ensembles de sommets sont représentés dans la figure~\ref{fig:tn-example0}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{Figures/tn_example-0.pdf}
-    \caption{La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}. Les sommets de forme carrée (les clauses) sont les sommets dans $V$ et les somments en cercle (les variables) sont les sommets dans $U$.}
+    \includegraphics[width=0.5\textwidth]{Figures/tn_example-0.pdf}
+    \caption[La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}.]{La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}. Les sommets de forme carrée (les clauses) sont les sommets dans $V$ et les somments en cercle (les variables) sont les sommets dans $U$.}
     \label{fig:tn-example0}
 \end{figure}
 Maintenant que ces sommets sont définis visuellement, il faut ajouter les arêtes qui les connectent entre eux.
 À partir de $\phi$ à l'équation~\ref{eq:p-xorsat-example}, on voit directement que les variables $x_0$, $x_2$ et $x_3$ se retrouvent dans la clause $c_0$, alors une arête doit être placée entre chacun des sommets qui les représentent, étape qui est montrée dans la figure~\ref{fig:tn-example1}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{Figures/tn_example-1.pdf}
+    \includegraphics[width=0.5\textwidth]{Figures/tn_example-1.pdf}
     \caption{Graphe dans lequal les arêtes connectant la clause $c_0$ et les variables $x_0$, $x_2$ et $x_3$ ont été ajouté.}
     \label{fig:tn-example1}
 \end{figure}
 On suit ensuite cette logique pour chacune des clauses se trouvant dans $\phi$ et on obtient le graphe de la figure~\ref{fig:tn-example2}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{Figures/tn_example-2.pdf}
+    \includegraphics[width=0.5\textwidth]{Figures/tn_example-2.pdf}
     \caption{Graphe dans lequal toutes les arêtes nécessaires pour représenter l'instance $\phi$ de l'équation~\ref{eq:p-xorsat-example} sont présentes.}
     \label{fig:tn-example2}
 \end{figure}
@@ -82,7 +82,7 @@ Il permet donc de propager l'information de chacune des variables de manière à
 On donne ce type de tenseurs à tous les sommets de type variable afin d'obtenir le début du réseau de tenseurs, montré à la figure~\ref{fig:tn-example3}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{Figures/tn_example-3.pdf}
+    \includegraphics[width=0.5\textwidth]{Figures/tn_example-3.pdf}
     \caption{Graphe dans lequel les tenseurs COPY ont été associé aux sommets de type variables dans $G$.}
     \label{fig:tn-example3}
 \end{figure}
@@ -98,8 +98,9 @@ Ces tenseurs permettent d'analyser les configurations des variables selon le typ
 On donne ce type de tenseurs à tous les sommets de type clause et on obtient le réseau de tenseurs qui modélise exactement l'instance de l'équation~\ref{eq:p-xorsat-example} à la figure~\ref{fig:tn-example4}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{Figures/tn_example-4.pdf}
+    \includegraphics[width=0.5\textwidth]{Figures/tn_example-4.pdf}
     \caption{Le réseau de tenseurs qui modèlise exactement $\phi$ de l'équation~\ref{eq:p-xorsat-example}.}
+    %Chacun des liens correspond maintenant à un indice partagé par les tenseurs qui lui sont connectés.}
     \label{fig:tn-example4}
 \end{figure}
 
@@ -107,7 +108,7 @@ Une fois que le problème est réécrit dans le format des réseaux de tenseurs,
 Si, par exemple, on choisit de contracter les tenseurs correspondant à la clause $c_2$ et aux variables $x_3$ et $x_4$, on se retrouve avec le réseau de tenseurs dans la figure~\ref{fig:tn-example5}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.55\textwidth]{Figures/tn_example-5.pdf}
+    \includegraphics[width=0.5\textwidth]{Figures/tn_example-5.pdf}
     \caption{Le réseau de tenseurs sur lequel les tenseurs de la clause $2$ et des variables $3$ et $4$ (surlignés en megenta) se contractent ensemble.}
     \label{fig:tn-example5}
 \end{figure}
@@ -152,31 +153,46 @@ En reconnaissant ces simplifications, on peut réduire le taille de ce réseau e
 % We will focus on the case where $\vec{b} = \vec{0}$, so all parities are even.
 
 On utilise la compression de lien afin de contracter et décomposer chacun des tenseurs voisins dans le réseau de tenseurs.
-Ceci correspond à un procédé plus communément appelé un \emph{balayage}, une pratique courante dans les méthodes des réseaux de tenseurs.
+Ceci correspond à un procédé plus communément appelé un \emph{balayage}, une pratique courante dans les méthodes des réseaux de tenseurs entre chacune de ses étapes de contraction jusqu'à ce qu'aucune simplification ne soit détectée.
 Cependant, l'objectif ici est de \emph{ne pas retirer} les valeurs propres qui sont non-nulles.
 Dans le cas où les tenseurs ne possèdent pas de redondances entre eux, ce processus ne sert effectivement à rien, car les tenseurs demeureront inchangés après avoir appliqué la compression de lien.
 D'un autre côté, les réseaux de tenseurs qui représentent les problèmes $p$-XORSAT contiennent souvent de la redondance~\footnote{Certaines d'entre elles sont discutées dans la sous-section~\ref{subsec:XORSAT-simplifications} et d'autres dans le chapitre~\ref{ch:graphical-method}.}, ce qui résulte en des valeurs singulières qui sont soient nulles, soient des zéros numériques ($\propto 10^{-16}$).
 Alors, appliquer la compression de lien et retirer ces valeurs singulières nulles nous permet de réduire la taille des tenseurs tout en conservant un résultat de contraction exacte, puisqu'aucune information n'est retirée des tenseurs.
 
-De plus, le balayage implémente automatiquement l'algorithme d'élimination de feuilles mentionné à la section~\ref{subsec:leaf-removal-algorithm}.
-En effet, un tenseur variable de rang-$1$ connecté avec un tenseur clause de rang-$d$ vont devenir respectivement un scalaire (tenseur de rang-$0$) et un tenseur de rang-$(d - 1)$ suite à l'application de la compression de lien entre eux.
-Ce tenseur de rang-$(d - 1)$ correspond en fait à un produit tensoriel de $d - 1$ tenseurs COPY de rang-$1$, comme on pourrait s'y attendre puisque l'algorithme d'élimination de feuilles nous assure que la clause va être satisfaite.
-Un exemple de ce processus est illustré dans la figure~\ref{fig:degree1_sweep}.
+% De plus, le balayage implémente automatiquement l'algorithme d'élimination de feuilles mentionné à la section~\ref{subsec:leaf-removal-algorithm}.
+% En effet, un tenseur variable de rang-$1$ connecté avec un tenseur clause de rang-$d$ vont devenir respectivement un scalaire (tenseur de rang-$0$) et un tenseur de rang-$(d - 1)$ suite à l'application de la compression de lien entre eux.
+% Ce tenseur de rang-$(d - 1)$ correspond en fait à un produit tensoriel de $d - 1$ tenseurs COPY de rang-$1$, comme on pourrait s'y attendre puisque l'algorithme d'élimination de feuilles nous assure que la clause va être satisfaite.
+% Un exemple de ce processus est illustré dans la figure~\ref{fig:degree1_sweep}.
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.45\textwidth]{Figures/leaf_algorithm.pdf}
+%     \caption{Application de la compression de lien sur un tenseur variable de rang-$1$ connecté à un tenseur clause de rang-$4$. Le résultat est un scalaire ainsi qu'un tenseur de rang-$3$ qui est équivalent au produit tensoriel de trois tenseurs variables de rang-$1$.}
+%     \label{fig:degree1_sweep}
+% \end{figure}
+% L'étape de balayage suivante va alors éliminer ces $d - 1$ liens puisqu'ils sont chacun connectés avec un tenseur variable de rang-$1$.
+% Cela signifie donc que cet algorithme retire bel et bien le tenseur clause ainsi que chacun des liens qui lui sont connectés, ce qui est équivalent à une étape de l'algorithme d'élimination de feuilles.
+% L'élimination de cette information redondante peut ensuite se répercuter sur l'ensemble du réseau de tenseurs, éliminant potentiellement tous ses liens ou résultant en un noyau où les variables sont présentes au moins deux fois, donnant le même résultat que l'algorithme d'élimination des feuilles.
+
+Une simplification intéressante appliquée par cette méthode se produit lorsqu'un tenseur COPY de rang-$1$ est connecté avec un tenseur XOR de rang-$d$.
+Lorsque l'étape de balayage est rendue à compresser le lien entre ces deux tenseurs, celui-ci est éliminé et ces deux tenseurs deviennent respectivement un scalaire (tenseur de rang-$0$) ainsi qu'un tenseur de rang-$(d - 1)$.
+Ce tenseur de rang-$(d - 1)$ ne contient maintenant que des $1$s, à un préfacteur prêt, ce qui est en fait équivalent au produit tensoriel de $d - 1$ tenseurs COPY de rang-$1$.
+Cette simplification est illustrée dans la figure~\ref{fig:degree1_sweep}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.45\textwidth]{Figures/leaf_algorithm.pdf}
-    \caption{Application de la compression de lien sur un tenseur variable de rang-$1$ connecté à un tenseur clause de rang-$4$. Le résultat est un scalaire ainsi qu'un tenseur de rang-$3$ qui est équivalent au produit tensoriel de trois tenseurs variables de rang-$1$.}
+    \caption[Application de la compression de lien sur un tenseur variable de rang-$1$ connecté à un tenseur clause de rang-$4$.]{Application de la compression de lien sur un tenseur variable de rang-$1$ connecté à un tenseur clause de rang-$4$. Le résultat est un scalaire ainsi qu'un tenseur de rang-$3$ qui est équivalent au produit tensoriel de trois tenseurs variables de rang-$1$.}
     \label{fig:degree1_sweep}
 \end{figure}
-L'étape de balayage suivante va alors éliminer ces $d - 1$ liens puisqu'ils sont chacun connectés avec un tenseur variable de rang-$1$.
-Cela signifie donc que cet algorithme retire bel et bien le tenseur clause ainsi que chacun des liens qui lui sont connectés, ce qui est équivalent à une étape de l'algorithme d'élimination de feuilles.
+L'étape de balayage suivante va ensuite éliminer ces $d-1$ liens, puisqu'ils connectent deux tenseurs COPY, dont un de rang-$1$.
+Cela signifie donc que l'algorithme de balayage retire un tenseur XOR --- un tenseur de type << clause >> --- ainsi que tous ses liens, ce qui est équivalent à une étape de l'algorithme d'élimination de feuilles.
 L'élimination de cette information redondante peut ensuite se répercuter sur l'ensemble du réseau de tenseurs, éliminant potentiellement tous ses liens ou résultant en un noyau où les variables sont présentes au moins deux fois, donnant le même résultat que l'algorithme d'élimination des feuilles.
+Ainsi, l'algorithme de balayage implémente automatiquement l'algorithme d'élimination de feuilles lors des étapes de balayage qui précedent la première contraction du réseau de tenseurs.
 
 
 
 \chapter{Contraction graphique} \label{ch:graphical-method}
 Lorsque $\alpha < \alpha_d$, l'algorithme d'élimination de feuilles est susceptible de simplifier complètement le graphe qui encode le problème donné, comme expliqué dans la section~\ref{subsec:leaf-removal-algorithm}.
-Traduit dans le langage de la contraction de réseau de tenseurs, la compression de lien montrée dans la figure~\ref{fig:degree1_sweep} est suffisante pour significativement simplifier la contraction de ce réseau de tenseurs.
+Traduit dans le langage de la contraction de réseau de tenseurs, la compression de lien montrée dans la figure~\ref{fig:degree1_sweep} est suffisante pour significativement simplifier la contraction de ces réseaux de tenseurs.
 Cela nous permet d'adapter les simulations à des systèmes de plus grande taille.
 Cependant, lorsque $\alpha > \alpha_d$, un noyau va, avec une grande probabilité, rester après l'application des étapes de balayage.
 Dans ce cas, le noyau restant dans le réseau de tenseurs va abruptement modifier la demande en temps et en mémoire de sa contraction.
@@ -230,7 +246,7 @@ Puisqu'on étudie seulement la taille des tenseurs, ce coefficient n'est pas per
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/fusion_rule.pdf}
-    \caption{La règle de fusion sur deux sommets qui sont dans le même groupe, ici identifiés en rouge. Les sommets en forme de losange représentent des sommets qui peuvent être soit de tye clause, soit de type variable.}
+    \caption[Représentation graphique de la règle de fusion sur deux sommets qui sont dans le même groupe.]{La règle de fusion sur deux sommets qui sont dans le même groupe, ici identifiés en rouge. Les sommets en forme de losange représentent des sommets qui peuvent être soit de tye clause, soit de type variable.}
     \label{fig:fusion_rule}
 \end{figure}
 
@@ -244,7 +260,7 @@ Lorsqu'on applique le balayage entre deux groupes qui contiennent ce patron tria
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/triangle_simplification.pdf}
-    \caption{Un des deux cas possibles pour la simplification triangulaire. le noeud $c_1$ est dans un groupe (le groupe jaune) et les noeuds $c_2$ et $x_1$ sont dans l'autre (le groupe rouge). Initiallement, il y a deux arêtes entre ces deux groupes. Suite à l'application de la simplification triangulaire, les arêtes $c_1x_1$ et $c_2x_1$ disparaissent, résultant en seulement une arête entre ces groupes.}
+    \caption[Représentation graphique d'un des deux cas possibles pour la simplification triangulaire.]{Un des deux cas possibles pour la simplification triangulaire. le noeud $c_1$ est dans un groupe (le groupe jaune) et les noeuds $c_2$ et $x_1$ sont dans l'autre (le groupe rouge). Initiallement, il y a deux arêtes entre ces deux groupes. Suite à l'application de la simplification triangulaire, les arêtes $c_1x_1$ et $c_2x_1$ disparaissent, résultant en seulement une arête entre ces groupes.}
     \label{fig:triangle_rule}
 \end{figure}
 
@@ -255,7 +271,7 @@ Un exemple de cette simplification est montrée dans la figure~\ref{fig:same_typ
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.65\textwidth]{Figures/same_type_simplification.pdf}
-    \caption{La schématisation de la simplification de plusieurs arêtes entre des sommets de même type. Les deux sommets de même type sont dans deux groupes différents (jaune et rouge) et, initiallement, ils se partagent plusieurs arêtes. Après avoir appliqué la simplification, seulement une arête est nécessaire afin de représenter la structure des tenseurs qui correspondent à ces sommets.}
+    \caption[Représentation graphique de la simplification de plusieurs arêtes entre des sommets de même type.]{La schématisation de la simplification de plusieurs arêtes entre des sommets de même type. Les deux sommets de même type sont dans deux groupes différents (jaune et rouge) et, initiallement, ils se partagent plusieurs arêtes. Après avoir appliqué la simplification, seulement une arête est nécessaire afin de représenter la structure des tenseurs qui correspondent à ces sommets.}
     \label{fig:same_type_simplification}
 \end{figure}
 
@@ -266,7 +282,7 @@ Cette simplification est montrée schématiquement à la figure~\ref{fig:scalar-
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth]{Figures/scalar_simplification.pdf}
-    \caption{La décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents (jaune et rouge). Toutes les arêtes partagées entre ces deux sommets sont éliminés suite à l'application de cette simplification.}
+    \caption[Représentation graphique de la décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents.]{La décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents (jaune et rouge). Toutes les arêtes partagées entre ces deux sommets sont éliminés suite à l'application de cette simplification.}
     \label{fig:scalar-decomposition}
 \end{figure}
 
@@ -286,7 +302,7 @@ D'autres preuves sont fournis pour cette affirmation dans la section~\ref{sec:re
 
 \section{Génération des instances aléatoires}\label{sec:random-instances}
 Afin de générer chacune des instances de manière aléatoire, à une certaine valeur du paramètre de densité de clauses $\alpha$, on doit choisir $m = \alpha n$ clauses~\footnote{Il est à noter que $m$, $n$ et $\alpha$ sont choisis de manière à avoir $m$ et $n$ qui sont des entiers.} de $p$ variables aléatoirement de manière uniforme sans remplacement de l'ensemble des variables $\vec{x}$ définit à la section~\ref{sec:k-xorsat}.
-Cela signifie que le rang $d$ de chacun des tenseurs COPY (le rang des tenseurs représentant les variables) suit la distribution de Poisson de moyenne $p\alpha$~\footnote{La preuve de cette distribution se retrouve en annexe.} suivante:
+Cela signifie que le rang $d$ de chacun des tenseurs COPY (le rang des tenseurs représentant les variables) suit la distribution de Poisson de moyenne $p\alpha$ suivante: % ~\footnote{La preuve de cette distribution se retrouve en annexe.}
 \begin{equation}\label{eq:poisson}
     \mathcal{P}(\text{rank}(x_u) = d) = \frac{(p\alpha)^d}{d!} e^{-p\alpha}\mathrm{, }\ \forall u \in U.
 \end{equation}
@@ -304,7 +320,7 @@ Un exemple d'instance, avec $\alpha = 2/3$, construite à l'aide de cette métho
 \end{equation}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{Figures/completely_random_example.pdf}
+    \includegraphics[width=0.45\textwidth]{Figures/completely_random_example.pdf}
     \caption{Réseau de tenseurs qui modélise l'instance $\phi$ de l'équation~\ref{eq:random-instance-example}.}
     \label{fig:random-instance-example}
 \end{figure}
@@ -318,7 +334,7 @@ En généralisant cela, on a que si $x$ variables sont manquantes, le résultat 
 \section{Génération des instances noyaux}\label{sec:core-instances}
 Puisque le principal souci est la demande en ressources pour les instances qui contiennent un noyau, on choisit ici un ensemble minimal qui respecte leurs propriétés.
 On va étudier l'ensemble des graphes $3$-réguliers --- graphe dans lequel chacun des sommets est connecté à exactement $3$ arêtes --- sur $m$ sommets de type clause générés de manière complètement aléatoire (en suivant une distribution uniforme) en utilisant la fonction \verb|Degree_Sequence| dans \verb|igraph| avec la méthode de Viger-Latapy~\cite{viger_efficient_2016}.
-Afin de générer une instance $3$-XORSAT, on place un sommet variable sur chacune des arêtes du graphe $3$-régulier.
+Afin de générer une instance $3$-XORSAT, on place ensuite un sommet variable sur chacune des arêtes du graphe $3$-régulier.
 Cela nous assure que les sommets de type variable sont tous de degré-$2$, donc que l'algorithme d'élimination de feuilles n'aura aucun effet sur l'instance initiale, et que les sommets de type clause sont tous de degré-$3$.
 Ainsi, l'ensemble des instances générées de cette manière ont toutes une densité de clause $\alpha = 2/3$.
 Même si $2/3 < \alpha_d$, cette méthode de génération assure que l'instance est un noyau dès le départ, donc qu'aucune étape de l'algorithme d'élimination des feuilles ne peut être effectuée.
@@ -331,7 +347,7 @@ Un exemple d'instance construite à l'aide de cette méthode est montrée à l'�
   \end{equation}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{Figures/almost_completely_random_example.pdf}
+    \includegraphics[width=0.4\textwidth]{Figures/almost_completely_random_example.pdf}
     \caption{Réseau de tenseurs qui modélise l'instance $\phi$ de l'équation~\ref{eq:core-instance-example}.}
     \label{fig:core-instance-example}
 \end{figure}
@@ -395,7 +411,7 @@ La figure~\ref{fig:ebc-with-dendrogram} montre  comment cette détection de comm
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/ceb-with-dendrogram.pdf}
-    \caption{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{EBC}.}
+    \caption[Schématisation de la contraction d'un réseau de tenseurs (\texttt{EBC}).]{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{EBC}.}
     \label{fig:ebc-with-dendrogram}
 \end{figure}
 Dans le graphe à gauche dans cette figure, les sommets d'une certaine couleur sont contractés ensemble en suivant cette même couleur dans l'ordre de contraction représenté dans la figure à droite.
@@ -427,7 +443,7 @@ Un exemple d'ordre de contraction suivant cette procédure est montré à la fig
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/greedy-with-dendrogram.pdf}
-    \caption{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{Greedy}.}
+    \caption[Schématisation de la contraction d'un réseau de tenseurs (\texttt{Greedy}).]{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{Greedy}.}
     \label{fig:greedy-with-dendrogram}
 \end{figure}
 On voit ici que l'algorithme commence par faire des contractions qui minimisent la fonction de coût~\ref{eq:greedy-cost-function} un peu partout dans le réseau pour ensuite construire l'arbre de contraction en se basant sur l'étape << optimisée >> précédente.
@@ -445,7 +461,7 @@ Un exemple d'ordre de contraction suivant cette procédure est montré à la fig
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/kahypar-with-dendrogram.pdf}
-    \caption{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{KaHyPar}.}
+    \caption[Schématisation de la contraction d'un réseau de tenseurs (\texttt{KaHyPar}).]{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{KaHyPar}.}
     \label{fig:kahypar-with-dendrogram}
 \end{figure}
 Qualitativement, on voit ici que l'arbre de contraction commence par grouper des tenseurs en formant des groupes de tailles similaires, contractant 2 à 3 tenseurs ensemble et laissant certains comme ils sont.
