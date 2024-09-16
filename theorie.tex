@@ -280,7 +280,7 @@ L'utilisation de cette méthode est simple dans ce cas puisque $n$ est petit, ma
 En effet, si $\phi(\vec{x})$ contient $n$ variables alors il y a $2^n$ configurations possibles pour les variables.
 Cela signifie que pour un grand $n$, il devient impossible de faire ce type de recherche exhaustive.
 
-Le problème SAT a été le premier problème démontré comme appartenant à la classe de complexité \textbf{NP-complet} par Stephen Cook~\cite{cook1971}.
+Le problème SAT a été le premier problème démontré comme appartenant à la classe de complexité \textbf{NP-complète} par Stephen Cook~\cite{cook1971}.
 % --------- Début du nouvellement ajouté -----------------
 Avant de définir cette classe de complexité, il est important de comprendre que les problèmes se séparent, d'après les connaissances d'aujourd'hui~\cite{millenniumPrizeProblems}, en deux; les problèmes dits \emph{faciles} (\textbf{P}) et ceux qui sont \emph{difficiles} (\textbf{NP}).
 Ceux qui sont facilement résolvable sont ceux qui sont dans la classe \textbf{P}, soient tous les problèmes de décision qui sont solvables dans un temps polynomial.
@@ -299,11 +299,11 @@ Avec cela, on peut maintenant définir la classe \textbf{NP-complète} comme sui
 % \end{definition}
 \begin{definition}\label{def:NP-complete}
     % La classe de complexité \textbf{NP-complet} est une classe qui englobe tous les problèmes $A$ dans NP pour lesquels il est possible de réduire tout autre problème NP $B$ à $A$ facilement (en temps polynomial).
-    La classe de complexité \textbf{NP-complète} est une classe des problèmes NP auxquels tous les autres problèmes NP peuvent être réduits en temps polynomial.
+    La classe de complexité \textbf{NP-complète} est une classe des problèmes \textbf{NP} auxquels tous les autres problèmes dans \textbf{NP} peuvent être réduits en temps polynomial.
 \end{definition}
 On retrouve ensuite la classe de complexité \textbf{\#P}, qui rassemblent les problèmes qui ont comme objectif de \emph{compter} le nombre de solution(s) de problèmes dans \textbf{NP} qui les satisfont.
-Il y a aussi la classe \textbf{\#P-complet}, qui englobe tous les problèmes se retrouvant dans \#P pour lesquels il est possible de réduire tout autre problème de cette classe à ceux-ci facilement (en temps polynomial).
-Les problèmes qui s'y retrouvent sont tous au moins aussi difficiles que ceux qui sont dans \textbf{NP-complet}.
+Il y a aussi la classe \textbf{\#P-complète}, qui englobe tous les problèmes se retrouvant dans \textbf{\#P} pour lesquels il est possible de réduire tout autre problème de cette classe à ceux-ci facilement (en temps polynomial).
+Les problèmes qui s'y retrouvent sont tous au moins aussi difficiles que ceux qui sont dans la classe \textbf{NP-complète}.
 % \begin{definition}\label{def:NP-hard}
 %     La classe de complexité \textbf{NP-difficile} contient les problèmes qui sont au moins aussi difficiles que ceux se trouvant dans la classe NP-complet, sans toutefois se limiter aux problèmes de décision.
 % \end{definition}
@@ -391,7 +391,7 @@ Afin de mieux comprendre les effets qu'a ce paramètre sur l'espace des solution
     \label{fig:solution-space}
 \end{figure}
 Dans le cas de $3$-XORSAT, ces deux paramètres sont $\alpha_d \approx 0.818$ et $\alpha_c \approx 0.918$~\cite{mezard_alternative_2002}.
-De plus, comparativement aux autres variantes du problème \#$k$-SAT, le problème \#$k$-XORSAT ne se retrouve pas dans la classe de complexité \textbf{\#P-complet}, mais bien dans \textbf{P}, donc on sait qu'il est facile de le résoudre.
+De plus, comparativement aux autres variantes du problème \#$k$-SAT, le problème \#$k$-XORSAT ne se retrouve pas dans la classe de complexité \textbf{\#P-complète}, mais bien dans \textbf{P}, donc on sait qu'il est facile de le résoudre.
 Ce point sera plus développé dans la section~\ref{subsec:GE}.
 
 De nombreux algorithmes ont été adaptés afin d'être applicables sur le problème $k$-XORSAT, tels que le recuit quantique adiabatique~\cite{patil_obstacles_2019}, l'élimination gaussienne~\cite{braunstein_complexity_2002} et l'algorithme d'élimination de feuilles~\cite{mezard_alternative_2002} pour en nommer quelques-uns.
