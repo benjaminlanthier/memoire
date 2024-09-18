@@ -440,7 +440,7 @@ C'est une heuristique puisqu'une probabilité qui dépend de ce coût est distri
 \end{equation}
 où $\tau$ agit comme une température qui permet à l'algorithme d'essayer plusieurs possibilités de contractions différentes dans le réseau lors de l'échantillonnage des ordres de contraction~\cite{gray_hyper-optimized_2021}.
 Un exemple d'ordre de contraction suivant cette procédure est montré à la figure~\ref{fig:greedy-with-dendrogram}.
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/greedy-with-dendrogram.pdf}
     \caption[Schématisation de la contraction d'un réseau de tenseurs (\texttt{Greedy}).]{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{Greedy}.}
@@ -458,7 +458,7 @@ Le nombre de sommets dans les sous-graphes est borné par l'inégalité suivante
 où $\varepsilon$ est un paramètre de déséquilibre~\cite{paper-kahypar}.
 Sans entrer dans les détails, cette méthode tente de minimiser des fonctions objectif reliées au nombre d'arêtes coupées lors de la construction des sous-graphes ainsi qu'à leurs connections~\cite{PhDThesis-kahypar}.
 Un exemple d'ordre de contraction suivant cette procédure est montré à la figure~\ref{fig:kahypar-with-dendrogram}.
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/kahypar-with-dendrogram.pdf}
     \caption[Schématisation de la contraction d'un réseau de tenseurs (\texttt{KaHyPar}).]{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{KaHyPar}.}
