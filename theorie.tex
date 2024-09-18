@@ -532,7 +532,7 @@ La simplification vient du fait que les deux clauses intiales sont:
         c_1 &= x_0 \oplus x_1 \oplus x_3.
     \end{split}
 \end{equation}
-Comme l'objectif est de satisfaire ces deux clauses en même temps, on se retrouve avec $x_k  = x_l$ puisque $x_0$ et $x_1$ sont présentes et interagissent de la même manière dans ces deux clauses.
+Comme l'objectif est de satisfaire ces deux clauses en même temps, on se retrouve avec $x_2  = x_3$ puisque $x_0$ et $x_1$ sont présentes et interagissent de la même manière dans ces deux clauses.
 On peut donc considérer que $x_2$ et $x_3$ sont une seule et unique variable $x$.
 Avec le fait que ces deux clauses contiennent les même variables, elles sont équivalentes à avoir une seule clause $c$ qui contient $x_0$, $x_1$ et $x$.
 Le changement de côté des deux types de sommets dans la figure~\ref{fig:bialgebra-law} vient du fait que $c$ contient les même variables $x_0$ et $x_1$ que précédemment et du fait que $x = x_2 = x_3$.
@@ -734,7 +734,7 @@ Ainsi, appliquer une valeur seuil nous permettant de garder seulement les $50$ p
 On a donc directement que cette matrice de rang $50$ est une excellente approximation de la matrice initiale.
 
 Cette observation vient du fait que la SVD permet de faire la meilleure approximation de rang $q$ d'une matrice donnée.
-En effet, selon le théorème d'Eckart-Young~\cite{eckart_approximation_1936, dax2014low}, la meilleure approximation de rang-$q$ possible pour une matrice $M = U \Sigma V^\dagger$ avec une matrice $M_q$ de rang $q$ correspond à:
+En effet, selon le théorème d'Eckart-Young~\cite{eckart_approximation_1936, dax2014low}, la meilleure approximation de rang-$q$ possible pour une matrice $M = U \Sigma V^\dagger$ avec une matrice $M_q$ correspond à:
 % } (bien expliqué dans l'article~\cite{
 \begin{equation}\label{eq:eckart-young}
     M_q = \sum_{i=0}^{q-1}\sigma_i u_i v^\dagger_i,
