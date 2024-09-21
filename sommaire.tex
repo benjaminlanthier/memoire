@@ -4,7 +4,7 @@
 Ce mémoire a pour objectif d'introduire un algorithme basé sur les réseaux de tenseurs pour la résolution des modèles $p$-spin, une classe importante de modèles en physique statistique et en théorie des systèmes désordonnés.
 Ces modèles, qui étudient l'interaction de spins dans des systèmes complexes, sont fondamentaux pour la compréhension des transitions de phase, du comportement des verres de spin et de diverses problématiques en optimisation combinatoire.
 L'algorithme proposé utilise la \emph{compression des liens} par le biais de \emph{décompositions révélatrices de rang}, effectuées durant la contraction du réseau de tenseurs.
-Cette approche permet de supprimer les redondances logiques du système, garantissant ainsi une méthode sans perte d'information tout en apportant des améliorations significatives des temps d'exécution selon les différents régimes du modèle.
+Cette approche permet de supprimer les redondances logiques du système, garantissant ainsi une méthode sans perte d'informations tout en apportant des améliorations significatives des temps d'exécution selon les différents régimes du modèle.
 
 Tout d'abord, on montre que la compression des liens émule l'algorithme d'élimination des feuilles (venant de l'anglais \textit{leaf-removal}), résolvant efficacement le problème dans la phase dite << facile >>.
 Dans celle-ci, les contraintes du système sont faibles et peuvent être éliminées successivement sans nécessiter de calculs complexes, ce qui permet une résolution rapide des instances du modèle $p$-spin.
@@ -16,11 +16,11 @@ Ce phénomène indique en fait l'apparition d'un \emph{composant noyau} dans la 
 Ce composant correspond à une partie irréductible du problème qui ne peut plus être simplifiée par l'élimination des feuilles.
 Dans ce régime, les redondances logiques sont plus difficiles à éliminer en raison de leur moindre présence, ce qui accroît la complexité computationnelle.
 
-Pour mieux comprendre la mise à l'échelle des ressource computationnelle nécessaire pour la contraction dans cette phase difficile, une méthode graphique est développée.
+Pour mieux comprendre la mise à l'échelle des ressources computationnelles nécessaires pour la contraction dans cette phase difficile, une méthode graphique est développée.
 Elle permet d'étudier un ensemble minimal d'instances composées uniquement de ce type de composant noyau, là où l'algorithme d'élimination des feuilles est inefficace.
-Grâce à cette analyse, on observe que la largeur de contraction suit une tendance sous-exponentiel, améliorant ainsi les résultats obtenus sans compression, qui suivent une échelle exponentielle.
+Grâce à cette analyse, on observe que la largeur de contraction suit une tendance sous-exponentielle, améliorant ainsi les résultats obtenus sans compression, qui suivent une échelle exponentielle.
 Cela démontre que la compression des liens, bien que non trivialement reliée à la structure du problème, offre une amélioration substantielle de la performance dans les régimes complexes du modèle.
 
 Les résultats suggèrent que cet algorithme à base de réseaux de tenseurs englobe et généralise l'algorithme classique d'élimination des feuilles, tout en simplifiant les autres redondances présentes dans les systèmes venant du modèle $p$-spin grâce à une compression sans perte.
 Cette méthode, qui ne nécessite pas une connaissance explicite de la structure du problème, fournit ainsi un outil puissant pour résoudre efficacement des problèmes complexes dans des systèmes fortement corrélés.
-Elle ouvre la voie à des applications potentielles dans d'autres domaines nécessitant la contraction efficace de réseaux de tenseurs, et plus largement dans la résolution de problèmes combinatoires et de physique statistique.
+Elle ouvre la voie à des applications potentielles dans d'autres domaines nécessitants la contraction efficace de réseaux de tenseurs, et plus largement dans la résolution de problèmes combinatoires et de physique statistique.

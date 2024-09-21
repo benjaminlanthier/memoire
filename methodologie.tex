@@ -9,7 +9,7 @@
 
 \section{Réseaux de tenseurs pour \texorpdfstring{$p$}{p}-XORSAT}\label{sec:tn-for-p-xorsat}
 Afin de traduire n'importe quel problème de type SAT dans le langage des réseaux de tenseurs, il est nécessaire de prendre en compte les points les plus importants du problème.
-Ces points sont: le type de contrainte utilisé dans les clauses ainsi que les positions des variables qui s'y retrouvent.
+Ces points sont: le type de contrainte utilisée dans les clauses ainsi que les positions des variables qui s'y retrouvent.
 Une fois que ces aspects sont définis, la traduction peut commencer sous la forme d'un graphe biparti $G = (U, V, E)$.
 Chacun des sommets se trouvant dans $U$ correspondent aux variables du problème et ceux se trouvant dans $V$, aux clauses.
 Une arête $e \in E$ se trouve entre un sommet variable $u \in U$ et un sommet clause $v \in V$ seulement si la variable correspondante est présente dans cette clause dans l'instance $\phi(\vec{x})$ donnée.
@@ -18,7 +18,7 @@ Afin de suivre ce processus de manière visuelle, l'exemple d'instance aléatoir
 \begin{equation}\label{eq:p-xorsat-example}
     \phi(\vec{x}) = (x_0 \oplus x_2 \oplus x_3) \wedge (x_2 \oplus x_3 \oplus x_4) \wedge (x_0 \oplus x_1 \oplus x_2)
 \end{equation}
-Chacune des clauses $c_v$ possède une parité $b_v$ qui lui es propre, comme dans l'équation~\ref{eq:Bx=b} vue précédemment.
+Chacune des clauses $c_v$ possède une parité $b_v$ qui lui est propre, comme dans l'équation~\ref{eq:Bx=b} vue précédemment.
 Comme on peut le voir, ce problème contient $n = 5$ variables et $m = 3$ clauses, donc possède une densité de clause $\alpha = 3/5$.
 On aura donc $|U| = n = 5$ et $|V| = m = 3$ dans $G$ et ces deux ensembles de sommets sont représentés dans la figure~\ref{fig:tn-example0}.
 \begin{figure}[h]
@@ -304,7 +304,7 @@ D'autres preuves sont fournis pour cette affirmation dans la section~\ref{sec:re
 Afin de générer chacune des instances de manière aléatoire, à une certaine valeur du paramètre de densité de clauses $\alpha$, on doit choisir $m = \alpha n$ clauses~\footnote{Il est à noter que $m$, $n$ et $\alpha$ sont choisis de manière à avoir $m$ et $n$ qui sont des entiers.} de $p$ variables aléatoirement de manière uniforme sans remplacement de l'ensemble des variables $\vec{x}$ définit à la section~\ref{sec:k-xorsat}.
 Cela signifie que le rang $d$ de chacun des tenseurs COPY (le rang des tenseurs représentant les variables) suit la distribution de Poisson de moyenne $p\alpha$ suivante: % ~\footnote{La preuve de cette distribution se retrouve en annexe.}
 \begin{equation}\label{eq:poisson}
-    \mathcal{P}(\text{rank}(x_u) = d) = \frac{(p\alpha)^d}{d!} e^{-p\alpha}\mathrm{, }\ \forall u \in U.
+    \mathcal{P}(\text{rang}(x_u) = d) = \frac{(p\alpha)^d}{d!} e^{-p\alpha}\mathrm{, }\ \forall u \in U.
 \end{equation}
 Ce rang est défini comme étant le nombre d'apparitions de la variable $x_u$ dans le problème.
 Dans le langage du système linéaire à l'équation~\ref{eq:Bx=b}, $p$ $1$s sont placés aléatoirement dans chacune des lignes de $B$ et le rang d'une variable $x_u$ correspond au nombre de $1$s présents dans la colonne $u$ de cette matrice.

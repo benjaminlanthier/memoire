@@ -13,7 +13,7 @@ L'Hamiltonien le plus simple permettant de décrire un tel système est le suiva
 où $J_{ij}$ représente le couplage entre les spins $\sigma_i$ et $\sigma_j$ qui peuvent être soit des spins d'Ising ou des spins respectant $||\vec{\sigma}|| = n$ (une contrainte sphérique)~\cite{EAspinglass, spherical-model-spinglass}.
 Dans le premier cas, les spins sont tous limités à être des valeurs entre $+1$ et $-1$ tandis que dans le deuxième, ils sont des variables réels.
 Dans cette définition du problème, on a évidemment que $J_{ii} = 0$ et que $J_{ij} = J_{ji}$.
-Ces systèmes physiques ayant une certaine complexité au niveau structurel, ils peuvent présenter de la \emph{frustration} au niveau des spins ainsi que de la \emph{métastabilité}~\cite{stein2013spin}.
+Ces systèmes physiques ayant une certaine complexité au niveau structurel peuvent présenter de la \emph{frustration} au niveau des spins ainsi que de la \emph{métastabilité}~\cite{stein2013spin}.
 La métastabilité vient du fait que ces systèmes physiques peuvent rester << coincés >> dans une configuration de spins qui n'est pas à l'énergie fondamentale du système, mais plutôt à une énergie qui lui est proche, et le concept de frustration est schématiquement représenté à la figure~\ref{fig:spin-glass-frustration}.
 \begin{figure}[h]
     \centering
@@ -21,7 +21,7 @@ La métastabilité vient du fait que ces systèmes physiques peuvent rester << c
     \caption[Un système à quatre spins d'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas.]{Un système à quatre spins de'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas. Cela fait en sorte que le spin en bas à gauche est couplé ferromagnétiquement et antiferromagnétiquement avec les spins au-dessus de lui et à sa droite. Il ne << sait >> donc pas comment il devrait se positionner afin de satisfaire ces deux couplages, donc de minimiser l'énergie. Image tirée de~\protect\cite{altieri2023introduction}.}
     \label{fig:spin-glass-frustration}
 \end{figure}
-Plusieurs modèles ont été développé afin d'étudier différentes variantes de ce type de système physique, comme le modèle de Sherrington-Kirkpatrick (SK)~\cite{SKspinglass}, le modèle de Edwards-Anderson (EA)~\cite{EAspinglass} et le modèle de la grille de Bethe~\cite{Bethespinglass} pour en nommer quelques-uns. %~\cite{zamponi2010mean}
+Plusieurs modèles ont été développés afin d'étudier différentes variantes de ce type de système physique, comme le modèle de Sherrington-Kirkpatrick (SK)~\cite{SKspinglass}, le modèle de Edwards-Anderson (EA)~\cite{EAspinglass} et le modèle de la grille de Bethe~\cite{Bethespinglass} pour en nommer quelques-uns. %~\cite{zamponi2010mean}
 
 Le modèle SK est aussi appelé le modèle \emph{complètement connecté} où les spins sont des spins d'Ising.
 En effet, celui-ci étudie le cas où chacun des spins est connecté avec tous les autres qui sont présents dans le système soit par un couplage ferromagnétique ou par un couplage antiferromagnétique.
@@ -283,7 +283,7 @@ Cela signifie que pour un grand $n$, il devient impossible de faire ce type de r
 Le problème SAT a été le premier problème démontré comme appartenant à la classe de complexité \textbf{NP-complète} par Stephen Cook~\cite{cook1971}.
 % --------- Début du nouvellement ajouté -----------------
 Avant de définir cette classe de complexité, il est important de comprendre que les problèmes se séparent, d'après les connaissances d'aujourd'hui~\cite{millenniumPrizeProblems}, en deux; les problèmes dits \emph{faciles} (\textbf{P}) et ceux qui sont \emph{difficiles} (\textbf{NP}).
-Ceux qui sont facilement résolvable sont ceux qui sont dans la classe \textbf{P}, soient tous les problèmes de décision qui sont solvables dans un temps polynomial.
+Ceux qui sont facilement résolvables sont ceux qui sont dans la classe \textbf{P}, soient tous les problèmes de décision qui sont solvables dans un temps polynomial.
 Ceux qui sont difficiles se retrouvent dans la classe \textbf{NP} (\textit{nondeterministic polynomial time} en anglais), donc tous les problèmes de décision pour lesquels la solution peut se faire vérifier facilement (dans un temps polynomial).
 Avec cela, on peut maintenant définir la classe \textbf{NP-complète} comme suit:
 % --------- Fin du nouvellement ajouté -------------------
@@ -383,7 +383,7 @@ La première se produit à $\alpha_d$, qui indique une transition \emph{dynamiqu
 La seconde se produit à la transition critique $\alpha_c$ où, avec une probabilité élevée, une instance devient non-satisfiable.
 Celle-ci est conceptuellement équivalente à la transition de phase SAT/UNSAT montrée dans la figure~\ref{fig:SAT_phase-transition}.
 Ce point montre une transition de phase similaire même lorsque $\vec{b} = \vec{0}$, ce qui signifie que $\vec{x} = \vec{0}$ est toujours une solution possible~\cite{ricci2001simplest}.
-Afin de mieux comprendre les effets qu'a ce paramètre sur l'espace des solutions mentionnée pour $\alpha_d$, son évolution en fonction de $\alpha$ est schématisée à la figure~\ref{fig:solution-space}.
+Afin de mieux comprendre les effets qu'a ce paramètre sur l'espace des solutions mentionnées pour $\alpha_d$, son évolution en fonction de $\alpha$ est schématisée à la figure~\ref{fig:solution-space}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.77\textwidth]{Figures/solution_space_evolution.jpeg}
@@ -479,7 +479,7 @@ Graphiquement, l'algorithme débute avec un graphe biparti $G$ qui représente l
 Une fois qu'un sommet qui respecte ce degré est trouvé, l'algorithme élimine le sommet clause $v$ qui lui est connecté ainsi que toutes les arêtes qui lui sont associées.
 En appliquant ces étapes jusqu'à ce qu'il soit impossible de les appliquer, on se retrouve avec deux conclusions possibles:
 \begin{enumerate}
-    \item Toutes les arêtes se sont fait enlever par le processus.
+    \item Toutes les arêtes se sont faites enlever par le processus.
     \item Il reste des variables de degré deux et plus, laissant donc un \emph{noyau} du graphe initial.
 \end{enumerate}
 Dans le premier cas, on dit que l'algorithme d'élimination de feuilles a simplifié le problème en entier.
