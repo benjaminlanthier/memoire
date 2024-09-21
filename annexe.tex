@@ -20,9 +20,9 @@ Dans le cadre de ce mémoire, $|S| = 10^4$.
 En utilisant le concept de largeur de contraction, qui est reliée à $S$ avec l'expression $S = 2^W$, on a que:
 \begin{equation}\label{eq:GM}
     \begin{split}
-        \mathrm{GM}(S) &= \sqrt[|S|]{\prod_{\omega \in W} 2^{\omega}},\\
-        &= \sqrt[|S|]{2^{\sum_{\omega \in W} \omega}},\\
-        &= 2^\frac{\sum_{\omega \in W} \omega}{|S|},\\
+        \mathrm{GM}(S) &= \sqrt[|S|]{\prod_{w \in W} 2^{w}},\\
+        &= \sqrt[|S|]{2^{\sum_{w \in W} w}},\\
+        &= 2^\frac{\sum_{w \in W} w}{|S|},\\
         &= 2^{\mathrm{AM}(W)},
     \end{split}
 \end{equation}
@@ -81,7 +81,7 @@ Quant à elle, la médiane pourrait omettre de montrer une augmentation de la de
 Un bon exemple de ce type de courbe est celle pour $\alpha = 4/5$ dans la figure~\ref{subfig:all-results-quimb-a}.
 Comme il est primordial de pouvoir détecter ces tendances afin de pouvoir bien caractériser l'efficacité de l'algorithme de balayage, la médiane n'est pas utilisée.
 
-Finalement, la moyenne géométrique se situe dans l'ensemble de valeurs typiques de $S$, comme on le voit avec la ligne verte dans les quatre histogrammes.
+Finalement, la moyenne géométrique se situe dans l'ensemble de valeurs typiques de $S$, comme on le voit avec la ligne verte dans les quatre histogrammes des figures~\ref{fig:sizes-distribution} et~\ref{fig:sizes-distributions}.
 Elle évolue aussi en fonction de la distribution des tailles de tenseurs.
 Elle permet donc de prendre en compte les valeurs plus élevées tout en ne négligeant pas celles qui sont plus petites, contrairement à la moyenne arthmétique.
 C'est donc pour ces raisons que cette statisique est utilisée pour l'analyse de l'évolution typique de la taille maximale des réseaux de tenseurs lors de leur contraction compressée dans la figure~\ref{fig:tn-sizes}.
