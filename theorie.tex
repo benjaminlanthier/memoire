@@ -6,39 +6,39 @@
 \chapter{Verre de spin} \label{ch:spin-glass}
 \section{Définition} \label{sec:spin-glass}
 De manière générale, les verres de spin sont des états magnétiques qui contiennent $n$ spins qui interagissent ensemble.
-L'Hamiltonien le plus simple permettant de décrire un tel système est le suivant:
+L'hamiltonien le plus simple permettant de décrire un tel système est le suivant:
 \begin{equation}
-    \mathcal{H} = -\frac{1}{2}\sum_{i,j = 0}^{n-1}J_{ij}\sigma_i\sigma_j,
+    \mathcal{H} = -\frac{1}{2}\sum_{i,j = 1}^{n}J_{ij}\sigma_i\sigma_j,
 \end{equation}
-où $J_{ij}$ représente le couplage entre les spins $\sigma_i$ et $\sigma_j$ qui peuvent être soit des spins d'Ising ou des spins respectant $||\vec{\sigma}|| = n$ (une contrainte sphérique)~\cite{EAspinglass, spherical-model-spinglass}.
-Dans le premier cas, les spins sont tous limités à être des valeurs entre $+1$ et $-1$ tandis que dans le deuxième, ils sont des variables réels.
-Dans cette définition du problème, on a évidemment que $J_{ii} = 0$ et que $J_{ij} = J_{ji}$.
-Ces systèmes physiques ayant une certaine complexité au niveau structurel peuvent présenter de la \emph{frustration} au niveau des spins ainsi que de la \emph{métastabilité}~\cite{stein2013spin}.
-La métastabilité vient du fait que ces systèmes physiques peuvent rester << coincés >> dans une configuration de spins qui n'est pas à l'énergie fondamentale du système, mais plutôt à une énergie qui lui est proche, et le concept de frustration est schématiquement représenté à la figure~\ref{fig:spin-glass-frustration}.
+où $n$ est le nombre de spins dans le systme et $J_{ij}$ représente le couplage entre les spins $\sigma_i$ et $\sigma_j$ qui peuvent être soit des spins d'Ising ou des spins respectant $||\vec{\sigma}|| = r$ (une contrainte sphérique)~\cite{EAspinglass, spherical-model-spinglass}.
+Dans le premier cas, les spins sont tous limités à des valeurs entre $+1$ et $-1$ tandis que dans le deuxième, ce sont des variables réelles.
+Dans cette définition du problème, on a évidemment $J_{ii} = 0$ et $J_{ij} = J_{ji}$.
+Ces systèmes physiques ayant une certaine complexité au niveau structurel peuvent présenter de la \emph{frustration} ainsi que de la \emph{métastabilité}~\cite{stein2013spin}.
+La métastabilité vient du fait que ces systèmes physiques peuvent rester <<~coincés~>> dans une configuration de spins qui n'est pas à l'énergie fondamentale du système, mais plutôt à une énergie qui lui est proche, et le concept de frustration est schématiquement représenté à la figure~\ref{fig:spin-glass-frustration}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.35\textwidth]{Figures/plaquette.pdf}
-    \caption[Un système à quatre spins d'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas.]{Un système à quatre spins de'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas. Cela fait en sorte que le spin en bas à gauche est couplé ferromagnétiquement et antiferromagnétiquement avec les spins au-dessus de lui et à sa droite. Il ne << sait >> donc pas comment il devrait se positionner afin de satisfaire ces deux couplages, donc de minimiser l'énergie. Image tirée de~\protect\cite{altieri2023introduction}.}
+    \caption[Un système à quatre spins d'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas.]{Un système à quatre spins de'Ising dans lequel les spins interagissent de manière ferromagnétique (avec $J = +1$), excepté pour le couplage du bas. Cela fait en sorte que le spin en bas à gauche est couplé ferromagnétiquement et antiferromagnétiquement avec les spins au-dessus de lui et à sa droite. Il ne <<~sait~>> donc pas comment il devrait se positionner afin de satisfaire ces deux couplages, donc de minimiser l'énergie. Image tirée de~\protect\cite{altieri2023introduction}.}
     \label{fig:spin-glass-frustration}
 \end{figure}
 Plusieurs modèles ont été développés afin d'étudier différentes variantes de ce type de système physique, comme le modèle de Sherrington-Kirkpatrick (SK)~\cite{SKspinglass}, le modèle de Edwards-Anderson (EA)~\cite{EAspinglass} et le modèle de la grille de Bethe~\cite{Bethespinglass} pour en nommer quelques-uns. %~\cite{zamponi2010mean}
 
 Le modèle SK est aussi appelé le modèle \emph{complètement connecté} où les spins sont des spins d'Ising.
 En effet, celui-ci étudie le cas où chacun des spins est connecté avec tous les autres qui sont présents dans le système soit par un couplage ferromagnétique ou par un couplage antiferromagnétique.
-L'Hamiltonien de ce modèle est le suivant:
+L'hamiltonien de ce modèle est le suivant:
 \begin{equation}
-    \mathcal{H} = -\frac{1}{\sqrt{n}}\sum_{i < j} J_{ij}\sigma_i\sigma_j.
+    \mathcal{H} = -\frac{1}{\sqrt{n}}\sum_{i < j}^{n} J_{ij}\sigma_i\sigma_j.
 \end{equation}
 Généralement, ces couplages suivent une probabilité de distribution gaussienne de moyenne $J_0 / n$ et de variance $J^2 / n$~\cite{rodriguez2021sherrington} et le coefficient $1/\sqrt{n}$ est utile au niveau de la normalisation de l'énergie lorsque le système étudié est de grande taille ($n \rightarrow \infty$)~\cite{stein2013spin}.
 Quant à lui, le modèle EA, aussi appelé modèle à \emph{dimension finie} (ou à \emph{connexion finie}), est assez similaire au modèle SK, mais à la différence que les spins sont distribués sur une grille de $d$-dimensions et que seulement les plus proches voisins interagissent entre eux~\cite{stein2013spin}.
-L'Hamiltonien de ce modèle est:
+L'hamiltonien de ce modèle est:
 \begin{equation}
     \mathcal{H} = -\sum_{\langle i, j \rangle} J_{ij}\sigma_i\sigma_j,
 \end{equation}
 où $\langle i, j \rangle$ correspond à la connexion des spins $\sigma_i$ et $\sigma_j$, deux proches voisins sur la grille.
 La plupart du temps, la distribution de probabilité suivie par les $J_{ij}$ est uniforme entre deux valeurs, $+J$ et $-J$\cite{stein2013spin}.
 Pour ce qui en est du modèle de la grille de Bethe, celui-ci est aussi semblable aux deux autres, mais les spins y sont organisés sur une grille sur laquelle chacun d'eux possède exactement $z$ voisins~\cite{viana1985phase}.
-Un exemple de grille dans ce modèle est une grille de Bethe, montrée à la figure~\ref{fig:bethe-lattice}.
+Un exemple de grille de Bethe est illustré à la figure~\ref{fig:bethe-lattice}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{Figures/Reseau_de_Bethe.pdf}
@@ -62,10 +62,10 @@ Un exemple de grille dans ce modèle est une grille de Bethe, montrée à la fig
 % La définition de l'ensemble $E$ fait en sorte que les sommets en $U$ ne se connectent qu'avec ceux qui se trouvent en $V$, et vice-versa, ce qui revient à dire qu'il est un graphe \emph{biparti}.
 
 % Originant de la matière condensée, les verres de spin se retrouvent maintenant dans des disciplines qui en sont bien éloignées, comme l'informatique théorique~\cite{kirkpatrick1985configuration}, la biologie~\cite{bryngelson1987spin} et l'apprentissage machine~\cite{venkataraman1991spin}.
-Tous les modèles de verres de spin, y compris les trois présentés ci-haut, partagent la même caractéristique: ils présentent des paysages énergétiques ayant une allure << accidentée >>, comme celui montré à la figure~\ref{fig:spin-glass-rugged-energy-landscape}. % ~\cite{stein2013spin}
+Tous les modèles de verres de spin, y compris les trois présentés ci-haut, partagent la même caractéristique: ils présentent des paysages énergétiques accidentés, comme celui montré à la figure~\ref{fig:spin-glass-rugged-energy-landscape}. % ~\cite{stein2013spin}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/spin-glass-rugged-energy-landscape.png}
+    \includegraphics[width=0.8\textwidth]{Figures/spin-glass-rugged-energy-landscape.png}
     \caption[Un exemple de paysage énergétique d'un système de verre de spin.]{Un exemple de paysage énergétique d'un système de verre de spin en fonction des différentes configurations de spins possibles. Image tirée de~\protect\cite{stein2013spin}.}
     % Les multiples minimums locaux font en sorte que les algorithmes prennent du temps à résoudre le problème.
     \label{fig:spin-glass-rugged-energy-landscape}
@@ -75,7 +75,7 @@ On peut donc dire que les modèles de verre de spin sont simples à décrire, ma
 
 % Les modèles pour les verres de spin sont, comme on le voit avec les $3$ modèles brièvement présentés, simple à décrire, mais ils sont toutefois difficiles à résoudre.
 % Par résoudre, on entend ici de trouver un état fondamental du système ou d'évaluer sa fonction de partition.
-% Une raison de cette difficulté vient du fait que ces modèles présentent des paysages énergétiques aillant une allure << accidentée >>~\cite{stein2013spin}, piégeant les algorithmes d'optimisation dans des minimums locaux et conduisant à des temps d'exécution exponentiellement longs.
+% Une raison de cette difficulté vient du fait que ces modèles présentent des paysages énergétiques aillant une allure <<~accidentée~>>~\cite{stein2013spin}, piégeant les algorithmes d'optimisation dans des minimums locaux et conduisant à des temps d'exécution exponentiellement longs.
 % Un exemple de paysage énergétique accidenté est présenté à la figure~\ref{fig:spin-glass-rugged-energy-landscape}.
 % \begin{figure}[h]
 %     \centering
@@ -88,7 +88,9 @@ Un contre-exemple connu de la difficulté de résolution d'un problème avec les
 Ce modèle, quoique plus simple que les autres décrits dans cette section, possède lui aussi un paysage énergétique accidenté dans un certain régime de paramètres, mais sa résolution se fait tout de même facilement.
 
 \section{Le modèle \texorpdfstring{$p$}{p}-spin} \label{sec:p-spin}
-Le modèle $p$-spin est une variante du modèle général des verres de spins dans lequel seulement les $p$ plus proches voisins (des spins d'Ising) interagissent ensemble~\cite{}.
+% Le modèle $p$-spin est une formulation aléatoire du modèle de Bethe dans lequel $p$ spins (des spins d'Ising) sont aléatoirement couplés~\cite{mezard_alternative_2002}.
+Le modèle $p$-spin est une variante du modèle général des verres de spin dans lequel seulement les $p$ plus proches voisins (des spins d'Ising) interagissent ensemble.
+Il peut en fait être vu par une formulation aléatoire du modèle de Bethe dans lequel $m$ couplages de $p$ spins sont aléatoirement définis dans un système contenant $n$ spins~\cite{mezard_alternative_2002}.
 % de manière ferromagnétique ou antiferromagnétique.
 De par sa simplicité et sa structure, un système $p$-spin se représente aisément de manière visuelle en utilisant un \emph{graphe}, terme défini à la définition~\ref{def:graph}.
 \begin{definition}\label{def:graph}
@@ -96,21 +98,64 @@ De par sa simplicité et sa structure, un système $p$-spin se représente aisé
 \end{definition}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{Figures/graph_example.pdf}
+    \includegraphics[width=0.7\textwidth]{Figures/graph_example.pdf}
     \caption[Graphe contenant six sommets et sept arêtes.]{Graphe contenant six sommets $V = \{v_1, v_2, v_3, v_4, v_5, v_6\}$ et sept arêtes $E = \{v_1v_6, v_2v_3, v_2v_6, v_3v_4, v_3v_5, v_4v_5, v_5v_6\}$.}
     \label{fig:random-graph}
 \end{figure}
 En effet, ce modèle peut se modéliser par un graphe $G = (U, V, E)$ où $U$ correspond à l'ensemble de sommets qui représentent les $|U| = n$ spins, $V$ correspond à l'ensemble de sommets qui représentent les $|V| = m$ termes d'interaction et $E$ correspond à l'ensemble d'arêtes qui connectent les sommets de $U$ avec $V$.
 La définition de l'ensemble $E$ fait en sorte que les sommets en $U$ ne se connectent qu'avec ceux qui se trouvent en $V$, et vice-versa, ce qui revient à dire qu'il est un graphe \emph{biparti}.
-Cette représentation permet la définition suivante de l'Hamiltonien pour ce modèle:
-% Le modèle $p$-spin est entièrement défini par l'Hamiltonien $\mathcal{H}$ suivant:
+Un exemple de ce type de graphe est représenté à la figure~\ref{fig:bipartite-graph}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.55\textwidth]{Figures/bipartite-graph-example.pdf}
+    \caption[Exemple de graphe biparti.]{Exemple de graphe biparti, où aucune arête ne connecte deux sommets de même type (carrés et cercles).}
+    \label{fig:bipartite-graph}
+\end{figure}
+Cette représentation permet la définition suivante de l'hamiltonien pour ce modèle:
+% Le modèle $p$-spin est entièrement défini par l'hamiltonien $\mathcal{H}$ suivant:
 \begin{equation} \label{eq:ham_p-spin}
     \mathcal{H} = \frac{1}{2} \left[m -\sum_{v \in V} J_{v}\prod_{u \in N(v)} \sigma_{u} \right],
 \end{equation}
 où $J_v \in \left\{\pm1\right\}$ correspond au couplage des $p$ interactions au sommet $v$, $\sigma_u \in \left\{\pm1\right\}$ est le spin présent au sommet $u$ et $N(v) \subset U$ est l'ensemble des $p$ spins qui interagissent ensemble au sommet $v$.
 Ce système contient donc des spins d'Ising qui interagissent de manière ferromagnétique ou antiferromagnétique avec la même intensité partout.
-L'étude principale de cet Hamiltonien dans ce projet revient à << simplement >> \emph{compter} le nombre de configurations de spins $\sigma_u$ qui donnent une énergie nulle au système pour un ensemble donné de graphes.
+L'étude principale de cet hamiltonien dans ce projet revient à <<~simplement~>> \emph{compter} le nombre de configurations de spins $\sigma_u$ qui donnent une énergie nulle au système pour un ensemble donné de graphes.
 En d'autres mots, cela revient à évaluer la \emph{fonction de partition} $Z$ à température nulle de ces systèmes.
+L'équivalence entre ces deux problèmes est expliquée plus en détail à l'annexe~\ref{annexe:partition-fn-and-counting}.
+% En effet, en partant de la définition générale de cette fonction, on peut écrire:
+% \begin{equation}
+%     \begin{split}
+%         Z &= \sum_{j} e^{-\beta E_j}\\
+%         &= N_{\text{fond}}e^{-\beta E_{\text{fond}}} + \cdots\text{, à cause de la dégénérescence}\\
+%         &= N_{\text{fond}} + \cdots\text{, en posant $E_{\text{fond}} = 0$}\\
+%         &= N_{\text{fond}}\text{, à température nulle}.
+%     \end{split}
+% \end{equation}
+% Ici, la première égalité énumère toutes les configurations possibles du système physique avec $j$.
+% Dans la seconde égalité, $N_{\text{fond}}$ correspond au nombre d'états fondamentaux, soit le nombre de configurations associées à l'énergie fondamentale $E_{\text{fond}}$ et les autres termes de la somme sont ceux qui sont associés aux configurations reliées à des énergies supérieures à $E_{\text{fond}}$.
+% La troisième égalité utilise le fait qu'on peut poser $e^{-\beta E_{\text{fond}}} = 1$ puisqu'il est toujours possible de modifier la définition du système afin que son énergie fondamentale soit nulle.
+% Finalement, en prenant la limite $T \rightarrow 0$, tous les termes dépendants de la température dans la somme deviennent nulles, nous laissant avec la quatrième égalité.
+%------------------------
+
+% La définition générale de cette fonction est la suivante:
+% \begin{equation}\label{eq:partition-function1}
+%     Z = \sum_{j} e^{-\beta E_j},
+% \end{equation}
+% où $\beta = \frac{1}{k_B T}$, $j$ énumère toutes les configurations possibles du système étudié, $k_B$ est la constante de Boltzmann et $T$ est la température.
+% À cause de la dégénérescence retrouvée dans les verres de spin, principalement à cause du phénomène de frustration, l'équation~\ref{eq:partition-function1} peut s'écrire comme suit:
+% \begin{equation}\label{eq:partition-function2}
+%     Z = N_{\text{fond}}e^{-\beta E_{\text{fond}}} + \cdots,
+% \end{equation}
+% où $N_{\text{fond}}$ est le nombre d'états fondamentaux --- le nombre de configurations associées à l'énergie fondamentale $E_{\text{fond}}$ --- et les autres termes dans la somme correspondent aux configurations avec des énergies supérieures.
+% Comme il est toujours possible de modifier la définition du système afin que son énergie fondamentale soit nulle, on se retrouve avec $e^{-\beta E_{\text{fond}}} = 1$, donc l'équation~\ref{eq:partition-function2} devient:
+% % Comme il est toujours possible de modifier la définition du système afin que son énergie fondamentale soit nulle, on peut enlever la dépendance en température du premier terme de l'équation~\ref{eq:partition-function2}:
+% \begin{equation}
+%     Z = N_{\text{fond}} + \cdots.
+% \end{equation}
+% Finalement, lorsqu'on pose $T \rightarrow 0$, on a que $e^{-\beta E_j} \rightarrow 0$, ce qui fait en sorte quetous les termes dépendants de la température disparaissent, nous laissant avec:
+% \begin{equation}
+%     Z = N_{\text{fond}}.
+% \end{equation}
+%----------------------
 % \begin{definition}\label{def:partition-function}
 %     En mécanique statistique, la \textbf{fonction de partition} est une fonction qui décrit les propriétés statistiques d'un système dans son état d'équilibre thermodynamique. Elle est une fonction qui additionne tous les états possibles d'un système, fournissant une mesure du poids statistique de ces états.
 % \end{definition}
@@ -124,24 +169,22 @@ En d'autres mots, cela revient à évaluer la \emph{fonction de partition} $Z$ �
 % \end{equation}
 % Cette expression sera utile plus tard dans la définition de ce problème en réseau de tenseurs.
 
-À toute fin pratique, il est possible de réécrire l'Hamiltonien de l'équation~\ref{eq:ham_p-spin} en définissant les termes de couplage et de spins d'une autre manière.
+À toute fin pratique, il est possible de réécrire l'hamiltonien de l'équation~\ref{eq:ham_p-spin} en définissant les termes de couplage et de spins d'une autre manière.
 Comme les valeurs que les spins peuvent prendre se trouvent dans l'ensemble $\{\pm 1\}$, on peut introduire des variables \emph{booléennes} --- $b_v$ et $x_u$ ---, de la manière suivante:
 \begin{equation}\label{eq:new_ham_p-spin1}
-    \begin{split}
-        \mathcal{H} &= \frac{1}{2} \left[m -\sum_{v \in V} (-1)^{b_v}\prod_{u \in N(v)} (-1)^{x_u} \right] = \frac{1}{2} \left[m -\sum_{v \in V} (-1)^{b_v + \sum_{u \in N(v)} x_u} \right],
-    \end{split}
+    \mathcal{H} = \frac{1}{2} \left[m -\sum_{v \in V} (-1)^{b_v}\prod_{u \in N(v)} (-1)^{x_u} \right] = \frac{1}{2} \left[m -\sum_{v \in V} (-1)^{b_v + \sum_{u \in N(v)} x_u} \right],
 \end{equation}
 où les termes de couplage et les spins sont redéfinis comme étant respectivement $J_v = (-1)^{b_v}$ et $x_u = (-1)^{x_u}$.
 Ce changement de variable correspond simplement à faire la conversion entre les valeurs $\pm 1$ et l'ensemble $\{0, 1\}$.
-Comme ces nouvelles variables sont booléennes, on ne s'intéresse qu'à la parité de l'exposant de $-1$, ce qui nous permet de finalement définir cet Hamiltonien comme suit:
+Comme ces nouvelles variables sont booléennes, on ne s'intéresse qu'à la parité de l'exposant de $-1$, ce qui nous permet de finalement définir cet hamiltonien comme suit:
 \begin{equation} \label{eq:new_ham_p-spin2}
     \mathcal{H} = \frac{1}{2} \left[m -\sum_{v \in V} (-1)^{b_v + \sum_{u \in N(v)} x_u\mod{2}} \right].
 \end{equation}
 Avec cette nouvelle expression de $\mathcal{H}$, trouver une des configuration de spins $\vec{\sigma}$ qui mène à l'énergie minimale du système revient à résoudre l'équation suivante:
 \begin{equation}
     \begin{split}
-        b_v + \sum_{u \in N(v)} x_u = 0 &\mod{2}\ \forall v \in V,\\
-        \implies b_v = \sum_{u \in N(v)} x_u &\mod{2}\ \forall v \in V.
+        b_v + \sum_{u \in N(v)} x_u = 0 &\mod{2}\ \forall\ v \in V,\\
+        \implies b_v = \sum_{u \in N(v)} x_u &\mod{2}\ \forall\ v \in V.
     \end{split}
 \end{equation}
 Cette nouvelle expression à résoudre peut directement se traduire comme le système d'équations linéaires suivant:
@@ -283,7 +326,7 @@ Cela signifie que pour un grand $n$, il devient impossible de faire ce type de r
 Le problème SAT a été le premier problème démontré comme appartenant à la classe de complexité \textbf{NP-complète} par Stephen Cook~\cite{cook1971}.
 % --------- Début du nouvellement ajouté -----------------
 Avant de définir cette classe de complexité, il est important de comprendre que les problèmes se séparent, d'après les connaissances d'aujourd'hui~\cite{millenniumPrizeProblems}, en deux; les problèmes dits \emph{faciles} (\textbf{P}) et ceux qui sont \emph{difficiles} (\textbf{NP}).
-Ceux qui sont facilement résolvables sont ceux qui sont dans la classe \textbf{P}, soient tous les problèmes de décision qui sont solvables dans un temps polynomial.
+Ceux qui sont facilement solubles sont ceux qui sont dans la classe \textbf{P}, soient tous les problèmes de décision qui sont solubles dans un temps polynomial.
 Ceux qui sont difficiles se retrouvent dans la classe \textbf{NP} (\textit{nondeterministic polynomial time} en anglais), donc tous les problèmes de décision pour lesquels la solution peut se faire vérifier facilement (dans un temps polynomial).
 Avec cela, on peut maintenant définir la classe \textbf{NP-complète} comme suit:
 % --------- Fin du nouvellement ajouté -------------------
@@ -295,14 +338,14 @@ Avec cela, on peut maintenant définir la classe \textbf{NP-complète} comme sui
 %     La classe de complexité \textbf{P} contient tous les problèmes de décision qui sont solvables facilement (dans un temps polynomial).
 % \end{definition}
 % \begin{definition}\label{def:NP}
-%     La classe de complexité \textbf{NP} (<< nondeterministic polynomial time >> en anglais) contient tous les problèmes de décision pour lesquels la solution peut se faire vérifier rapidement (dans un temps polynomial).
+%     La classe de complexité \textbf{NP} (<<~nondeterministic polynomial time~>> en anglais) contient tous les problèmes de décision pour lesquels la solution peut se faire vérifier rapidement (dans un temps polynomial).
 % \end{definition}
 \begin{definition}\label{def:NP-complete}
     % La classe de complexité \textbf{NP-complet} est une classe qui englobe tous les problèmes $A$ dans NP pour lesquels il est possible de réduire tout autre problème NP $B$ à $A$ facilement (en temps polynomial).
     La classe de complexité \textbf{NP-complète} est une classe des problèmes \textbf{NP} auxquels tous les autres problèmes dans \textbf{NP} peuvent être réduits en temps polynomial.
 \end{definition}
-On retrouve ensuite la classe de complexité \textbf{\#P}, qui rassemblent les problèmes qui ont comme objectif de \emph{compter} le nombre de solution(s) de problèmes dans \textbf{NP} qui les satisfont.
-Il y a aussi la classe \textbf{\#P-complète}, qui englobe tous les problèmes se retrouvant dans \textbf{\#P} pour lesquels il est possible de réduire tout autre problème de cette classe à ceux-ci facilement (en temps polynomial).
+On retrouve ensuite la classe de complexité \textbf{\#P}, qui rassemble les problèmes qui ont comme objectif de \emph{compter} le nombre de solution(s) de problèmes dans \textbf{NP}.
+Il y a aussi la classe \textbf{\#P-complète}, qui englobe tous les problèmes se retrouvant dans \textbf{\#P} vers lesquels il est possible de réduire tout autre problème de cette classe facilement (en temps polynomial).
 Les problèmes qui s'y retrouvent sont tous au moins aussi difficiles que ceux qui sont dans la classe \textbf{NP-complète}.
 % \begin{definition}\label{def:NP-hard}
 %     La classe de complexité \textbf{NP-difficile} contient les problèmes qui sont au moins aussi difficiles que ceux se trouvant dans la classe NP-complet, sans toutefois se limiter aux problèmes de décision.
@@ -343,7 +386,7 @@ Compter le nombre de solution(s) satisfaisant ce type de problème correspond au
 Le problème $k$-SAT possède plusieurs variantes, comme \textit{$1$-in-$3$} SAT et \textit{not-all-equal} 3-SAT (NAE3-SAT), et la plupart se retrouvent dans la même classe de complexité que celui-ci.
 De plus, chacune d'elle peut se caractériser par le paramètre $\alpha \equiv m / n$, la densité de clauses.
 Ce paramètre est relié au phénomène de transition de phase dans ces problèmes.
-Pour le problème de type $k$-SAT, ce phénomène se produit à une certaine valeur du paramètre $\alpha$ où la probabilité que le problème soit solvable passe drastiquement de $1$ vers $0$.
+Pour le problème de type $k$-SAT, ce phénomène se produit à une certaine valeur du paramètre $\alpha$ où la probabilité que le problème soit soluble passe drastiquement de $1$ vers $0$.
 Dans le cas du problème $k$-SAT avec $k = 3$, la transition est montrée dans la figure~\ref{fig:SAT_phase-transition}.
 \begin{figure}[h]
     \centering
@@ -364,16 +407,16 @@ Afin de relier les deux, il suffit de poser $k = p$ et de respecter les encodage
 La présentation du problème général dans cette section est faite en utilisant seulement $k$, la variable $p$ sera utilisée plus tard dans le chapitre~\ref{ch:tns-and-p-xorsat}.
 
 Ce problème ne requiert qu'une seule modification des opérateurs dans les clauses par rapport au problème standard $k$-SAT.
-L'opérateur de disjonction y est remplacé par l'opérateur de sommation modulo $2$ ($\oplus$), qui se fera nommer << sommation booléenne >> au travers de ce mémoire puisque les variables qui se retrouvent dans les problèmes analysés sont booléennes.
+L'opérateur de disjonction y est remplacé par l'opérateur de sommation modulo $2$ ($\oplus$), qui se fera nommer <<~sommation booléenne~>> au travers de ce mémoire puisque les variables qui se retrouvent dans les problèmes analysés sont booléennes.
 Avec la matrice de biadjacence $B$ et le vecteur $\vec{b}$ de l'équation~\ref{eq:Bx=b}, on peut définir une instance $\phi(\vec{x})$ du problème $k$-XORSAT de la manière suivante:
 \begin{equation}\label{eq:xorsat_def}
     \begin{split}
-        \phi(\vec{x}) &= \bigwedge_{v = 0}^{m - 1} c_v \text{, avec }m = \alpha n,\\
+        \phi(\vec{x}) &= \bigwedge_{v = 0}^{m - 1} c_v \text{, où }m = \alpha n,\\
         c_v &= 1 \oplus b_v \oplus B_v \cdot \vec{x},\\
         \vec{x} &= \left(x_1, x_2, \ldots, x_n \right) \in \{0, 1\}^n,
     \end{split}
 \end{equation}
-où $B_v \in \{0, 1\}^n$ est la ligne $v$ de la matrice $B$, $b_v$ indique l'élément $v$ du vecteur $\vec{b}$ et $B_v \cdot \vec{x}$ indique la sommation booléenne des variables présentent dans la clause $c_v$.
+où $B_v \in \{0, 1\}^n$ est la rangée $v$ de la matrice $B$, $b_v$ indique l'élément $v$ du vecteur $\vec{b}$ et $B_v \cdot \vec{x}$ indique la sommation booléenne des variables présentes dans la clause $c_v$.
 Les éléments de $\vec{b}$ peuvent aussi être vus comme étant les parités requises pour satisfaire chacune des clauses du problème.
 Lorsque $c_v = 1$, ce qui se produit lorsque $b_v \oplus B_v \cdot \vec{x} = 0$, on dit que la clause est \emph{satisfaite}.
 
@@ -406,18 +449,18 @@ Dans les prochaines sections, on va commencer par définir l'algorithme utilisan
 Étant donnée une instance $\phi(\vec{x})$ du problème $k$-XORSAT contenant $m$ clauses et $n$ variables, on commence par la traduire sous la forme de la matrice de biadjacence $B$ de l'équation~\ref{eq:Bx=b}.
 Il est aussi nécessaire d'avoir les parités de chacune des clauses afin de pouvoir utiliser $\vec{b}$.
 Par la suite, on applique l'élimination gaussienne sur la matrice augmentée $[B|\vec{b}]$, où toutes les opérations sont modulo deux.
-Une fois cette étape terminée, si on retrouve au moins une inconsistance dans le système, il n'existe aucune solution pouvant satisfaire ce problème.
-Cette inconsistance vient du fait qu'une ligne aurait la forme $[0\ 0\ \dots 0 | 1]$, ce qui n'a aucun sens puisque la somme modulo $2$ de plusieurs variables ayant un poids nul ne peut jamais être égale à un.
-Toutefois, si ces inconsistances ne sont pas présentes, alors le nombre de solutions satisfaisant le problème donné est:
+Une fois cette étape terminée, si on retrouve au moins une incohérence dans le système, il n'existe aucune solution pouvant satisfaire ce problème.
+Cette incohérence vient du fait qu'une ligne aurait la forme $[0\ 0\ \dots 0 | 1]$, ce qui n'a aucun sens puisque la somme modulo $2$ de plusieurs variables ayant un poids nul ne peut jamais être égale à un.
+Toutefois, si ces incohérences ne sont pas présentes, alors le nombre de solutions satisfaisant le problème donné est:
 \begin{equation}\label{eq:nb_sols_ge}
     \text{\#Solutions} = 2^{n - \mathrm{rang}(B)}.
 \end{equation}
 
-Dans~\cite{braunstein_complexity_2002}, les auteurs ont étudié les complexités en temps et en mémoire de l'élimination gaussienne pour la résolution du problème \#$k$-XORSAT avec $k = 3$ en utilisant une version de cet algorithme qu'ils définissent comme étant << simple >>.
-Cette version résout les équations linéaires présentes dans l'équation~\ref{eq:Bx=b} dans l'ordre dans laquelle elles apparaissent déjà.
+Dans~\cite{braunstein_complexity_2002}, les auteurs ont étudié les complexités en temps et en mémoire de l'élimination gaussienne pour la résolution du problème \#$k$-XORSAT avec $k = 3$ en utilisant une version de cet algorithme qu'ils définissent comme étant <<~simple~>>.
+Cette version résout les équations linéaires présentes dans l'équation~\ref{eq:Bx=b} dans l'ordre dans lequel elles apparaissent déjà.
 Ils y montrent que cet algorithme simple résout le problème donné avec une complexité en temps et en mémoire proportionnelle à $n$ pour $\alpha \leq 2/3$.
 Lorsque ce paramètre dépasse le seuil de $2/3$, les complexités en temps et en mémoire deviennent respectivement $\propto n^3$ et $\propto n^2$.
-Les auteurs ont également présenté une version << intelligente >> de cet algorithme, dans laquelle les variables qui apparaissent dans le moins d'équations sont abordées en premier (en cas d'égalité, elles sont choisies arbitrairement).
+Les auteurs ont également présenté une version <<~intelligente~>> de cet algorithme, dans laquelle les variables qui apparaissent dans le moins d'équations sont abordées en premier (en cas d'égalité, elles sont choisies arbitrairement).
 On résout ensuite pour cette variable et on la substitue dans les équations restantes.
 Ils font valoir que cette version plus intelligente résout le problème avec des ressources (le temps et la mémoire) proportionnelles à $n$ lorsque $\alpha < \alpha_d$.
 Lorsque $\alpha > \alpha_d$, ces ressources passent respectivement à $\propto n^3$ et $\propto n^2$.
@@ -427,17 +470,17 @@ Cette augmentation est suffisante pour modifier ces complexités, car la matrice
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/matrice.pdf}
-    \caption[Évolution de la densité de 1s lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$).]{Évolution de la densité de 1s lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$). Les points noir et blanc correspondent respectivement aux 0s et aux 1s dans la matrice et $t$ représente le pourcentage de complétion de l'algorithme. Image tirée de~\protect\cite{braunstein_complexity_2002}.}
+    \caption[Évolution de la densité de $1$ lors de l'élimination gaussienne.]{Évolution de la densité de 1 lors de l'élimination gaussienne avec $n = m = 1024$ ($\alpha = 1$). Les points noir et blanc correspondent respectivement aux 0 et aux 1 dans la matrice et $t$ représente le pourcentage de complétion de l'algorithme. Image tirée de~\protect\cite{braunstein_complexity_2002}.}
     \label{fig:GE-ones-density}
 \end{figure}
 
 
-Lorsqu'on résout une équation qui contient une variable qui n'apparaît que dans celle-ci, on peut interpréter graphiquement le processus comme un algorithme d'\emph{élimination des feuilles}, décrit dans la section~\ref{subsec:leaf-removal-algorithm} suivante.
-Cet algorithme donne une intuition quant à la raison pour laquelle la version << intelligente >> de l'élimination gaussienne est plus efficace et aidera à expliquer le comportement de l'algorithme développé dans le cadre de ce projet qui utilise les réseaux de tenseurs.
+Lorsqu'on résout une équation qui contient une variable qui n'apparaît que dans celle-ci, on peut interpréter graphiquement le processus comme un algorithme d'\emph{élimination de feuilles}, décrit dans la section~\ref{subsec:leaf-removal-algorithm} suivante.
+Cet algorithme donne une intuition quant à la raison pour laquelle la version <<~intelligente~>> de l'élimination gaussienne est plus efficace et aidera à expliquer le comportement de l'algorithme développé dans le cadre de ce projet qui utilise les réseaux de tenseurs.
 Cet algorithme est expliqué plus tard dans les sections~\ref{sec:eliminate-redundancy-with-bond-compression} et~\ref{sec:sweeping-method}.
 
-\subsection{Algorithme d'élimination des feuilles}\label{subsec:leaf-removal-algorithm}
-Supposons qu'on a une instance $k$-XORSAT avec $k = 3$ et une variable, que l'on définit comme étant $x_0$, n'apparaît que dans l'équation linéaire:
+\subsection{Algorithme d'élimination de feuilles}\label{subsec:leaf-removal-algorithm}
+Supposons qu'on a une instance $k$-XORSAT avec $k = 3$ et qu'une variable, que l'on définit comme étant $x_0$, n'apparaît que dans l'équation linéaire:
 \begin{equation}\label{eq:c0-example}
     x_0 \oplus x_1 \oplus x_2 = b_0,
 \end{equation}
@@ -451,16 +494,16 @@ En sachant cela, on peut enlever cette clause du problème initial, le résoudre
 Cependant, une fois que cette clause est retirée du problème, il se peut que $x_1$ et/ou $x_2$ ne se retrouvent que dans une seule équation/une seule clause.
 On peut donc retirer cette seconde clause contenant la variable n'apparaissant qu'une seule fois dans le problème modifié.
 Ce processus se répète jusqu'à ce que toutes les variables qui restent soient présentes au moins deux fois dans le problème simplifié.
-En termes de la matrice de biadjacence dans l'équation~\ref{eq:Bx=b}, chaque colonne va contenir au moins deux $1$s.
+En fonction de la matrice de biadjacence dans l'équation~\ref{eq:Bx=b}, chaque colonne va contenir au moins deux $1$.
 Il est à noter que si une instance dépend de $n$ variables et que seulement $n - q$ de ces variables se retrouvent dans le problème, alors on peut simplement ignorer ces $q$ variables manquantes et multiplier le nombre de solutions satisfaisant le problème par $2^q$.
 % sait qu'elles peuvent prendre n'importe quelle valeur et satisfaire le problème.
-Cet algorithme se nomme élimination des feuilles~\cite{mezard_alternative_2002, cocco_rigorous_2003} et il permet le simplifier grandement un problème $k$-XORSAT.
+Cet algorithme se nomme élimination de feuilles~\cite{mezard_alternative_2002, cocco_rigorous_2003} et il permet de le simplifier grandement un problème $k$-XORSAT.
 
 Les étapes décrites ici se visualisent bien sur un graphe qui modélise le problème.
-Pour un problème de type $k$-XORSAT, c'est un graphe biparti où on retrouve deux types de sommets; les sommets << clause >> et les sommets << variable >>.
+Pour un problème de type $k$-XORSAT, c'est un graphe biparti où on retrouve deux types de sommets; les sommets <<~clause~>> et les sommets <<~variable~>>.
 Ce graphe est entièrement décrit par la matrice de biadjacence $B$ de l'équation~\ref{eq:Bx=b}.
-Comme $B \in \mathbb{R}^{m \times n}$, ce graphe contiendra exactement $m$ sommets << clause >> et $n$ sommets << variable >>.
-De plus, si $B_{vu} = 1$, on retrouve une arête entre le sommet << clause >> $c_v$ et le sommet << variable >> $x_u$.
+Comme $B \in \mathbb{R}^{m \times n}$, ce graphe contiendra exactement $m$ sommets <<~clause~>> et $n$ sommets <<~variable~>>.
+De plus, si $B_{vu} = 1$, on retrouve une arête entre le sommet <<~clause~>> $c_v$ et le sommet <<~variable~>> $x_u$.
 On se retrouve donc avec des sommets dont les \emph{degrés} --- le nombre d'arêtes qui lui sont connectées dans le graphe --- respectent l'équation~\ref{eq:vs_degrees}.
 % (terme défini à la définition~\ref{def:degree})
 % \begin{definition}\label{def:degree}
@@ -486,12 +529,12 @@ Dans le premier cas, on dit que l'algorithme d'élimination de feuilles a simpli
 Dans le second, le noyau restant est encore un problème de type $k$-XORSAT, mais simplifié dans lequel toutes les variables restantes sont présentes au moins deux fois dans les clauses restantes.
 Une fois que ce noyau est résolu, on peut déterminer une solution du problème initial en évaluant les valeurs des variables qui ont été simplifiées par l'algorithme puisqu'elles dépendent de celles qui sont dans le noyau. 
 
-Dans~\cite{mezard_alternative_2002}, les auteurs montrent que, dans la limite thermodynamique ($n \rightarrow \infty$), l'algorithme d'élimination des feuilles réussi à réduire le graphe correspondant au graphe complètement simplifié lorsque $ \alpha < \alpha_d$ pour l'ensemble dans lequel $p = 3$ et où toutes les clauses sont choisies uniformément au hasard.
+Dans~\cite{mezard_alternative_2002}, les auteurs montrent que, dans la limite thermodynamique ($n \rightarrow \infty$), l'algorithme d'élimination de feuilles réussit à réduire le graphe correspondant au graphe complètement simplifié lorsque $ \alpha < \alpha_d$ pour l'ensemble dans lequel $p = 3$ et où toutes les clauses sont choisies uniformément au hasard.
 Comme on peut fixer un sommet variable de degré $1$ à une valeur à chaque étape de cet algorithme afin d'éliminer un sommet clause et ses arêtes, le nombre de solutions satisfaisant un problème $k$-XORSAT donné pour lequel il ne reste pas de noyau est de $2^{n-m}$, où $m$ est le nombre de clauses du problème et $n$ est le nombre de variables.
-Lorsque $\alpha > \alpha_d$, un noyau du graphe va rester après l'application de l'algorithme d'élimination des feuilles.
+Lorsque $\alpha > \alpha_d$, un noyau du graphe va rester après l'application de l'algorithme d'élimination de feuilles.
 Cela signifie que cet algorithme à lui seul ne peut pas résoudre ce problème en entier.
 Le paramètre $\alpha = \alpha_d$ correspond à une transition dynamique dans ce problème et il correspond aussi à un changement dans la structure de l'ensemble des solutions du problème, comme mentionné dans la section~\ref{sec:k-xorsat}.
-La version << intelligente >> de l'élimination gaussienne utilise ce principe pour obtenir une amélioration face à la version << simple >>.
+La version <<~intelligente~>> de l'élimination gaussienne utilise ce principe pour obtenir une amélioration face à la version <<~simple~>>.
 
 % EST-CE QUE JE FAIS CE PARAGRAPHE ???
 % We also note that when no core remains at the end of leaf removal, one can interpret the algorithm as finding a permutation of the rows and columns of the matrix $A$ such that one can transform $A$ into triangular form. Suppose the variable $x_i$ only appears in equation $j$. One would then permute the rows $1$ and $j$ of $A$, as well as the columns $1$ and $i$. Ignoring the first row and column of $A$, repeat the same procedure. Continuing in this way will yield a matrix $A'$ which is in triangular form and has the same rank as $A$. The triangular form of $A'$ implies that its rank is simply the number of rows, allowing one to calculate the number of solutions.
@@ -501,27 +544,27 @@ Graphiquement, cette redondance reliée aux variables de degré $1$ n'est pas la
 
 \subsection{Simplifications graphiques connues} \label{subsec:XORSAT-simplifications}
 Comme mentionné dans la section précédente, certaines règles graphiques permettant de simplifier le problème $k$-XORSAT sont déjà connues.
-Deux de ces règles sont la loi de \emph{bialgèbre} et la loi d'\emph{Hopf}~\cite{kasselQuantumGroups1995, denny_algebraically_2012}.
+Deux de ces règles sont la loi de \emph{bialgèbre} et la loi de \emph{Hopf}~\cite{kasselQuantumGroups1995, denny_algebraically_2012}.
 Analyser ces règles sera utile pour la compréhension du fonctionnement interne de l'algorithme développé dans le cadre de ce mémoire.
 Ici, l'analyse est faite pour $\vec{b} = \vec{0}$.
 
-La loi d'Hopf stipule que si une variable est présente deux fois dans une seule clause d'un problème de type XORSAT, alors elle n'est pas nécessaire puisque son information est redondante.
+La loi de Hopf stipule que si une variable est présente deux fois dans une seule clause d'un problème de type XORSAT, alors elle n'est pas nécessaire puisque son information est redondante.
 Cette loi est représentée dans la figure~\ref{fig:hopf-law} ci-dessous.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/hopf_law.pdf}
-    \caption[Représentation graphique de la loi de Hopf.]{Représentation graphique de la loi de Hopf. Les sommets de type << clause >> sont représentés par des carrés bleus et les sommets de type << variable >> sont représentés par des cercles verts.}
+    \caption[Représentation graphique de la loi de Hopf.]{Représentation graphique de la loi de Hopf. Les sommets de type <<~clause~>> sont représentés par des carrés bleus et les sommets de type <<~variable~>> sont représentés par des cercles verts.}
     \label{fig:hopf-law}
 \end{figure}
 Il est facile de voir que cette règle est vraie dans le cas des problèmes XORSAT puisque les variables et les sommations sont booléennes dans les clauses.
 Ainsi, on a que $x_0 \oplus x_0 \oplus x_1 = x_1$, où $x_0$ ne sert à rien dans la représentation du problème.
 
-La loi de bialgèbre permet de simplifier les cas où on retrouve deux sommets << clauses >> qui sont tous les deux connectés à deux sommets << variables >>.
-La simplification est moins directe que celle de la loi d'Hopf, mais commençons par analyser son impact sur l'ensemble de quatre sommets décrits précédemment dans la figure~\ref{fig:bialgebra-law}.
+La loi de bialgèbre permet de simplifier les cas où on retrouve deux sommets <<~clauses~>> qui sont tous les deux connectés à deux sommets <<~variables~>>.
+La simplification est moins directe que celle de la loi de Hopf, mais commençons par analyser son impact sur l'ensemble de quatre sommets décrits précédemment dans la figure~\ref{fig:bialgebra-law}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/bialgebra_law.pdf}
-    \caption[Représentation graphique de la loi de bialgèbre.]{Représentation graphique de la loi de bialgèbre. Les sommets de types << clause >> sont représentés par des carrés bleus et les sommets de type << variable >> sont représentés par des cercles verts.}
+    \caption[Représentation graphique de la loi de bialgèbre.]{Représentation graphique de la loi de bialgèbre. Les sommets de types <<~clause~>> sont représentés par des carrés bleus et les sommets de type <<~variable~>> sont représentés par des cercles verts.}
     \label{fig:bialgebra-law}
 \end{figure}
 Cette structure permet de simplifier cet ensemble en seulement une variable et une clause.
@@ -534,11 +577,12 @@ La simplification vient du fait que les deux clauses intiales sont:
 \end{equation}
 Comme l'objectif est de satisfaire ces deux clauses en même temps, on se retrouve avec $x_2  = x_3$ puisque $x_0$ et $x_1$ sont présentes et interagissent de la même manière dans ces deux clauses.
 On peut donc considérer que $x_2$ et $x_3$ sont une seule et unique variable $x$.
-Avec le fait que ces deux clauses contiennent les même variables, elles sont équivalentes à avoir une seule clause $c$ qui contient $x_0$, $x_1$ et $x$.
-Le changement de côté des deux types de sommets dans la figure~\ref{fig:bialgebra-law} vient du fait que $c$ contient les même variables $x_0$ et $x_1$ que précédemment et du fait que $x = x_2 = x_3$.
+Avec le fait que ces deux clauses contiennent les mêmes variables, elles sont équivalentes à avoir une seule clause $c$ qui contient $x_0$, $x_1$ et $x$.
+Le changement de côté des deux types de sommets dans la figure~\ref{fig:bialgebra-law} vient du fait que $c$ contient les mêmes variables $x_0$ et $x_1$ que précédemment et du fait que $x = x_2 = x_3$.
 
 Comme on peut le voir, certaines simplifications graphiques sont possibles à effectuer avec un problème de type XORSAT.
-Ces simplifications correspondent à l'éliination de redondances qui sont présentes dans le problème initial, alors trouver un moyen de les simplifier de manière automatique pourrait être un atout pour la résolution du problème.
+Ces simplifications correspondent à l'élimination de redondances qui sont présentes dans le problème initial.
+Alors trouver un moyen de les simplifier de manière automatique pourrait être un atout pour la résolution du problème.
 Dans ce mémoire, on utilise les réseaux de tenseurs, définis au chapitre~\ref{ch:TN} ci-dessous, ainsi que certaines méthodes qui leurs sont reliées afin de trouver et éliminer ces redondances automatiquement.
 
 % % --------------Réseaux de tenseurs------------------------
@@ -555,9 +599,9 @@ Dans ce mémoire, on utilise les réseaux de tenseurs, définis au chapitre~\ref
 D'un point de vue strictement d'algèbre linéaire, les réseaux de tenseurs correspondent à une structure qui encode une liste de multiplications de \emph{tenseurs}.
 %, défini à la définition~\ref{def:tensor}.
 \begin{definition}\label{def:tensor}
-    Un \textbf{tenseur} est un objet algébrique permettant de généraliser les concepts de scalaires (tenseurs de rang-$0$), de vecteurs (tenseurs de rang-$1$) et de matrices (tenseurs de rang-$2$) à des dimensions plus élevées.
+    Un \textbf{tenseur} est un objet algébrique permettant de généraliser les concepts de scalaires (tenseurs de rang $0$), de vecteurs (tenseurs de rang $1$) et de matrices (tenseurs de rang $2$) à des dimensions plus élevées.
     Ces trois premiers cas et leur généralisation sont montrés dans la figure~\ref{fig:tensor-schematic-def} dans le formalisme des réseaux de tenseurs.
-    Finalement, un tenseur de rang-$d$ se note:~$T_{i_0 i_1 \cdots i_{d-1}}$, où les $i$ sont les indices de chacune des dimensions de $T$.
+    Finalement, un tenseur de rang $d$ se note:~$T_{i_0 i_1 \cdots i_{d-1}}$, où les $i$ sont les indices de chacune des dimensions de $T$.
     \begin{figure}[h]
         \centering
         \begin{subfigure}{.245\textwidth}
@@ -584,7 +628,7 @@ D'un point de vue strictement d'algèbre linéaire, les réseaux de tenseurs cor
             \caption{}
             \label{fig:tensor-tensor}
         \end{subfigure}
-        \caption{Représentation schématique d'un tenseur pour \textbf{(a)} un scalaire, \textbf{(b)} un vecteur, \textbf{(c)} une matrice et \textbf{(d)} un tenseur de rang-$d$.}
+        \caption{Représentation schématique d'un tenseur pour \textbf{(a)} un scalaire, \textbf{(b)} un vecteur, \textbf{(c)} une matrice et \textbf{(d)} un tenseur de rang $d$.}
         \label{fig:tensor-schematic-def}
     \end{figure}
 \end{definition}
@@ -608,7 +652,7 @@ On dit aussi que cette multiplication se produit sur les indices qu'ils partagen
 Graphiquement, le nombre d'axes (ou le \emph{rang}) d'un tenseur est équivalent au degré du sommet qui lui correspond dans le graphe.
 La \emph{taille} d'un tenseur --- le nombre d'éléments qu'il contient --- est le produit des dimensions de ces axes.
 La taille d'un réseau de tenseurs correspond alors à la somme des tailles de tous les tenseurs qui s'y trouvent.
-Pour tout algorithme utilisant un réseau de tenseurs, on doit suivre la taille de ce réseau afin de s'assurer que celle-ci ne dépasse pas les ressources disponibles d'un ordinateur en mémoire.
+Pour tout algorithme utilisant un réseau de tenseurs, on doit suivre la taille de ce réseau afin de s'assurer que celle-ci ne dépasse pas les ressources disponibles en mémoire d'un ordinateur.
 Plus particulièrement, on doit considérer comment la contraction des tenseurs peut modifier la taille du réseau.
 
 Un exemple simple de contraction est la multiplication matrice-vecteur, qui est graphiquement représentée dans la figure~\ref{fig:tn_mat-vec_multiplication}.
@@ -618,7 +662,7 @@ Un exemple simple de contraction est la multiplication matrice-vecteur, qui est 
     \caption{Multiplication matrice-vecteur dans le formalisme des réseaux de tenseurs.}
     \label{fig:tn_mat-vec_multiplication}
 \end{figure}
-Le vecteur $\vec{u}$, un tenseur de rang-$1$, est représenté par un sommet avec une seule arête qui lui est connectée et la matrice $M$, un tenseur de rang-$2$, est aussi un sommet, mais avec deux arêtes.
+Le vecteur $\vec{u}$, un tenseur de rang $1$, est représenté par un sommet avec une seule arête qui lui est connectée et la matrice $M$, un tenseur de rang $2$, est aussi un sommet, mais avec deux arêtes.
 La multiplication matrice-vecteur montrée à la figure~\ref{fig:tn_mat-vec_multiplication} peut aussi s'écrire comme la sommation suivante:
 \begin{equation}\label{eq:einsum}
     \sum_j M_{ij}u_j = v_i.
@@ -627,16 +671,16 @@ De manière générale, on peut écrire la contraction complète d'un réseau de
 Dans le formalisme des réseaux de tenseurs, deux tenseurs ayant des dimensions communes sont appelés \emph{voisins}.
 
 Lorsqu'on fait la contraction de tenseurs où les axes communs ont la même dimension, il est possible de déterminer graphiquement la dimension résultante simplement en regardant le rang du nouveau sommet.
-Dans la figure~\ref{fig:tn_mat-vec_multiplication}, le tenseur final est de rang-$1$, ce qui est le même que le rang du vecteur $\vec{u}$.
+Dans la figure~\ref{fig:tn_mat-vec_multiplication}, le tenseur final est de rang $1$, ce qui est le même que le rang du vecteur $\vec{u}$.
 Dans d'autres situations, la taille de ce tenseur contracté peut être plus élevée que les tenseurs originaux.
-En effet, supposons que l'on contracte deux tenseurs de rangs $d_1$ et $d_2$ qui partagent un seul indice et que tous les dimensions de ces tenseurs sont de dimension 2.
+En effet, supposons que l'on contracte deux tenseurs de rangs $d_1$ et $d_2$ qui partagent un seul indice et que toutes les dimensions de ces tenseurs sont de dimension $2$.
 La taille du tenseur contracté sera de $2^{d_1 + d_2 - 2}$, donc elle évolue de manière exponentielle avec les rangs des tenseurs.
-Cette croissance exponentielle est le point qui rend la contraction complète d'un réseau de tenseurs numériquement difficile, alors il est important de déterminer un ordre de contraction judicieux.
+Cette croissance exponentielle des tailles des tenseurs est le point qui rend la contraction complète d'un réseau de tenseurs numériquement difficile, alors il est important de déterminer un ordre de contraction judicieux.
 
 
 \section{L'ordre de contraction}\label{sec:contraction-ordering}
 Techniquement, il est possible d'effectuer la contraction complète d'un réseau de tenseurs dans n'importe quel ordre.
-Par contre, l'ordre choisi a le potentiel de grandement faire varier la taille du réseau de tenseurs durant les contractions intermédiaires.
+Par contre, l'ordre choisi a le potentiel de grandement faire varier la taille du réseau de tenseurs pendant les contractions intermédiaires.
 Idéalement, cet ordre va minimiser la taille du réseau de tenseurs, limitant ainsi les ressources en mémoire nécessaires dans un ordinateur.
 Cela fait en sorte que la contraction complète a plus de chance d'être faisable.
 
@@ -649,12 +693,12 @@ Cela fait en sorte que la contraction complète a plus de chance d'être faisabl
     \end{cases}
 \end{equation}
 \begin{definition}\label{def:contraction-width}
-    La \textbf{largeur de contraction} correspond au nombre maximal de dimensions/d'indices qu'un tenseur a atteints durant la contraction d'un réseau de tenseurs.
+    La \textbf{largeur de contraction} correspond au nombre maximal de dimensions/d'indices qu'un tenseur a atteints pendant la contraction d'un réseau de tenseurs.
 \end{definition}
 Dans la représentation graphique, $P$ est l'ensemble de sommets représentant les tenseurs présents à toutes les étapes de la contraction.
 Dans la représentation tensorielle, $\mathcal{T}$ est l'ensemble de tous les tenseurs qui sont présents à toutes les étapes de la contraction et $s(T)$ est la taille du tenseur $T$.
-Il est à noter ici que $W$ dépend de l'ordre dans laquelle la contraction du réseau de tenseurs est faite.
-Par la suite, $2^W$ --- la taille maximale atteinte par un tenseur durant la contraction --- capture les besoins en mémoire pour l'ensemble de la contraction à un préfacteur prêt~\cite{gray_hyper-optimized_2021}.
+Il est à noter ici que $W$ dépend de l'ordre dans lequel la contraction du réseau de tenseurs est faite.
+Par la suite, $2^W$ --- la taille maximale atteinte par un tenseur pendant la contraction --- capture les besoins en mémoire pour l'ensemble de la contraction à un préfacteur prêt~\cite{gray_hyper-optimized_2021}.
 
 Déterminer un ordre de contraction est un problème d'optimisation en soit et des algorithmes existent pour en trouver un qui est optimisé en fonction de la structure du réseau de tenseurs.
 Dans certains cas, comme un réseau de tenseurs en forme de grille carrée, déterminer l'ordre optimal est facile tandis que dans d'autres, comme un réseau de tenseurs aléatoires, c'est beaucoup plus fastidieux~\cite{gray_hyper-optimized_2022}.
@@ -672,7 +716,7 @@ Ces deux cas sont montrés dans la figure~\ref{fig:latter-tn-good-contraction-ca
     \begin{subfigure}{.47\textwidth}
         \centering
         \includegraphics[width=0.95\linewidth]{Figures/latter_tn_bad_contraction_order.pdf}
-        \caption{On contracte tous les tenseurs du haut (ordre en bleu). On se retrouve ensuite avec un tenseur de rang-$N$ (encerclé en rouge) qui a potentiellement une taille beaucoup trop élevé (donc un problème au niveau de la mémoire d'un ordinateur).}
+        \caption{On contracte tous les tenseurs du haut (ordre en bleu). On se retrouve ensuite avec un tenseur de rang $N$ (encerclé en rouge) qui a potentiellement une taille beaucoup trop élevée (donc un problème au niveau de la mémoire d'un ordinateur).}
         \label{fig:latter-tn-bad-contraction-order}
     \end{subfigure}
     % \hfill
@@ -688,12 +732,12 @@ Ces deux cas sont montrés dans la figure~\ref{fig:latter-tn-good-contraction-ca
 \end{figure}
 
 De manière générale, les ressources nécessaires (en temps et en mémoire) pour complètement contracter un réseau de tenseurs augmentent de manière exponentielle avec le nombre de tenseurs, ce qui signifie que c'est un problème difficile, voire impossible lorsqu'ils sont présents en grand nombre.
-Malgré cela, une méthode appelée la \emph{compression de lien}, méthode expliquée dans la section suivante, permet de pousser ces limites en acceptant le fait que le résultat final soit approximé.
+Malgré cela, une méthode appelée la \emph{compression de lien}, méthode expliquée dans la section suivante, permet de pousser ces limites en acceptant le fait que le résultat final soit approximatif.
 
 
 \section{La compression de lien}\label{sec:compression}
 Dans sa forme la plus simple, la compression de lien consiste à effectuer une opération de \emph{contraction-décomposition} sur des tenseurs voisins au sein d'un réseau de tenseurs.
-Le terme << lien >> réfère à un indice commun entre deux tenseurs.
+Le terme <<~lien~>> réfère à un indice commun entre deux tenseurs.
 L'étape de décomposition utilise principalement des méthodes de révélation de rang telles que QR et la décomposition en valeurs singulières (ou \textit{SVD} venant de l'anglais \textit{Singular Value Decomposition}).
 Avant de définir le processus de compression de lien (section~\ref{subsec:bond-compression}), ces deux types de décompositions sont expliqués à la section~\ref{subsec:QR-and-SVD}.
 % définissions d'abord les outils qui lui sont nécessaires, comme les types de \emph{décompositions matricielles} ainsi que le \emph{remodelage de tenseurs}.
@@ -716,7 +760,7 @@ De ces deux méthodes, la SVD joue un rôle crucial dans certains algorithmes de
 De plus, cette méthode est particulièrement utile afin d'approximer des matrices puisqu'elle fournit l'accès aux valeurs singulières classées de manière décroissante.
 Cela nous permet de fixer une valeur seuil sur les valeurs propres, qu'elle soit absolue ou relative, et de garder seulement celles qui y sont supérieures, ainsi que les colonnes et les lignes de $U$ et $V$ qui leur correspondent, menant à une approximation de la matrice.
 
-L'impact de l'application de la SVD sur une matrice peut être visuellement représentée à l'aide d'une image.
+L'impact de l'application de la SVD sur une matrice peut être visuellement représenté à l'aide d'une image.
 Numériquement, une image contient des données pour les couleurs \textcolor{red}{rouge}, \textcolor{green}{vert} et \textcolor{blue}{bleu} qui ne sont que des matrices dont chacune des valeurs est reliée à une teinte de la couleur correspondante.
 On peut donc appliquer la SVD sur ces trois matrices en ne gardant que $q$ valeurs singulières pour ensuite reconstruire l'image compressée.
 Un exemple de ce processus est montré à la figure~\ref{fig:svd-on-figure}.
@@ -734,7 +778,7 @@ Ainsi, appliquer une valeur seuil nous permettant de garder seulement les $50$ p
 On a donc directement que cette matrice de rang $50$ est une excellente approximation de la matrice initiale.
 
 Cette observation vient du fait que la SVD permet de faire la meilleure approximation de rang $q$ d'une matrice donnée.
-En effet, selon le théorème d'Eckart-Young~\cite{eckart_approximation_1936, dax2014low}, la meilleure approximation de rang-$q$ possible pour une matrice $M = U \Sigma V^\dagger$ avec une matrice $M_q$ correspond à:
+En effet, selon le théorème d'Eckart-Young~\cite{eckart_approximation_1936, dax2014low}, la meilleure approximation de rang-$q$ possible pour une matrice $M = U \Sigma V^\dagger$ avec une matrice $M_q$, selon la norme de Frobenius, correspond à:
 % } (bien expliqué dans l'article~\cite{
 \begin{equation}\label{eq:eckart-young}
     M_q = \sum_{i=0}^{q-1}\sigma_i u_i v^\dagger_i,
@@ -745,7 +789,7 @@ La SVD est donc une excellente méthode pour extraire le rang d'une matrice et e
 \subsection{Méthodes pour la compression de lien}\label{subsec:bond-compression}
 La compression de lien peut se faire selon une multitude de processus.
 Entre deux tenseurs voisins, la manière naïve est de les contracter et de décomposer ce nouveau tenseur avec la SVD.
-Cependant, cette méthode peut potentiellement mener à des problèmes de mémoires puisque s'ils contiennent tous les deux, par exemple, $2^{31}$ éléments et qu'ils partagent deux axes de dimensions $2$, alors le tenseur contracté contiendra $2^{60}$ éléments.
+Cependant, cette méthode peut potentiellement mener à des problèmes de mémoire puisque s'ils contiennent tous les deux, par exemple, $2^{31}$ éléments et qu'ils partagent deux axes de dimensions $2$, alors le tenseur contracté contiendra $2^{60}$ éléments.
 Ce nombre astronomique d'éléments fait en sorte qu'il serait impossible de représenter ce tenseur avec un ordinateur.
 Cependant, si on applique une recette légèrement plus complexe, cette compression de lien devient possible.
 
@@ -762,14 +806,14 @@ Afin de faire cela, il faut utiliser le principe de \emph{remodelage} de tenseur
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.75\textwidth]{Figures/tensor-matricization.pdf}
-    \caption[Le remodelage d'un tenseur de rang-$5$ à un tenseur de rang-$2$.]{Le remodelage d'un tenseur de rang-$5$ $T_{i_0i_1i_2i_3i_4}$ de dimensions $(2, 2, 2, 2, 2)$ en matrice $T_{ij}$ de dimensions $(8, 4)$ où les indices $i_0$, $i_1$ et $i_2$ deviennent l'indice $i$ et les deux autres deviennent l'indice $j$.}
+    \caption[Le remodelage d'un tenseur de rang $5$ à un tenseur de rang $2$.]{Le remodelage d'un tenseur de rang $5$ $T_{i_0i_1i_2i_3i_4}$ de dimensions $(2, 2, 2, 2, 2)$ en matrice $T_{ij}$ de dimensions $(8, 4)$ où les indices $i_0$, $i_1$ et $i_2$ deviennent l'indice $i$ et les deux autres deviennent l'indice $j$.}
     \label{fig:tensor-reshape}
 \end{figure}
 Remodeler un tenseur revient à changer le format d'un tenseur en fusionnant ou en divisant ses axes sans perdre l'information qu'il représente.
-Ainsi, si on a un tenseur de rang-$3$ $T_{abc}$ dont les dimensions sont $(4,4,4)$, il nous est possible de le réécrire comme un tenseur de rang-$4$ $T_{ab'b"c}$  avec les dimensions $(4,2,2,4)$.
+Ainsi, si on a un tenseur de rang $3$ $T_{abc}$ dont les dimensions sont $(4,4,4)$, il nous est possible de le réécrire comme un tenseur de rang $4$ $T_{ab'b"c}$  avec les dimensions $(4,2,2,4)$.
 Dans cet exemple, l'indice $b$ de dimension $4$ a été divisé en deux indices $b'$ et $b"$ de dimensions $2$.
 Il est aussi possible d'ajouter des axes triviaux (des indices triviaux) à ce tenseur, lui donnant les dimensions $(1,4,4,1,4)$ par exemple.
-Dans le cas de la compression de lien, ce principe nous permet de << \textit{matriciser} >> un tenseur de n'importe quelle dimension.
+Dans le cas de la compression de lien, ce principe nous permet de <<~\textit{matriciser}~>> un tenseur de n'importe quelle dimension.
 Ce terme signifie simplement que tout tenseur peut se rapporter à une matrice, comme l'exemple donné à la figure~\ref{fig:tensor-reshape}.
 Ainsi, l'application de la décomposition QR sur les tenseurs $A$ et $B$ de la figure~\ref{fig:compression-schedule} cache l'étape de matricisation de ces deux tenseurs.
 Par la suite, On se retrouve avec les matrices $R$ des tenseurs initiaux $A$ et $B$, lesquelles se multiplient à l'étape d'après pour donner la matrice $R_{AB}$.

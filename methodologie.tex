@@ -13,7 +13,7 @@ Ces points sont: le type de contrainte utilisée dans les clauses ainsi que les 
 Une fois que ces aspects sont définis, la traduction peut commencer sous la forme d'un graphe biparti $G = (U, V, E)$.
 Chacun des sommets se trouvant dans $U$ correspondent aux variables du problème et ceux se trouvant dans $V$, aux clauses.
 Une arête $e \in E$ se trouve entre un sommet variable $u \in U$ et un sommet clause $v \in V$ seulement si la variable correspondante est présente dans cette clause dans l'instance $\phi(\vec{x})$ donnée.
-% Ce qui est entendu par << simple >> ici est que la définition des tenseurs qui sont nécessaires à la traduction d'un problème $p$-XORSAT en format de réseau de tenseurs est instinctive.
+% Ce qui est entendu par <<~simple~>> ici est que la définition des tenseurs qui sont nécessaires à la traduction d'un problème $p$-XORSAT en format de réseau de tenseurs est instinctive.
 Afin de suivre ce processus de manière visuelle, l'exemple d'instance aléatoire $\phi$ d'un problème $3$-XORSAT donné à l'équation~\ref{eq:p-xorsat-example} sera traduit étape par étape en réseau de tenseurs.
 \begin{equation}\label{eq:p-xorsat-example}
     \phi(\vec{x}) = (x_0 \oplus x_2 \oplus x_3) \wedge (x_2 \oplus x_3 \oplus x_4) \wedge (x_0 \oplus x_1 \oplus x_2)
@@ -24,7 +24,7 @@ On aura donc $|U| = n = 5$ et $|V| = m = 3$ dans $G$ et ces deux ensembles de so
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/tn_example-0.pdf}
-    \caption[La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}.]{La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}. Les sommets de forme carrée (les clauses) sont les sommets dans $V$ et les somments en cercle (les variables) sont les sommets dans $U$.}
+    \caption[La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}.]{La représentation sous forme de graphe, sans les arêtes, de l'instance $3$-XORSAT définit à l'équation~\ref{eq:p-xorsat-example}. Les sommets de forme carrée (les clauses) sont les sommets dans $V$ et les sommets en cercle (les variables) sont les sommets dans $U$.}
     \label{fig:tn-example0}
 \end{figure}
 Maintenant que ces sommets sont définis visuellement, il faut ajouter les arêtes qui les connectent entre eux.
@@ -32,14 +32,14 @@ Maintenant que ces sommets sont définis visuellement, il faut ajouter les arêt
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/tn_example-1.pdf}
-    \caption{Graphe dans lequal les arêtes connectant la clause $c_0$ et les variables $x_0$, $x_2$ et $x_3$ ont été ajouté.}
+    \caption{Graphe dans lequel les arêtes connectant la clause $c_0$ et les variables $x_0$, $x_2$ et $x_3$ ont été ajoutées.}
     \label{fig:tn-example1}
 \end{figure}
 On suit ensuite cette logique pour chacune des clauses se trouvant dans $\phi$ et on obtient le graphe de la figure~\ref{fig:tn-example2}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/tn_example-2.pdf}
-    \caption{Graphe dans lequal toutes les arêtes nécessaires pour représenter l'instance $\phi$ de l'équation~\ref{eq:p-xorsat-example} sont présentes.}
+    \caption{Graphe dans lequel toutes les arêtes nécessaires pour représenter l'instance $\phi$ de l'équation~\ref{eq:p-xorsat-example} sont présentes.}
     \label{fig:tn-example2}
 \end{figure}
 Ce même graphe peut être obtenu directement à partir de la matrice de biadjacence $B$ du problème $\phi$ si on l'écrit sous la forme de l'équation~\ref{eq:Bx=b}.
@@ -68,7 +68,7 @@ Les indices des $1$s présents dans $B$ correspondent aux arêtes dans le graphe
 Ainsi, $B_{vu} = 1$ indique la présence d'une arête entre les sommets qui représentent $c_v$ et $x_u$.
 
 Maintenant que le graphe qui modélise l'instance $\phi$ de l'équation~\ref{eq:p-xorsat-example} est défini, il ne reste qu'à associer chacun de ses sommets à des tenseurs.
-On retrouve autant de types de tenseurs qu'il y a de types de sommets dans $G$; les tenseurs << COPY >> et les tenseurs << XOR >>.
+On retrouve autant de types de tenseurs qu'il y a de types de sommets dans $G$; les tenseurs <<~COPY~>> et les tenseurs <<~XOR~>>.
 Les tenseurs COPY correspondent à ceux qui sont associés aux sommets $u \in U$ et ils se définissent comme suit:
 \begin{equation}\label{eq:COPY}
     T^{\text{COPY}\{u\}}_{i_1i_2...i_d} = \begin{cases}
@@ -78,12 +78,12 @@ Les tenseurs COPY correspondent à ceux qui sont associés aux sommets $u \in U$
 \end{equation}
 où les indices sont booléens et $d = \mathrm{deg}(u)$.
 Ces tenseurs agissent comme un delta de Kronecker, ce qui signifie que pour une seule variable, ce tenseur assure qu'elle ne peut prendre qu'une seule valeur à la fois partout où elle se retrouve dans le problème.
-Il permet donc de propager l'information de chacune des variables de manière à ce que toutes leur configuration possibles soient correctement représentées.
+Il permet donc de propager l'information de chacune des variables de manière à ce que toutes leurs configurations possibles soient correctement représentées.
 On donne ce type de tenseurs à tous les sommets de type variable afin d'obtenir le début du réseau de tenseurs, montré à la figure~\ref{fig:tn-example3}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/tn_example-3.pdf}
-    \caption{Graphe dans lequel les tenseurs COPY ont été associé aux sommets de type variables dans $G$.}
+    \caption{Graphe dans lequel les tenseurs COPY ont été associés aux sommets de type variables dans $G$.}
     \label{fig:tn-example3}
 \end{figure}
 Quant à eux, les tenseurs XOR correspondent à ceux qui sont associés aux sommets $v \in V$ et ils se définissent de la sorte:
@@ -105,7 +105,7 @@ On donne ce type de tenseurs à tous les sommets de type clause et on obtient le
 \end{figure}
 
 Une fois que le problème est réécrit dans le format des réseaux de tenseurs, l'étape suivante est d'en faire la contraction complète, comme expliqué à la section~\ref{sec:contraction}.
-Si, par exemple, on choisit de contracter les tenseurs correspondant à la clause $c_2$ et aux variables $x_3$ et $x_4$, on se retrouve avec le réseau de tenseurs dans la figure~\ref{fig:tn-example5}.
+Si, par exemple, on choisit de contracter les tenseurs correspondants à la clause $c_2$ et aux variables $x_3$ et $x_4$, on se retrouve avec le réseau de tenseurs dans la figure~\ref{fig:tn-example5}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/tn_example-5.pdf}
@@ -132,7 +132,7 @@ Avec les quatre agencements possibles des indices $i$ et $j$ et en utilisant les
 Ce nouveau tenseur $T$, résultant de la contraction des trois tenseurs montrés dans la figure~\ref{fig:tn-example5}, signifie que cette clause est satisfaite une fois lorsque $x_3 = x_4$ et une fois lorsque $x_3 \ne x_4$.
 Cela est vrai puisque lorsque $x_3 = x_4 = x$, on a que $c_2 = x_2 \oplus x \oplus x = x_2$, qui n'est satisfait que lorsque $x_2 = b_2$.
 C'est vrai aussi lorsque $x_3 \ne x_4$ ($x_3 = x_4 \oplus 1 = x$), puisque $c_2 = x_2 \oplus x \oplus x \oplus 1 = x_2 \oplus 1$, qui n'est satisfaite que lorsque $x_2 = b_2 \oplus 1$.
-Par la suite, si on contracte complètement ce réseau de tenseur, il n'y aura aucun indice au tenseur final, donc on va se retrouver avec un tenseur de rang-$0$, plus communément appelé un scalaire.
+Par la suite, si on contracte complètement ce réseau de tenseurs, il n'y aura aucun indice au tenseur final, donc on va se retrouver avec un tenseur de rang-$0$, plus communément appelé un scalaire.
 Cette valeur correspond directement au nombre de solutions satisfaisant le problème, soit $4$ pour l'instance $\phi$ donnée à l'équation~\ref{eq:p-xorsat-example}.
 On a donc que la contraction complète d'un réseau de tenseurs modélisant un problème $p$-XORSAT qui lui-même modélise un système $p$-spin permet d'évaluer la fonction de partition de ce système à température nulle.
 
@@ -179,19 +179,19 @@ Ce tenseur de rang-$(d - 1)$ ne contient maintenant que des $1$s, à un préfact
 Cette simplification est illustrée dans la figure~\ref{fig:degree1_sweep}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.45\textwidth]{Figures/leaf_algorithm.pdf}
+    \includegraphics[width=0.55\textwidth]{Figures/leaf_algorithm.pdf}
     \caption[Application de la compression de lien sur un tenseur variable de rang-$1$ connecté à un tenseur clause de rang-$4$.]{Application de la compression de lien sur un tenseur variable de rang-$1$ connecté à un tenseur clause de rang-$4$. Le résultat est un scalaire ainsi qu'un tenseur de rang-$3$ qui est équivalent au produit tensoriel de trois tenseurs variables de rang-$1$.}
     \label{fig:degree1_sweep}
 \end{figure}
 L'étape de balayage suivante va ensuite éliminer ces $d-1$ liens, puisqu'ils connectent deux tenseurs COPY, dont un de rang-$1$.
-Cela signifie donc que l'algorithme de balayage retire un tenseur XOR --- un tenseur de type << clause >> --- ainsi que tous ses liens, ce qui est équivalent à une étape de l'algorithme d'élimination de feuilles.
+Cela signifie donc que l'algorithme de balayage retire un tenseur XOR --- un tenseur de type <<~clause~>> --- ainsi que tous ses liens, ce qui est équivalent à une étape de l'algorithme d'élimination de feuilles.
 L'élimination de cette information redondante peut ensuite se répercuter sur l'ensemble du réseau de tenseurs, éliminant potentiellement tous ses liens ou résultant en un noyau où les variables sont présentes au moins deux fois, donnant le même résultat que l'algorithme d'élimination des feuilles.
-Ainsi, l'algorithme de balayage implémente automatiquement l'algorithme d'élimination de feuilles lors des étapes de balayage qui précedent la première contraction du réseau de tenseurs.
+Ainsi, l'algorithme de balayage implémente automatiquement l'algorithme d'élimination de feuilles lors des étapes de balayage qui précèdent la première contraction du réseau de tenseurs.
 
 
 
 \chapter{Contraction graphique} \label{ch:graphical-method}
-Lorsque $\alpha < \alpha_d$, l'algorithme d'élimination de feuilles est susceptible de simplifier complètement le graphe qui encode le problème donné, comme expliqué dans la section~\ref{subsec:leaf-removal-algorithm}.
+Lorsque $\alpha < \alpha_d$, l'algorithme d'élimination de feuilles est susceptible de simplifier complètement le graphe qui encode le problème $p$-XORSAT, comme expliqué dans la section~\ref{subsec:leaf-removal-algorithm}.
 Traduit dans le langage de la contraction de réseau de tenseurs, la compression de lien montrée dans la figure~\ref{fig:degree1_sweep} est suffisante pour significativement simplifier la contraction de ces réseaux de tenseurs.
 Cela nous permet d'adapter les simulations à des systèmes de plus grande taille.
 Cependant, lorsque $\alpha > \alpha_d$, un noyau va, avec une grande probabilité, rester après l'application des étapes de balayage.
@@ -199,7 +199,7 @@ Dans ce cas, le noyau restant dans le réseau de tenseurs va abruptement modifie
 Plus particulièrement, la présence de ce noyau va augmenter la largeur de contraction (donc la demande en mémoire) beaucoup plus rapidement que lorsque $\alpha < \alpha_d$.
 Cela limite les possibilités de tester les performances de l'algorithme de balayage sur les instances possédant beaucoup de variables dans ce régime.
 
-Afin de contourner ce goulot d'étranglement et fournir plus de preuve au niveau de l'évolution de la demande en mémoire de l'algorithme, un algorithme graphique a été développé.
+Afin de contourner ce goulot d'étranglement et fournir plus de preuves au niveau de l'évolution de la demande en mémoire de l'algorithme, un algorithme graphique a été développé.
 Cela nous permet d'étudier la largeur de contraction tout au long de la contraction en étudiant seulement la connectivité du graphe de chacune des instances anlaysées.
 Comme mentionné dans la section~\ref{sec:contraction}, c'est toujours possible de faire cela pour la contraction exacte d'un réseau de tenseurs puisqu'on doit simplement regarder les rangs des tenseurs à chacune des étapes de la contraction, peu importe les valeurs présentes dans les tenseurs en question.
 Par contre, puisqu'on cherche ici à étudier la performance de l'algorithme de balayage qui détecte et effectue les simplifications entre chaque étape de contraction, on doit aussi encoder les patrons graphiques qui mènent à ces simplifications.
@@ -207,17 +207,17 @@ Ici, on utilisera une des deux simplifications graphiques mentionnées dans la s
 
 Cette méthode graphique fonctionne de la manière suivante.
 On commence avec un graphe $G$ qui encode l'instance $\phi(\vec{x})$ à partir de sa matrice de biadjacence $B$.
-Chacun des sommets va toujours représenter soit une variable, soit une clause et, par défaut, chacun de ces sommets fera parti d'un << groupe >> distinct.
-Cette méthode permet la << contraction >> de deux sommets en les affectant au même groupe.
-Les sommets qui font partis d'un même groupe peuvent être vus comme un tenseur contracté dans un réseau de tenseurs.
+Chacun des sommets va toujours représenter soit une variable, soit une clause et, par défaut, chacun de ces sommets fera partie d'un <<~groupe~>> distinct.
+Cette méthode permet la <<~contraction~>> de deux sommets en les affectant au même groupe.
+Les sommets qui font partie d'un même groupe peuvent être vus comme un tenseur contracté dans un réseau de tenseurs.
 Ainsi, le nombre de groupes présents dans $G$ après $t$ contractions correspond au nombre de tenseurs présents dans le réseau de tenseurs correspondant, après le même nombre de contractions.
-Ensuite, lorsque l'algorithme performe un << balayage >> sur les arêtes du graphe, il recherche toutes les simplifications possibles \emph{entre} les groupes impliquant des sommets de types variables et clauses.
-Si l'algorithme trouve des patrons de simplifications, il va appliquer les simplifications correspondantes en éliminant des arêtes dans le problème~\footnote{La méthode peut aussi éliminer des arêtes qui se trouvent \emph{dans} un groupe de sommets, si ça fait parti de la simplification détectée (voir la figure~\ref{fig:triangle_rule}).}.
-La méthode alterne entre << balayer >> et << contracter >> jusqu'à ce que tous les sommets fassent parti du même groupe, auquel cas elle est terminée.
-L'ordre de contraction pour cette méthode est exactement la même que celle utilisée par l'algorithme de balayage sur les réseaux de tenseurs.
+Ensuite, lorsque l'algorithme performe un <<~balayage~>> sur les arêtes du graphe, il recherche toutes les simplifications possibles \emph{entre} les groupes impliquant des sommets de types variables et clauses.
+Si l'algorithme trouve des patrons de simplifications, il va appliquer les simplifications correspondantes en éliminant des arêtes dans le problème~\footnote{La méthode peut aussi éliminer des arêtes qui se trouvent \emph{dans} un groupe de sommets, si ça fait partie de la simplification détectée (voir la figure~\ref{fig:triangle_rule}).}.
+La méthode alterne entre <<~balayer~>> et <<~contracter~>> jusqu'à ce que tous les sommets fassent partie du même groupe, auquel cas elle est terminée.
+L'ordre de contraction pour cette méthode est exactement le même que celui utilisé par l'algorithme de balayage sur les réseaux de tenseurs.
 Avec cette méthode graphique, l'objectif est simplement d'obtenir la largeur de contraction du problème, sans avoir à travailler avec les valeurs dans les tenseurs.
 Ainsi, cette méthode ne permet pas d'obtenir le nombre de solutions du problème que $G$ modélise, mais seulement sa largeur de contraction.
-Finalement, il est important de noter qu'un tenseur variable de degré-$2$ correspond en fait à la matrice identité $2 \times 2$ selon sa définition à l'équation~\ref{eq:COPY}.
+Finalement, il est important de noter qu'un tenseur variable de degré $2$ correspond en fait à la matrice identité $2 \times 2$ selon sa définition à l'équation~\ref{eq:COPY}.
 
 Le rang d'un groupe de sommets durant chacune des étapes de contraction sur le graphe $G$ correspond à son nombre d'arêtes sortantes, et la taille du tenseur correspondant à ce groupe de sommets est:
 \begin{equation} \label{eq:size-cluster}
@@ -225,8 +225,8 @@ Le rang d'un groupe de sommets durant chacune des étapes de contraction sur le 
 \end{equation}
 En prenant le nombre maximal d'arêtes sortantes des groupes sur toutes les étapes de contraction, on obtient directement la largeur de contraction du réseau de tenseurs correspondant.
 
-Bien entendu, cette méthode doit absolument détecter \emph{et} simplifier n'importe quel tenseur que la méthode de balayage aurait trouvée dans le réseau de tenseurs.
-Pour l'ensemble $\alpha = 2/3$ qui est considéré ci, seulement quelques-unes des simplifications possibles sont présentes.
+Bien entendu, cette méthode doit absolument détecter \emph{et} simplifier n'importe quel tenseur que la méthode de balayage aurait trouvé dans le réseau de tenseurs.
+Pour l'ensemble $\alpha = 2/3$ qui est considéré ici, seulement quelques-unes des simplifications possibles sont présentes.
 En suivant les exemples dans~\cite{denny_algebraically_2012}, la méthode graphique peut détecter les simplifications suivantes (on assume $\vec{b} = \vec{0}$ par simplicité):
 \begin{itemize}
     \item Règle de fusion,
@@ -236,7 +236,7 @@ En suivant les exemples dans~\cite{denny_algebraically_2012}, la méthode graphi
     \item Décomposition en scalaire.
 \end{itemize}
 
-La \emph{régle de fusion} stipule que des sommets de type clause qui sont voisins dans un même groupe peuvent être contractés ensemble afin de former un sommet de type clause plus gros, et le même est vrai pour les sommets de type variable.
+La \emph{régle de fusion} stipule que des sommets de type clause qui sont voisins dans un même groupe peuvent être contractés ensemble afin de former un sommet de type clause plus gros, ceci est aussi vrai pour les sommets de type variable.
 Dans ce cas, la méthode fusionne vraiment ces noeuds ensemble afin de ne laisser qu'un seul noeud du type correspondant.
 Leurs représentations correspondantes sous la forme de tenseur serait donc exactement celle d'un tenseur clause ou variable de rang plus élevé.
 Cette règle est montrée schématiquement dans la figure~\ref{fig:fusion_rule}.
@@ -246,53 +246,53 @@ Puisqu'on étudie seulement la taille des tenseurs, ce coefficient n'est pas per
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{Figures/fusion_rule.pdf}
-    \caption[Représentation graphique de la règle de fusion sur deux sommets qui sont dans le même groupe.]{La règle de fusion sur deux sommets qui sont dans le même groupe, ici identifiés en rouge. Les sommets en forme de losange représentent des sommets qui peuvent être soit de tye clause, soit de type variable.}
+    \caption[Représentation graphique de la règle de fusion sur deux sommets qui sont dans le même groupe.]{La règle de fusion sur deux sommets qui sont dans le même groupe, ici identifiés en rouge. Les sommets en forme de losange représentent des sommets qui peuvent être soit de type clause, soit de type variable.}
     \label{fig:fusion_rule}
 \end{figure}
 
 La \emph{loi généralisée de Hopf} stipule que si un sommet de type clause partage $t$ arêtes avec un sommet de type variable, alors seulement $t \mod{2}$ arêtes peuvent être conservées entre eux.
 La logique est exactement la même que celle expliquée à la section~\ref{subsec:XORSAT-simplifications}.
 
-La \emph{simplification triangulaire} est en fait une implémentation différente de la loi de Hopf entre deux groupes de sommets qui, entre eux, possèdent un << triangle >> de sommets.
+La \emph{simplification triangulaire} est en fait une implémentation différente de la loi de Hopf entre deux groupes de sommets qui, entre eux, possèdent un <<~triangle~>> de sommets.
 Ces triangles contiennent deux sommets d'un type (clause ou variable) et un autre de l'autre type.
 Puisque les sommets voisins du même type sont toujours contractés dans un groupe grâce à la règle de fusion, la simplification triangulaire ne peut se produire qu'entre deux groupes.
 Lorsqu'on applique le balayage entre deux groupes qui contiennent ce patron triangulaire à la source de cette simplification, l'application de la règle de fusion suivie de la loi de Hopf de base permet d'éliminer deux arêtes, comme on le voit dans la figure~\ref{fig:triangle_rule}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/triangle_simplification.pdf}
-    \caption[Représentation graphique d'un des deux cas possibles pour la simplification triangulaire.]{Un des deux cas possibles pour la simplification triangulaire. le noeud $c_1$ est dans un groupe (le groupe jaune) et les noeuds $c_2$ et $x_1$ sont dans l'autre (le groupe rouge). Initiallement, il y a deux arêtes entre ces deux groupes. Suite à l'application de la simplification triangulaire, les arêtes $c_1x_1$ et $c_2x_1$ disparaissent, résultant en seulement une arête entre ces groupes.}
+    \caption[Représentation graphique d'un des deux cas possibles pour la simplification triangulaire.]{Un des deux cas possibles pour la simplification triangulaire. le noeud $c_1$ est dans un groupe (le groupe jaune) et les noeuds $c_2$ et $x_1$ sont dans l'autre (le groupe rouge). initialement, il y a deux arêtes entre ces deux groupes. Suite à l'application de la simplification triangulaire, les arêtes $c_1x_1$ et $c_2x_1$ disparaissent, résultant en seulement une arête entre ces groupes.}
     \label{fig:triangle_rule}
 \end{figure}
 
 La simplification de \emph{plusieurs arêtes entre des sommets de même type} est en fait une variante de la règle de fusion.
 Si deux noeuds sont connectés ensemble, mais dans différents groupes, appliquer la compression de lien entre ces deux groupe ne contracterait pas ces deux sommets, mais éliminerait toutes les arêtes entre eux sauf une.
-Ici, on ignore encore une fois le facteur que ces multiples arêtes apportent aux éléments dans les tenseurs correspondant.
+Ici, on ignore encore une fois le facteur que ces multiples arêtes apportent aux éléments dans les tenseurs correspondants.
 Un exemple de cette simplification est montrée dans la figure~\ref{fig:same_type_simplification}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.65\textwidth]{Figures/same_type_simplification.pdf}
-    \caption[Représentation graphique de la simplification de plusieurs arêtes entre des sommets de même type.]{La schématisation de la simplification de plusieurs arêtes entre des sommets de même type. Les deux sommets de même type sont dans deux groupes différents (jaune et rouge) et, initiallement, ils se partagent plusieurs arêtes. Après avoir appliqué la simplification, seulement une arête est nécessaire afin de représenter la structure des tenseurs qui correspondent à ces sommets.}
+    \caption[Représentation graphique de la simplification de plusieurs arêtes entre des sommets de même type.]{La schématisation de la simplification de plusieurs arêtes entre des sommets de même type. Les deux sommets de même type sont dans deux groupes différents (jaune et rouge) et, initialement, ils se partagent plusieurs arêtes. Après avoir appliqué la simplification, seulement une arête est nécessaire afin de représenter la structure des tenseurs qui correspondent à ces sommets.}
     \label{fig:same_type_simplification}
 \end{figure}
 
 Finalement, la \emph{décomposition en scalaire} se produit lorsqu'il y a deux sommets de même type et qu'au moins un des deux partage toutes ses arêtes avec l'autre.
-Un balayage contracterait les deux tenseurs correspondant et, ensuite, la décomposition sortirait seulement un scalaire (tenseur de degré-$0$) afin de revenir à deux tenseurs.
+Un balayage contracterait les deux tenseurs correspondants et, ensuite, la décomposition sortirait seulement un scalaire (tenseur de rang $0$) afin de revenir à deux tenseurs.
 Cependant, ce balayage élimine toutes les arêtes entre ces deux groupes.
 Cette simplification est montrée schématiquement à la figure~\ref{fig:scalar-decomposition}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth]{Figures/scalar_simplification.pdf}
-    \caption[Représentation graphique de la décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents.]{La décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents (jaune et rouge). Toutes les arêtes partagées entre ces deux sommets sont éliminés suite à l'application de cette simplification.}
+    \caption[Représentation graphique de la décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents.]{La décomposition en scalaire entre deux sommets de même type présents dans deux groupes différents (jaune et rouge). Toutes les arêtes partagées entre ces deux sommets sont éliminées suite à l'application de cette simplification.}
     \label{fig:scalar-decomposition}
 \end{figure}
 
 Ces simplifications sont suffisantes afin de caractériser toutes celles qui sont possibles dans l'ensemble des instances noyau avec $\alpha = 2/3$, défini dans la section~\ref{sec:core-instances}.
-En effet, chaque sommet de type variable est de degré-$2$, alors la loi de bialgèbre et n'importe quelle généralisation d'ordre plus élevée ne peut pas se produire puisqu'elles nécessitent des sommets de type variable de degré-$3$ ou plus.
-Puisqu'on peut remplacer tous les sommets de type variable de degré-$2$ par une arête et que la règle de fusion combine les sommets de type clause dans un même groupe, la plupart des groupes vont correspondre à un sommet de type clause dans une certaine mesure.
+En effet, chaque sommet de type variable est de degré $2$, alors la loi de bialgèbre et n'importe quelle généralisation d'ordre plus élevée ne peut pas se produire puisqu'elles nécessitent des sommets de type variable de degré $3$ ou plus.
+Puisqu'on peut remplacer tous les sommets de type variable de degré $2$ par une arête et que la règle de fusion combine les sommets de type clause dans un même groupe, la plupart des groupes vont correspondre à un sommet de type clause dans une certaine mesure.
 Les règles expliquées ci-dessus capturent les simplifications présentes entre de tels groupes.
 La seule exception est lorsque les sommets de type variable sont dans leur propre groupe, au début de la méthode, avant de se faire contracter avec d'autres sommets.
 Dans ce cas, la simplification triangulaire montrée dans la figure~\ref{fig:triangle_rule} peut s'appliquer.
-D'autres preuves sont fournis pour cette affirmation dans la section~\ref{sec:results-only_cores}.
+D'autres preuves sont fournies pour cette affirmation dans la section~\ref{sec:results-only_cores}.
 
 
 
@@ -311,7 +311,7 @@ Dans le langage du système linéaire à l'équation~\ref{eq:Bx=b}, $p$ $1$s son
 Dans les simulations numériques faites pour ce projet, on fixe $p = 3$ et on se concentre uniquement sur le cas où $\vec{b} = \vec{0}$ (la version non-frustrée du modèle $p$-spin).
 On peut se concentrer seulement sur ce cas puisque dans le régime $\alpha < \alpha_c$ qui est étudié, ce problème contient au moins une solution pour n'importe quel $\vec{b}$ (avec une forte probabilité dans la limite thermodynamique).
 Cela nous permet de redéfinir le problème de telle manière que $\vec{b} = \vec{0}$~\cite{mezard_alternative_2002, braunstein_complexity_2002} sans toutefois affecter le nombre de solutions du problème.
-Un exemple d'instance, avec $\alpha = 2/3$, construite à l'aide de cette méthode est montrée à l'équation~\ref{eq:random-instance-example} et le réseau de tenseur qui lui est associé se trouve à la figure~\ref{fig:random-instance-example}.
+Un exemple d'instance, avec $\alpha = 2/3$, construite à l'aide de cette méthode est montrée à l'équation~\ref{eq:random-instance-example} et le réseau de tenseurs qui lui est associé se trouve à la figure~\ref{fig:random-instance-example}.
 \begin{equation}\label{eq:random-instance-example}
     \begin{split}
         \phi(\vec{x}) = &(x_1 \oplus x_4 \oplus x_5) \wedge (x_1 \oplus x_2 \oplus x_4) \wedge (x_3 \oplus x_4 \oplus x_6) \wedge\\
@@ -324,7 +324,7 @@ Un exemple d'instance, avec $\alpha = 2/3$, construite à l'aide de cette métho
     \caption{Réseau de tenseurs qui modélise l'instance $\phi$ de l'équation~\ref{eq:random-instance-example}.}
     \label{fig:random-instance-example}
 \end{figure}
-Avec cette instance, on retrouve $m = 6$ clauses et, avec $\alpha = 2/3$, on a $n = 9$ variables, mais on n'en retrouve que huit dans ce problème.
+Avec cette instance, on retrouve $m = 6$ clauses et, avec $\alpha = 2/3$, on a $n = 9$ variables, mais on en retrouve que huit dans ce problème.
 Cela signifie que pour ce problème, la variable manquante ($x_7$) peut prendre n'importe quelle valeur et toujours satisfaire toutes les combinaisons des variables qui le satisfont déjà.
 Par contre, comme elle ne se retrouve pas dans le réseau de tenseurs, la contraction de celui-ci donnera un nombre deux fois plus petit que le vrai nombre de solutions qui satisfont le problème donné.
 Il est donc très important de corriger ce compte en le multipliant par $2^1$.
@@ -335,7 +335,7 @@ En généralisant cela, on a que si $x$ variables sont manquantes, le résultat 
 Puisque le principal souci est la demande en ressources pour les instances qui contiennent un noyau, on choisit ici un ensemble minimal qui respecte leurs propriétés.
 On va étudier l'ensemble des graphes $3$-réguliers --- graphe dans lequel chacun des sommets est connecté à exactement $3$ arêtes --- sur $m$ sommets de type clause générés de manière complètement aléatoire (en suivant une distribution uniforme) en utilisant la fonction \verb|Degree_Sequence| dans \verb|igraph| avec la méthode de Viger-Latapy~\cite{viger_efficient_2016}.
 Afin de générer une instance $3$-XORSAT, on place ensuite un sommet variable sur chacune des arêtes du graphe $3$-régulier.
-Cela nous assure que les sommets de type variable sont tous de degré-$2$, donc que l'algorithme d'élimination de feuilles n'aura aucun effet sur l'instance initiale, et que les sommets de type clause sont tous de degré-$3$.
+Cela nous assure que les sommets de type variable sont tous de degré $2$, donc que l'algorithme d'élimination de feuilles n'aura aucun effet sur l'instance initiale, et que les sommets de type clause sont tous de degré $3$.
 Ainsi, l'ensemble des instances générées de cette manière ont toutes une densité de clause $\alpha = 2/3$.
 Même si $2/3 < \alpha_d$, cette méthode de génération assure que l'instance est un noyau dès le départ, donc qu'aucune étape de l'algorithme d'élimination des feuilles ne peut être effectuée.
 Un exemple d'instance construite à l'aide de cette méthode est montrée à l'équation~\ref{eq:core-instance-example} et le réseau de tenseurs qui lui est associé se trouve à la figure~\ref{fig:core-instance-example}.
@@ -387,7 +387,7 @@ Pour la contraction des réseaux de tenseurs, la librairie Python principale uti
 Pour la méthode graphique développée au chapitre~\ref{ch:graphical-method}, on utilise \verb|igraph|, une librairie Python permettant une analyse de graphe efficace~\cite{csardi_igraph_nodate}, afin de travailler avec leur implémentation d'attributs qui sont possible de donner à chacun des sommets.
 Ces attributs permettent de définir le type de chacun de ces sommets (clause ou variable) ainsi que les groupes dans lesquels ils se retrouvent.
 
-L'ordre dans laquelle les réseaux de tenseurs se contractent, comme discuté dans la section~\ref{sec:contraction-ordering}, détermine la largeur de contraction.
+L'ordre dans lequel les réseaux de tenseurs se contractent, comme discuté dans la section~\ref{sec:contraction-ordering}, détermine la largeur de contraction.
 Sans appliquer la méthode de balayage, il est simple d'évaluer cette quantité sans même faire la contraction des tenseurs se trouvant dans le réseau.
 En effet, il est seulement nécessaire de suivre le rang de chacun des tenseurs à chaque moment de la contraction puisque contracter deux tenseurs ensemble mène à un tenseur de rang connu, comme mentionné dans la section~\ref{sec:contraction}.
 Afin d'évaluer cette quantité, on utilise la librairie Python \verb|cotengra|, une librairie orientée sur la contraction des réseaux de tenseurs~\cite{gray_hyper-optimized_2021}.
@@ -405,9 +405,9 @@ La centralité d'intermédiarité des arêtes $e \in E$ s'évalue selon l'équat
 où $\sigma_{ij}$ correspond au nombre de chemins les plus courts reliant les sommets $i$ et $j$ du graphe modélisant le réseau de tenseurs et $\sigma_{ij}(e)$ est le nombre de ces mêmes chemins qui passent par l'arête $e$~\cite{gray_hyper-optimized_2021,girvan_community_2002}.
 Afin de déterminer ces chemins, un poids --- la dimension du lien correspondant dans le réseau de tenseurs --- est associé à chacune des arêtes.
 Celles qui possèdent les valeurs $g(e)$ les plus élevées connectent les communautés dans le graphe, donc dans le réseau de tenseurs~\cite{girvan_community_2002}.
-Classer chacune des arêtes en fonction de cette valeur permet donc d'obtenir l'ordre de contraction fournit par cette méthode.
+Classer chacune des arêtes en fonction de cette valeur permet donc d'obtenir l'ordre de contraction fourni par cette méthode.
 Cette détection de communautés dans le réseau de tenseurs permet la contraction des régions qui sont plus denses, minimisant ainsi les risques de retrouver un tenseur de très grande taille durant cette contraction.
-La figure~\ref{fig:ebc-with-dendrogram} montre  comment cette détection de communauté fonctionne sur un exemple d'instance à $n = 12$ variables et $m = 8$ clauses.
+La figure~\ref{fig:ebc-with-dendrogram} montre  comment cette détection de communautés fonctionne sur un exemple d'instance à $n = 12$ variables et $m = 8$ clauses.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Figures/ceb-with-dendrogram.pdf}
@@ -415,12 +415,12 @@ La figure~\ref{fig:ebc-with-dendrogram} montre  comment cette détection de comm
     \label{fig:ebc-with-dendrogram}
 \end{figure}
 Dans le graphe à gauche dans cette figure, les sommets d'une certaine couleur sont contractés ensemble en suivant cette même couleur dans l'ordre de contraction représenté dans la figure à droite.
-Les lignes en noir dans l'arbre de contraction montrent les étapes de contraction restantes, donc que les sommets représentés par les couleurs rouge et orange vont être contractés ensemble, suivi des sommets de couleurs vert et bleu, pour finir avec les deux groupes restant afin d'avoir complètement contracté le réseau.
+Les lignes en noir dans l'arbre de contraction montrent les étapes de contraction restantes, donc que les sommets représentés par les couleurs rouge et orange vont être contractés ensemble, suivi des sommets de couleurs vert et bleu, pour finir avec les deux groupes restants afin d'avoir complètement contracté le réseau.
 Dans cette figure, on voit bien que l'algorithme s'est concentré sur les régions en vert et en rouge, puisque celles-ci contiennent plus de tenseurs qui ont plusieurs liens entre eux, donc qu'ils représentent une communauté.
 La contraction de régions plus denses est un point utile de cet algorithme parce que ça permet de minimiser les chances d'avoir à travailler avec des tenseurs de grande taille plus tard, ce qui mènerait à une largeur de contraction élevée, ce qui est mauvais au niveau de la mémoire d'un ordinateur.
 Finalement, cet algorithme est déterministe, ce qui veut dire que les ordres de contraction qu'il détermine en fonction des instances qui lui sont données sont reproductibles.
 
-Pour les résultats montrés dans la section~\ref{sec:results-only_cores}, d'autres ordres de contractions son utilisés en plus de \verb|EBC|, soient \verb|Greedy|~\cite{gray_hyper-optimized_2021} et \verb|KaHyPar|~\cite{PhDThesis-kahypar,paper-kahypar} (venant de l'anglais \textit{\textbf{Ka}rlsruhe \textbf{Hy}pergraph \textbf{Par}titioning}), deux méthodes implémentées dans \verb|cotengra|.
+Pour les résultats montrés dans la section~\ref{sec:results-only_cores}, d'autres ordres de contractions sont utilisés en plus de \verb|EBC|, soient \verb|Greedy|~\cite{gray_hyper-optimized_2021} et \verb|KaHyPar|~\cite{PhDThesis-kahypar,paper-kahypar} (venant de l'anglais \textit{\textbf{Ka}rlsruhe \textbf{Hy}pergraph \textbf{Par}titioning}), deux méthodes implémentées dans \verb|cotengra|.
 % L'algorithme \verb|Greedy| commence par aléatoirement choisir un tenseur dans le réseau et, de manière itérative, détermine le prochain tenseur à contracter à celui-ci en minimisant la taille du tenseur contracté.
 % L'algorithme \verb|Greedy| se base sur la fonction de coût suivante:
 % \begin{equation}\label{eq:greedy-cost-function}
@@ -428,7 +428,7 @@ Pour les résultats montrés dans la section~\ref{sec:results-only_cores}, d'aut
 % \end{equation}
 % où $T_c$ est le tenseur qui correspond à la contraction des tenseurs $T_a$ et $T_b$ et $\gamma$ est un paramètre pouvant varier de $0$ à $1$.
 % Afin que cet algorithme soit une heuristique, un probabilité de contraction entre les tenseurs $T_a$ et $T_b$ est ajoutée et celle-ci possède un facteur de Boltzmann
-L'heuristique \verb|Greedy| détermine simplement quelle contraction est la plus avantageuse à chacune des étapes de la contraction du réseau de tenseur.
+L'heuristique \verb|Greedy| détermine simplement quelle contraction est la plus avantageuse à chacune des étapes de la contraction du réseau de tenseurs.
 Cette décision est faite à partir d'une fonction de coût associée à ces possibles contractions entre les paires de tenseurs $T_a$ et $T_b$: 
 \begin{equation}\label{eq:greedy-cost-function}
     \mathrm{coût}(T_a, T_b) = \mathrm{taille}(T_c) - \gamma(\mathrm{taille}(T_a) + \mathrm{taille}(T_b)),
@@ -446,7 +446,7 @@ Un exemple d'ordre de contraction suivant cette procédure est montré à la fig
     \caption[Schématisation de la contraction d'un réseau de tenseurs (\texttt{Greedy}).]{Schématisation de la contraction d'un réseau de tenseurs en suivant l'algorithme \texttt{Greedy}.}
     \label{fig:greedy-with-dendrogram}
 \end{figure}
-On voit ici que l'algorithme commence par faire des contractions qui minimisent la fonction de coût~\ref{eq:greedy-cost-function} un peu partout dans le réseau pour ensuite construire l'arbre de contraction en se basant sur l'étape << optimisée >> précédente.
+On voit ici que l'algorithme commence par faire des contractions qui minimisent la fonction de coût~\ref{eq:greedy-cost-function} un peu partout dans le réseau pour ensuite construire l'arbre de contraction en se basant sur l'étape <<~optimisée~>> précédente.
 Ensuite, comme on le voit avec la branche de gauche de l'ordre de contraction, un nombre élevé de tenseurs qui n'ont pas encore participé dans une contraction se font contracter dans un tenseur qui a participé à plusieurs d'entre elles.
 
 Quant à elle, l'heuristique se basant sur \verb|KaHyPar| utilise le \textit{partitionnement de graphe}.
@@ -527,7 +527,7 @@ La prochaine simplification est celle qui élimine la redondance venant du tense
 Cette simplification transforme le tenseur XOR de $c_2$ de la même manière que le tenseur qui modélisait $c_1$.
 Cela fait en sorte que le lien éliminé suivant est celui qui est partagé par ce même tenseur et le tenseur $x_2$.
 On se retrouve donc avec le réseau de tenseurs à la figure~\ref{subfig:compression-step-1}.
-Comme des simplifications ont été trouvées, le processus de balayage s'applique encore une fois sur le réseau de tenseurs simplifiés.
+Comme des simplifications ont été trouvées, le processus de balayage s'applique encore une fois sur le réseau de tenseurs simplifié.
 Avec les tenseurs qui modélisent $c_1$ et $c_2$ qui sont maintenant équivalents à $2$ et $1$ tenseurs COPY de rang-$1$ respectivement, tous leurs liens sont éliminés par la compression de lien, ce qui mène au réseau montré à la figure~\ref{subfig:compression-step-2}.
 À cette étape, on voit que tous les tenseurs COPY sont de rang-$1$, alors le processus de balayage va tous les éliminer pour finalement arriver au réseau schématisé à la figure~\ref{subfig:compression-step-3}.
-Ainsi, avec des balayages d'appliqués jusqu'à ce qu'aucune simplification ne soit détectée, le réseau de tenseurs a passé de $m + n$ tenseurs de rangs variés à $m + n$ scalaires, ce qui rend sa contraction numériquement beaucoup plus facile sans toutefois en affecter le résultat final.
+Ainsi, avec des balayages appliqués jusqu'à ce qu'aucune simplification ne soit détectée, le réseau de tenseurs a passé de $m + n$ tenseurs de rangs variés à $m + n$ scalaires, ce qui rend sa contraction numériquement beaucoup plus facile sans toutefois en affecter le résultat final.

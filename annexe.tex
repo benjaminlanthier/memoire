@@ -3,6 +3,30 @@
 
 \appendix
 \renewcommand\chapterstring{Annexe}
+
+\chapter{Fonction de partition et dénombrement}\label{annexe:partition-fn-and-counting}
+La fonction de partition se définit comme suit:
+\begin{equation}\label{eq:partition-function1}
+    Z = \sum_{j} e^{-\beta E_j},
+\end{equation}
+où $\beta = \frac{1}{k_B T}$, $j$ énumère toutes les configurations possibles du système étudié, $k_B$ est la constante de Boltzmann et $T$ est la température.
+À cause de la dégénérescence retrouvée dans les verres de spin, principalement à cause du phénomène de frustration dans les verres de spin, l'équation~\ref{eq:partition-function1} peut s'écrire comme suit:
+\begin{equation}\label{eq:partition-function2}
+    Z = N_{\text{fond}}e^{-\beta E_{\text{fond}}} + \cdots,
+\end{equation}
+où $N_{\text{fond}}$ est le nombre d'états fondamentaux --- le nombre de configurations associées à l'énergie fondamentale $E_{\text{fond}}$ --- et les autres termes dans la somme correspondent aux configurations avec des énergies supérieures.
+Comme il est toujours possible de modifier la définition du système afin que son énergie fondamentale soit nulle, on se retrouve avec $e^{-\beta E_{\text{fond}}} = 1$, donc l'équation~\ref{eq:partition-function2} devient:
+% Comme il est toujours possible de modifier la définition du système afin que son énergie fondamentale soit nulle, on peut enlever la dépendance en température du premier terme de l'équation~\ref{eq:partition-function2}:
+\begin{equation}
+    Z = N_{\text{fond}} + \cdots.
+\end{equation}
+Finalement, lorsqu'on est à température nulle, on a que $e^{-\beta E_j} \rightarrow 0$, ce qui fait en sorte que tous les termes dépendant de la température disparaissent, nous laissant avec:
+\begin{equation}
+    Z = N_{\text{fond}}.
+\end{equation}
+
+
+
 \chapter{Moyenne géométrique}\label{annexe:geo-mean}
 
 %-----------------------------------------------------------------------------%
@@ -41,7 +65,7 @@ Cette affirmation est supportée par la figure~\ref{fig:sizes-distribution}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/sizes-distribution-alpha0.75.pdf}
-    \caption[Histogramme du nombre de fois que des tailles maximales de tenseurs ont été atteinte à $\alpha = 3/4$ et à $n = 300$.]{Histogramme du nombre de fois que des tailles maximales de tenseurs ont été atteinte durant la contraction compressée pour les instances à $\alpha = 3/4$ et $n = 300$.}
+    \caption[Histogramme du nombre de fois que des tailles maximales de tenseurs ont été atteintes à $\alpha = 3/4$ et à $n = 300$.]{Histogramme du nombre de fois que des tailles maximales de tenseurs ont été atteintes durant la contraction compressée pour les instances à $\alpha = 3/4$ et $n = 300$.}
     \label{fig:sizes-distribution}
 \end{figure}
 Dans l'histogramme qui y est montré, les lignes verticales sont: la moyenne arithmétique, la médiane ainsi que la moyenne géométrique de l'ensemble $S$ pour les instances à $\alpha = 3/4$ et $n = 300$.
@@ -72,12 +96,12 @@ Ce comportement pour la moyenne arithmétique peut se voir dans toutes les distr
         \caption{Distribution pour $\alpha = 8/9$ avec $n = 99$.}
         \label{subfig:sizes-distribution-alpha8_9}
     \end{subfigure}
-    \caption[Distributions des tailles intermédiaires maximalles des tenseurs pour trois autres valeurs de $\alpha > 3/4$.]{Distributions des tailles intermédiaires maximalles des tenseurs pour différentes valeurs de $\alpha$ et pour les valeurs maximales de $n$ atteintes dans la figure~\ref{fig:all-results-quimb} ainsi que la représentation de leurs statistiques (AM, GM et médiane).}
+    \caption[Distributions des tailles intermédiaires maximales des tenseurs pour trois autres valeurs de $\alpha > 3/4$.]{Distributions des tailles intermédiaires maximalles des tenseurs pour différentes valeurs de $\alpha$ et pour les valeurs maximales de $n$ atteintes dans la figure~\ref{fig:all-results-quimb} ainsi que la représentation de leurs statistiques (AM, GM et médiane).}
     \label{fig:sizes-distributions}
 \end{figure}
 Dans ceux-ci, on remarque que la moyenne arithmétique de cette mesure se trouve toujours à droite, alors elle n'est pas une statistique adéquate pour représenter l'évolution typique de la mémoire pour l'algorithme de balayage.
 
-Quant à elle, la médiane pourrait omettre de montrer une augmentation de la demande en mémoire au fil du temps, comme un passage de tendance polynomialle à exponentielle.
+Quant à elle, la médiane pourrait omettre de montrer une augmentation de la demande en mémoire au fil du temps, comme un passage de tendance polynomiale à exponentielle.
 Un bon exemple de ce type de courbe est celle pour $\alpha = 4/5$ dans la figure~\ref{subfig:all-results-quimb-a}.
 Comme il est primordial de pouvoir détecter ces tendances afin de pouvoir bien caractériser l'efficacité de l'algorithme de balayage, la médiane n'est pas utilisée.
 
